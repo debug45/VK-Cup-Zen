@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		A5D1E1AD296C3BE2002AA67C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1AC296C3BE2002AA67C /* AppDelegate.swift */; };
 		A5D1E1AF296C3BE2002AA67C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1AE296C3BE2002AA67C /* SceneDelegate.swift */; };
-		A5D1E1B1296C3BE2002AA67C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1B0296C3BE2002AA67C /* ViewController.swift */; };
-		A5D1E1B4296C3BE2002AA67C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5D1E1B2296C3BE2002AA67C /* Main.storyboard */; };
+		A5D1E1B1296C3BE2002AA67C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1B0296C3BE2002AA67C /* MainViewController.swift */; };
 		A5D1E1B6296C3BE3002AA67C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5D1E1B5296C3BE3002AA67C /* Assets.xcassets */; };
-		A5D1E1B9296C3BE3002AA67C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5D1E1B7296C3BE3002AA67C /* LaunchScreen.storyboard */; };
+		A5D1E1C6296C3DAC002AA67C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D1E1C2296C3DAC002AA67C /* InfoPlist.strings */; };
+		A5D1E1C7296C3DAC002AA67C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D1E1C4296C3DAC002AA67C /* Localizable.strings */; };
+		A5D1E1C9296C3FF8002AA67C /* Instances.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1C8296C3FF8002AA67C /* Instances.swift */; };
+		A5D1E1CB296C426D002AA67C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5D1E1CA296C426D002AA67C /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A5D1E1A9296C3BE2002AA67C /* Zen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D1E1AC296C3BE2002AA67C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5D1E1AE296C3BE2002AA67C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A5D1E1B0296C3BE2002AA67C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A5D1E1B3296C3BE2002AA67C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A5D1E1B0296C3BE2002AA67C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A5D1E1B5296C3BE3002AA67C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A5D1E1B8296C3BE3002AA67C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5D1E1BA296C3BE3002AA67C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5D1E1C3296C3DAC002AA67C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A5D1E1C5296C3DAC002AA67C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5D1E1C8296C3FF8002AA67C /* Instances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instances.swift; sourceTree = "<group>"; };
+		A5D1E1CA296C426D002AA67C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +62,31 @@
 			children = (
 				A5D1E1AC296C3BE2002AA67C /* AppDelegate.swift */,
 				A5D1E1AE296C3BE2002AA67C /* SceneDelegate.swift */,
-				A5D1E1B0296C3BE2002AA67C /* ViewController.swift */,
-				A5D1E1B2296C3BE2002AA67C /* Main.storyboard */,
+				A5D1E1CC296C42C1002AA67C /* Product Scenes */,
+				A5D1E1CE296C430E002AA67C /* Framework */,
 				A5D1E1B5296C3BE3002AA67C /* Assets.xcassets */,
-				A5D1E1B7296C3BE3002AA67C /* LaunchScreen.storyboard */,
+				A5D1E1CA296C426D002AA67C /* LaunchScreen.storyboard */,
+				A5D1E1C4296C3DAC002AA67C /* Localizable.strings */,
+				A5D1E1C2296C3DAC002AA67C /* InfoPlist.strings */,
 				A5D1E1BA296C3BE3002AA67C /* Info.plist */,
 			);
 			path = Zen;
+			sourceTree = "<group>";
+		};
+		A5D1E1CC296C42C1002AA67C /* Product Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1E1B0296C3BE2002AA67C /* MainViewController.swift */,
+			);
+			path = "Product Scenes";
+			sourceTree = "<group>";
+		};
+		A5D1E1CE296C430E002AA67C /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1E1C8296C3FF8002AA67C /* Instances.swift */,
+			);
+			path = Framework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,11 +126,10 @@
 			};
 			buildConfigurationList = A5D1E1A4296C3BE2002AA67C /* Build configuration list for PBXProject "Zen" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
-				Base,
+				ru,
 			);
 			mainGroup = A5D1E1A0296C3BE2002AA67C;
 			productRefGroup = A5D1E1AA296C3BE2002AA67C /* Products */;
@@ -125,9 +146,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5D1E1B9296C3BE3002AA67C /* LaunchScreen.storyboard in Resources */,
 				A5D1E1B6296C3BE3002AA67C /* Assets.xcassets in Resources */,
-				A5D1E1B4296C3BE2002AA67C /* Main.storyboard in Resources */,
+				A5D1E1CB296C426D002AA67C /* LaunchScreen.storyboard in Resources */,
+				A5D1E1C7296C3DAC002AA67C /* Localizable.strings in Resources */,
+				A5D1E1C6296C3DAC002AA67C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +160,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5D1E1B1296C3BE2002AA67C /* ViewController.swift in Sources */,
+				A5D1E1B1296C3BE2002AA67C /* MainViewController.swift in Sources */,
 				A5D1E1AD296C3BE2002AA67C /* AppDelegate.swift in Sources */,
+				A5D1E1C9296C3FF8002AA67C /* Instances.swift in Sources */,
 				A5D1E1AF296C3BE2002AA67C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,20 +170,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A5D1E1B2296C3BE2002AA67C /* Main.storyboard */ = {
+		A5D1E1C2296C3DAC002AA67C /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A5D1E1B3296C3BE2002AA67C /* Base */,
+				A5D1E1C3296C3DAC002AA67C /* ru */,
 			);
-			name = Main.storyboard;
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		A5D1E1B7296C3BE3002AA67C /* LaunchScreen.storyboard */ = {
+		A5D1E1C4296C3DAC002AA67C /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A5D1E1B8296C3BE3002AA67C /* Base */,
+				A5D1E1C5296C3DAC002AA67C /* ru */,
 			);
-			name = LaunchScreen.storyboard;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -170,6 +193,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -216,7 +240,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -230,6 +254,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -270,7 +295,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -283,17 +308,18 @@
 		A5D1E1BE296C3BE3002AA67C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = Colors/Accent;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Zen/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.magazines-and-newspapers";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -310,17 +336,18 @@
 		A5D1E1BF296C3BE3002AA67C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = Colors/Accent;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Zen/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.magazines-and-newspapers";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
