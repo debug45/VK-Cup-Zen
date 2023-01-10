@@ -16,7 +16,6 @@ final class Instances {
     
     private init() {
         mainWindow.rootViewController = rootNavigationController
-        rootNavigationController.isNavigationBarHidden = true
     }
     
 }

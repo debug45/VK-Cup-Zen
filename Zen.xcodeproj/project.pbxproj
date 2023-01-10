@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A528A151296D9ACA00FAC27E /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A150296D9ACA00FAC27E /* LocalizedStrings.swift */; };
 		A5D1E1AD296C3BE2002AA67C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1AC296C3BE2002AA67C /* AppDelegate.swift */; };
 		A5D1E1AF296C3BE2002AA67C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1AE296C3BE2002AA67C /* SceneDelegate.swift */; };
 		A5D1E1B1296C3BE2002AA67C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1B0296C3BE2002AA67C /* MainViewController.swift */; };
@@ -15,9 +16,13 @@
 		A5D1E1C7296C3DAC002AA67C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D1E1C4296C3DAC002AA67C /* Localizable.strings */; };
 		A5D1E1C9296C3FF8002AA67C /* Instances.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1C8296C3FF8002AA67C /* Instances.swift */; };
 		A5D1E1CB296C426D002AA67C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5D1E1CA296C426D002AA67C /* LaunchScreen.storyboard */; };
+		A5D1E1D0296C46A6002AA67C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1CF296C46A6002AA67C /* UIColor.swift */; };
+		A5D1E1D3296C47A7002AA67C /* InteractiveFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1D2296C47A7002AA67C /* InteractiveFormat.swift */; };
+		A5D1E1D6296C4831002AA67C /* InteractiveFormatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1D5296C4831002AA67C /* InteractiveFormatCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A528A150296D9ACA00FAC27E /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		A5D1E1A9296C3BE2002AA67C /* Zen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D1E1AC296C3BE2002AA67C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5D1E1AE296C3BE2002AA67C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +33,9 @@
 		A5D1E1C5296C3DAC002AA67C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5D1E1C8296C3FF8002AA67C /* Instances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instances.swift; sourceTree = "<group>"; };
 		A5D1E1CA296C426D002AA67C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A5D1E1CF296C46A6002AA67C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		A5D1E1D2296C47A7002AA67C /* InteractiveFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveFormat.swift; sourceTree = "<group>"; };
+		A5D1E1D5296C4831002AA67C /* InteractiveFormatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveFormatCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A528A14F296D9AC200FAC27E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1E1CF296C46A6002AA67C /* UIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A5D1E1A0296C3BE2002AA67C = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +80,7 @@
 				A5D1E1AE296C3BE2002AA67C /* SceneDelegate.swift */,
 				A5D1E1CC296C42C1002AA67C /* Product Scenes */,
 				A5D1E1CE296C430E002AA67C /* Framework */,
+				A5D1E1D1296C4790002AA67C /* Models */,
 				A5D1E1B5296C3BE3002AA67C /* Assets.xcassets */,
 				A5D1E1CA296C426D002AA67C /* LaunchScreen.storyboard */,
 				A5D1E1C4296C3DAC002AA67C /* Localizable.strings */,
@@ -76,6 +93,7 @@
 		A5D1E1CC296C42C1002AA67C /* Product Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A5D1E1D4296C481F002AA67C /* Subviews */,
 				A5D1E1B0296C3BE2002AA67C /* MainViewController.swift */,
 			);
 			path = "Product Scenes";
@@ -84,9 +102,27 @@
 		A5D1E1CE296C430E002AA67C /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				A528A14F296D9AC200FAC27E /* Extensions */,
 				A5D1E1C8296C3FF8002AA67C /* Instances.swift */,
+				A528A150296D9ACA00FAC27E /* LocalizedStrings.swift */,
 			);
 			path = Framework;
+			sourceTree = "<group>";
+		};
+		A5D1E1D1296C4790002AA67C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1E1D2296C47A7002AA67C /* InteractiveFormat.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A5D1E1D4296C481F002AA67C /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1E1D5296C4831002AA67C /* InteractiveFormatCell.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,8 +198,12 @@
 			files = (
 				A5D1E1B1296C3BE2002AA67C /* MainViewController.swift in Sources */,
 				A5D1E1AD296C3BE2002AA67C /* AppDelegate.swift in Sources */,
+				A528A151296D9ACA00FAC27E /* LocalizedStrings.swift in Sources */,
 				A5D1E1C9296C3FF8002AA67C /* Instances.swift in Sources */,
+				A5D1E1D3296C47A7002AA67C /* InteractiveFormat.swift in Sources */,
+				A5D1E1D6296C4831002AA67C /* InteractiveFormatCell.swift in Sources */,
 				A5D1E1AF296C3BE2002AA67C /* SceneDelegate.swift in Sources */,
+				A5D1E1D0296C46A6002AA67C /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

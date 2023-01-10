@@ -5,3 +5,11 @@
   Created by Sergey Moskvin on 09.01.2023.
   
 */
+
+"Scene.Main.Title" = "Интерактивные форматы";
+
+"InteractiveFormat.StepwisePolls" = "Многошаговые опросы";
+"InteractiveFormat.ElementMatchings" = "Сопоставление элементов";
+"InteractiveFormat.SimpleTextGaps" = "Заполнение пропусков с вариантами";
+"InteractiveFormat.EditableTextGaps" = "Заполнение пропусков путём ввода";
+"InteractiveFormat.RatingStars" = "Оценивание звёздами";
