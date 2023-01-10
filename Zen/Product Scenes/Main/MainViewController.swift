@@ -13,14 +13,18 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = LocalizedStrings.Scene.Main.title
         
+        navigationItem.title = LocalizedStrings.Scene.Main.title
         view.backgroundColor = .Zen.background
         
-        let tableView = UITableView()
+        let tableView = UITableView {
+            $0.dataSource = self
+            $0.delegate = self
+        }
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tableView)
+        view.addSubviews(
+            tableView
+        )
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -31,9 +35,6 @@ final class MainViewController: UIViewController {
         ])
         
         tableView.register(cellType, forCellReuseIdentifier: cellType.reuseIdentifier)
-        
-        tableView.dataSource = self
-        tableView.delegate = self
     }
     
 }
@@ -65,6 +66,8 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        var target: UIViewController?
+        
         switch InteractiveFormat.allCases[indexPath.row] {
             case .stepwisePoll:
                 break
@@ -75,7 +78,11 @@ extension MainViewController: UITableViewDelegate {
             case .editableTextGaps:
                 break
             case .ratingStars:
-                break
+                target = RatingStarsViewController()
+        }
+        
+        if let target {
+            Instances.shared.rootNavigationController.pushViewController(target, animated: true)
         }
     }
 }

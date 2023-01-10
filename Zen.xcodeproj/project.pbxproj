@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		A528A151296D9ACA00FAC27E /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A150296D9ACA00FAC27E /* LocalizedStrings.swift */; };
+		A528A155296D9FF700FAC27E /* RatingStarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A154296D9FF700FAC27E /* RatingStarsViewController.swift */; };
+		A528A158296DA10F00FAC27E /* RatingStarsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A157296DA10F00FAC27E /* RatingStarsCell.swift */; };
+		A528A15A296DA12C00FAC27E /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A159296DA12C00FAC27E /* UITableViewCell.swift */; };
+		A528A15C296DA1C500FAC27E /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A15B296DA1C500FAC27E /* FakeData.swift */; };
+		A528A15E296DA1FC00FAC27E /* RatingStarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A15D296DA1FC00FAC27E /* RatingStarsModel.swift */; };
+		A528A161296DA68B00FAC27E /* RatingStarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A160296DA68B00FAC27E /* RatingStarsView.swift */; };
+		A528A163296DA6A300FAC27E /* RatingStarsView.StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A162296DA6A300FAC27E /* RatingStarsView.StarView.swift */; };
+		A528A165296DA73C00FAC27E /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A164296DA73C00FAC27E /* UIView.swift */; };
+		A528A167296DAA0B00FAC27E /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A166296DAA0B00FAC27E /* UIStackView.swift */; };
+		A528A16D296DAE5300FAC27E /* Withable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A16C296DAE5300FAC27E /* Withable.swift */; };
 		A5D1E1AD296C3BE2002AA67C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1AC296C3BE2002AA67C /* AppDelegate.swift */; };
 		A5D1E1AF296C3BE2002AA67C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1AE296C3BE2002AA67C /* SceneDelegate.swift */; };
 		A5D1E1B1296C3BE2002AA67C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1B0296C3BE2002AA67C /* MainViewController.swift */; };
@@ -23,6 +33,16 @@
 
 /* Begin PBXFileReference section */
 		A528A150296D9ACA00FAC27E /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
+		A528A154296D9FF700FAC27E /* RatingStarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStarsViewController.swift; sourceTree = "<group>"; };
+		A528A157296DA10F00FAC27E /* RatingStarsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStarsCell.swift; sourceTree = "<group>"; };
+		A528A159296DA12C00FAC27E /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
+		A528A15B296DA1C500FAC27E /* FakeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeData.swift; sourceTree = "<group>"; };
+		A528A15D296DA1FC00FAC27E /* RatingStarsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStarsModel.swift; sourceTree = "<group>"; };
+		A528A160296DA68B00FAC27E /* RatingStarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStarsView.swift; sourceTree = "<group>"; };
+		A528A162296DA6A300FAC27E /* RatingStarsView.StarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStarsView.StarView.swift; sourceTree = "<group>"; };
+		A528A164296DA73C00FAC27E /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		A528A166296DAA0B00FAC27E /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		A528A16C296DAE5300FAC27E /* Withable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Withable.swift; sourceTree = "<group>"; };
 		A5D1E1A9296C3BE2002AA67C /* Zen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D1E1AC296C3BE2002AA67C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5D1E1AE296C3BE2002AA67C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,8 +73,54 @@
 			isa = PBXGroup;
 			children = (
 				A5D1E1CF296C46A6002AA67C /* UIColor.swift */,
+				A528A166296DAA0B00FAC27E /* UIStackView.swift */,
+				A528A159296DA12C00FAC27E /* UITableViewCell.swift */,
+				A528A164296DA73C00FAC27E /* UIView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A528A152296D9FDD00FAC27E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1E1D4296C481F002AA67C /* Subviews */,
+				A5D1E1B0296C3BE2002AA67C /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		A528A153296D9FE800FAC27E /* Rating Stars */ = {
+			isa = PBXGroup;
+			children = (
+				A528A156296DA10600FAC27E /* Subviews */,
+				A528A154296D9FF700FAC27E /* RatingStarsViewController.swift */,
+			);
+			path = "Rating Stars";
+			sourceTree = "<group>";
+		};
+		A528A156296DA10600FAC27E /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A528A157296DA10F00FAC27E /* RatingStarsCell.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		A528A15F296DA67F00FAC27E /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				A528A160296DA68B00FAC27E /* RatingStarsView.swift */,
+				A528A162296DA6A300FAC27E /* RatingStarsView.StarView.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		A528A16B296DAE4700FAC27E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A528A16C296DAE5300FAC27E /* Withable.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		A5D1E1A0296C3BE2002AA67C = {
@@ -93,8 +159,8 @@
 		A5D1E1CC296C42C1002AA67C /* Product Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				A5D1E1D4296C481F002AA67C /* Subviews */,
-				A5D1E1B0296C3BE2002AA67C /* MainViewController.swift */,
+				A528A152296D9FDD00FAC27E /* Main */,
+				A528A153296D9FE800FAC27E /* Rating Stars */,
 			);
 			path = "Product Scenes";
 			sourceTree = "<group>";
@@ -102,7 +168,9 @@
 		A5D1E1CE296C430E002AA67C /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				A528A15F296DA67F00FAC27E /* Controls */,
 				A528A14F296D9AC200FAC27E /* Extensions */,
+				A528A16B296DAE4700FAC27E /* Utils */,
 				A5D1E1C8296C3FF8002AA67C /* Instances.swift */,
 				A528A150296D9ACA00FAC27E /* LocalizedStrings.swift */,
 			);
@@ -112,7 +180,9 @@
 		A5D1E1D1296C4790002AA67C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A528A15B296DA1C500FAC27E /* FakeData.swift */,
 				A5D1E1D2296C47A7002AA67C /* InteractiveFormat.swift */,
+				A528A15D296DA1FC00FAC27E /* RatingStarsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -196,14 +266,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A528A165296DA73C00FAC27E /* UIView.swift in Sources */,
+				A528A167296DAA0B00FAC27E /* UIStackView.swift in Sources */,
 				A5D1E1B1296C3BE2002AA67C /* MainViewController.swift in Sources */,
 				A5D1E1AD296C3BE2002AA67C /* AppDelegate.swift in Sources */,
 				A528A151296D9ACA00FAC27E /* LocalizedStrings.swift in Sources */,
 				A5D1E1C9296C3FF8002AA67C /* Instances.swift in Sources */,
 				A5D1E1D3296C47A7002AA67C /* InteractiveFormat.swift in Sources */,
+				A528A161296DA68B00FAC27E /* RatingStarsView.swift in Sources */,
+				A528A15C296DA1C500FAC27E /* FakeData.swift in Sources */,
+				A528A15A296DA12C00FAC27E /* UITableViewCell.swift in Sources */,
+				A528A155296D9FF700FAC27E /* RatingStarsViewController.swift in Sources */,
+				A528A16D296DAE5300FAC27E /* Withable.swift in Sources */,
 				A5D1E1D6296C4831002AA67C /* InteractiveFormatCell.swift in Sources */,
 				A5D1E1AF296C3BE2002AA67C /* SceneDelegate.swift in Sources */,
+				A528A158296DA10F00FAC27E /* RatingStarsCell.swift in Sources */,
 				A5D1E1D0296C46A6002AA67C /* UIColor.swift in Sources */,
+				A528A15E296DA1FC00FAC27E /* RatingStarsModel.swift in Sources */,
+				A528A163296DA6A300FAC27E /* RatingStarsView.StarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
