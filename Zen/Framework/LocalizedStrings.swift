@@ -13,6 +13,10 @@ enum LocalizedStrings {
         enum Main {
             static let title = NSLocalizedString("Scene.Main.Title", comment: "")
         }
+        
+        enum RatingStars {
+            static let guide = NSLocalizedString("Scene.RatingStars.Guide", comment: "")
+        }
     }
     
     enum InteractiveFormat {

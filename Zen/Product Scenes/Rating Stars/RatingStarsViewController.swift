@@ -9,7 +9,15 @@ import UIKit
 
 final class RatingStarsViewController: UIViewController {
     
+    private let guideLabel = UILabel {
+        $0.alpha = 0.5
+        $0.numberOfLines = 0
+        $0.text = LocalizedStrings.Scene.RatingStars.guide
+        $0.textAlignment = .center
+    }
+    
     private lazy var tableView = UITableView {
+        $0.allowsSelection = false
         $0.dataSource = self
         $0.delegate = self
     }
@@ -24,14 +32,22 @@ final class RatingStarsViewController: UIViewController {
         view.backgroundColor = .Zen.background
         
         view.addSubviews(
+            guideLabel,
             tableView
         )
         
+        let defaultInset: CGFloat = 20
+        
         NSLayoutConstraint.activate([
+            guideLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: defaultInset),
+            guideLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -defaultInset),
+            
+            guideLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: guideLabel.bottomAnchor, constant: 16),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
@@ -62,6 +78,10 @@ extension RatingStarsViewController: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier, for: indexPath) as? RatingStarsCell {
             let model = dataModels[indexPath.row]
             cell.configure(from: model)
+            
+            cell.ratingChangeHandler = { [weak self] newValue in
+                self?.dataModels[indexPath.row].score = newValue
+            }
             
             configured = cell
         }

@@ -19,17 +19,18 @@ extension MainViewController {
                 titleLabel
             )
             
-            let inset: CGFloat = 16
+            let defaultInset: CGFloat = 20
             
             NSLayoutConstraint.activate([
-                titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
-                titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
+                titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
+                titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
                 
-                titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
-                titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset)
+                titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+                titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
             ])
         }
         
+        @available(*, unavailable)
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }

@@ -10,8 +10,15 @@ import UIKit
 extension RatingStarsViewController {
     final class RatingStarsCell: UITableViewCell {
         
-        private let titleLabel = UILabel()
-        private let ratingStarsView = RatingStarsView()
+        private let titleLabel = UILabel {
+            $0.numberOfLines = 0
+        }
+        
+        private lazy var ratingStarsView = RatingStarsView {
+            $0.ratingChangeHandler = { [weak self] newValue in
+                self?.ratingChangeHandler?(newValue)
+            }
+        }
         
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,28 +28,31 @@ extension RatingStarsViewController {
                 ratingStarsView
             )
             
-            let inset: CGFloat = 16
+            let defaultInset: CGFloat = 20
             
             NSLayoutConstraint.activate([
-                titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
-                titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
+                titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
+                titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
                 
-                titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
+                titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
                 
-                ratingStarsView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: inset),
-                ratingStarsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset),
+                ratingStarsView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
+                ratingStarsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
                 
-                ratingStarsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset)
+                ratingStarsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset - 2)
             ])
         }
         
+        @available(*, unavailable)
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
         
+        var ratingChangeHandler: ((Double) -> Void)?
+        
         func configure(from model: RatingStarsModel) {
             titleLabel.text = model.title
-            ratingStarsView.configure(from: model.score ?? 0)
+            ratingStarsView.rating = model.score ?? 0
         }
         
     }
