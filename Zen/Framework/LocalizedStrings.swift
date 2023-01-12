@@ -14,6 +14,10 @@ enum LocalizedStrings {
             static let title = NSLocalizedString("Scene.Main.Title", comment: "")
         }
         
+        enum ElementsMatching {
+            static let guide = NSLocalizedString("Scene.ElementsMatching.Guide", comment: "")
+        }
+        
         enum RatingStars {
             static let guide = NSLocalizedString("Scene.RatingStars.Guide", comment: "")
         }
@@ -22,7 +26,7 @@ enum LocalizedStrings {
     enum InteractiveFormat {
         
         static let stepwisePolls = NSLocalizedString("InteractiveFormat.StepwisePolls", comment: "")
-        static let elementMatchings = NSLocalizedString("InteractiveFormat.ElementMatchings", comment: "")
+        static let elementsMatching = NSLocalizedString("InteractiveFormat.ElementsMatching", comment: "")
         static let simpleTextGaps = NSLocalizedString("InteractiveFormat.SimpleTextGaps", comment: "")
         static let editableTextGaps = NSLocalizedString("InteractiveFormat.EditableTextGaps", comment: "")
         static let ratingStars = NSLocalizedString("InteractiveFormat.RatingStars", comment: "")

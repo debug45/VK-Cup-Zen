@@ -29,6 +29,10 @@
 		A5D1E1D0296C46A6002AA67C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1CF296C46A6002AA67C /* UIColor.swift */; };
 		A5D1E1D3296C47A7002AA67C /* InteractiveFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1D2296C47A7002AA67C /* InteractiveFormat.swift */; };
 		A5D1E1D6296C4831002AA67C /* InteractiveFormatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1D5296C4831002AA67C /* InteractiveFormatCell.swift */; };
+		A5EEE927297048D100882B4D /* ElementsMatchingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEE926297048D100882B4D /* ElementsMatchingCell.swift */; };
+		A5EEE928297048D100882B4D /* ElementsMatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEE924297048D100882B4D /* ElementsMatchingViewController.swift */; };
+		A5EEE92A297049A100882B4D /* ElementsMatchingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEE929297049A100882B4D /* ElementsMatchingModel.swift */; };
+		A5EEE92C297051C500882B4D /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEE92B297051C500882B4D /* OptionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +60,10 @@
 		A5D1E1CF296C46A6002AA67C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A5D1E1D2296C47A7002AA67C /* InteractiveFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveFormat.swift; sourceTree = "<group>"; };
 		A5D1E1D5296C4831002AA67C /* InteractiveFormatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveFormatCell.swift; sourceTree = "<group>"; };
+		A5EEE924297048D100882B4D /* ElementsMatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMatchingViewController.swift; sourceTree = "<group>"; };
+		A5EEE926297048D100882B4D /* ElementsMatchingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMatchingCell.swift; sourceTree = "<group>"; };
+		A5EEE929297049A100882B4D /* ElementsMatchingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMatchingModel.swift; sourceTree = "<group>"; };
+		A5EEE92B297051C500882B4D /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +117,7 @@
 		A528A15F296DA67F00FAC27E /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				A5EEE92B297051C500882B4D /* OptionView.swift */,
 				A528A160296DA68B00FAC27E /* RatingStarsView.swift */,
 				A528A162296DA6A300FAC27E /* RatingStarsView.StarView.swift */,
 			);
@@ -160,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				A528A152296D9FDD00FAC27E /* Main */,
+				A5EEE923297048D100882B4D /* Elements Matching */,
 				A528A153296D9FE800FAC27E /* Rating Stars */,
 			);
 			path = "Product Scenes";
@@ -182,6 +192,7 @@
 			children = (
 				A528A15B296DA1C500FAC27E /* FakeData.swift */,
 				A5D1E1D2296C47A7002AA67C /* InteractiveFormat.swift */,
+				A5EEE929297049A100882B4D /* ElementsMatchingModel.swift */,
 				A528A15D296DA1FC00FAC27E /* RatingStarsModel.swift */,
 			);
 			path = Models;
@@ -191,6 +202,23 @@
 			isa = PBXGroup;
 			children = (
 				A5D1E1D5296C4831002AA67C /* InteractiveFormatCell.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		A5EEE923297048D100882B4D /* Elements Matching */ = {
+			isa = PBXGroup;
+			children = (
+				A5EEE925297048D100882B4D /* Subviews */,
+				A5EEE924297048D100882B4D /* ElementsMatchingViewController.swift */,
+			);
+			path = "Elements Matching";
+			sourceTree = "<group>";
+		};
+		A5EEE925297048D100882B4D /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A5EEE926297048D100882B4D /* ElementsMatchingCell.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -273,9 +301,11 @@
 				A528A151296D9ACA00FAC27E /* LocalizedStrings.swift in Sources */,
 				A5D1E1C9296C3FF8002AA67C /* Instances.swift in Sources */,
 				A5D1E1D3296C47A7002AA67C /* InteractiveFormat.swift in Sources */,
+				A5EEE928297048D100882B4D /* ElementsMatchingViewController.swift in Sources */,
 				A528A161296DA68B00FAC27E /* RatingStarsView.swift in Sources */,
 				A528A15C296DA1C500FAC27E /* FakeData.swift in Sources */,
 				A528A15A296DA12C00FAC27E /* UITableViewCell.swift in Sources */,
+				A5EEE927297048D100882B4D /* ElementsMatchingCell.swift in Sources */,
 				A528A155296D9FF700FAC27E /* RatingStarsViewController.swift in Sources */,
 				A528A16D296DAE5300FAC27E /* Withable.swift in Sources */,
 				A5D1E1D6296C4831002AA67C /* InteractiveFormatCell.swift in Sources */,
@@ -283,7 +313,9 @@
 				A528A158296DA10F00FAC27E /* RatingStarsCell.swift in Sources */,
 				A5D1E1D0296C46A6002AA67C /* UIColor.swift in Sources */,
 				A528A15E296DA1FC00FAC27E /* RatingStarsModel.swift in Sources */,
+				A5EEE92A297049A100882B4D /* ElementsMatchingModel.swift in Sources */,
 				A528A163296DA6A300FAC27E /* RatingStarsView.StarView.swift in Sources */,
+				A5EEE92C297051C500882B4D /* OptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

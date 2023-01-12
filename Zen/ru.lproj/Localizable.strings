@@ -7,10 +7,12 @@
 */
 
 "Scene.Main.Title" = "Интерактивные форматы";
+
+"Scene.ElementsMatching.Guide" = "Сумеете правильно сопоставить все элементы из\U00A0левой и\U00A0правой колонок?\n\nВы можете последовательно нажимать на\U00A0них либо\U00A0же просто перетаскивать\U00A0их друг\U00A0на\U00A0друга.";
 "Scene.RatingStars.Guide" = "Как вам эти\U00A0фильмы из\U00A0топа КиноПоиска?\n\nВы можете нажимать на\U00A0звёзды либо аккуратно свайпать по\U00A0ним для\U00A0особо точного оценивания.";
 
 "InteractiveFormat.StepwisePolls" = "Многошаговые опросы";
-"InteractiveFormat.ElementMatchings" = "Сопоставление элементов";
+"InteractiveFormat.ElementsMatching" = "Сопоставление элементов";
 "InteractiveFormat.SimpleTextGaps" = "Заполнение пропусков с\U00A0вариантами";
 "InteractiveFormat.EditableTextGaps" = "Заполнение пропусков путём ввода";
 "InteractiveFormat.RatingStars" = "Оценивание звёздами";

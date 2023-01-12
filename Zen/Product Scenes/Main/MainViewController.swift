@@ -71,8 +71,8 @@ extension MainViewController: UITableViewDelegate {
         switch InteractiveFormat.allCases[indexPath.row] {
             case .stepwisePoll:
                 break
-            case .elementMatching:
-                break
+            case .elementsMatching:
+                target = ElementsMatchingViewController()
             case .simpleTextGaps:
                 break
             case .editableTextGaps:

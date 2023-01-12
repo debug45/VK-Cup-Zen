@@ -14,6 +14,7 @@ extension UIColor {
         
         static let accent = UIColor(named: nameSpace + "Accent")
         static let background = UIColor(named: nameSpace + "Background")
+        static let foreground = UIColor(named: nameSpace + "Foreground")
         
     }
 }

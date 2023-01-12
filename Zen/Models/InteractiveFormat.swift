@@ -8,7 +8,7 @@
 enum InteractiveFormat: CaseIterable {
     
     case stepwisePoll
-    case elementMatching
+    case elementsMatching
     case simpleTextGaps
     case editableTextGaps
     case ratingStars
@@ -17,7 +17,7 @@ enum InteractiveFormat: CaseIterable {
         switch self {
         case .stepwisePoll:
             return "📊"
-        case .elementMatching:
+        case .elementsMatching:
             return "🔀"
         case .simpleTextGaps:
             return "💬"
@@ -34,8 +34,8 @@ enum InteractiveFormat: CaseIterable {
         switch self {
         case .stepwisePoll:
             return localizedStrings.stepwisePolls
-        case .elementMatching:
-            return localizedStrings.elementMatchings
+        case .elementsMatching:
+            return localizedStrings.elementsMatching
         case .simpleTextGaps:
             return localizedStrings.simpleTextGaps
         case .editableTextGaps:
