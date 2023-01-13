@@ -15,8 +15,9 @@ final class OptionView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .Zen.background
         
-        layer.borderColor = UIColor.Zen.foreground?.cgColor
+        layer.borderColor = UIColor.Zen.foreground.cgColor
         layer.borderWidth = 1.5
         
         layer.cornerRadius = 16

@@ -8,6 +8,5 @@
 struct RatingStarsModel {
     
     let title: String
-    var score: Double?
     
 }

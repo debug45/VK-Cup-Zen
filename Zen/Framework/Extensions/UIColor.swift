@@ -12,9 +12,9 @@ extension UIColor {
         
         private static let nameSpace = "Colors/"
         
-        static let accent = UIColor(named: nameSpace + "Accent")
-        static let background = UIColor(named: nameSpace + "Background")
-        static let foreground = UIColor(named: nameSpace + "Foreground")
+        static let accent = UIColor(named: nameSpace + "Accent")!
+        static let background = UIColor(named: nameSpace + "Background")!
+        static let foreground = UIColor(named: nameSpace + "Foreground")!
         
     }
 }

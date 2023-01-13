@@ -21,9 +21,7 @@ final class RatingStarsView: UIControl {
         super.init(frame: frame)
         
         addSubviews(
-            stackView.addArrangedSubviews(
-                starViews
-            )
+            stackView.addArrangedSubviews(starViews)
         )
         
         NSLayoutConstraint.activate([

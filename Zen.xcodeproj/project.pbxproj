@@ -18,6 +18,9 @@
 		A528A165296DA73C00FAC27E /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A164296DA73C00FAC27E /* UIView.swift */; };
 		A528A167296DAA0B00FAC27E /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A166296DAA0B00FAC27E /* UIStackView.swift */; };
 		A528A16D296DAE5300FAC27E /* Withable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A16C296DAE5300FAC27E /* Withable.swift */; };
+		A5A867EE29719F7600D4F526 /* InteractiveFormatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A867ED29719F7600D4F526 /* InteractiveFormatViewController.swift */; };
+		A5A867F22971AAB300D4F526 /* InteractiveFormatViewController.ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A867F12971AAB300D4F526 /* InteractiveFormatViewController.ItemCell.swift */; };
+		A5A867F42971AE6E00D4F526 /* InteractiveFormatViewController.TableViewInterlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A867F32971AE6E00D4F526 /* InteractiveFormatViewController.TableViewInterlayer.swift */; };
 		A5D1E1AD296C3BE2002AA67C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1AC296C3BE2002AA67C /* AppDelegate.swift */; };
 		A5D1E1AF296C3BE2002AA67C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1AE296C3BE2002AA67C /* SceneDelegate.swift */; };
 		A5D1E1B1296C3BE2002AA67C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1B0296C3BE2002AA67C /* MainViewController.swift */; };
@@ -47,6 +50,9 @@
 		A528A164296DA73C00FAC27E /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A528A166296DAA0B00FAC27E /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		A528A16C296DAE5300FAC27E /* Withable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Withable.swift; sourceTree = "<group>"; };
+		A5A867ED29719F7600D4F526 /* InteractiveFormatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveFormatViewController.swift; sourceTree = "<group>"; };
+		A5A867F12971AAB300D4F526 /* InteractiveFormatViewController.ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveFormatViewController.ItemCell.swift; sourceTree = "<group>"; };
+		A5A867F32971AE6E00D4F526 /* InteractiveFormatViewController.TableViewInterlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveFormatViewController.TableViewInterlayer.swift; sourceTree = "<group>"; };
 		A5D1E1A9296C3BE2002AA67C /* Zen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D1E1AC296C3BE2002AA67C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5D1E1AE296C3BE2002AA67C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +177,9 @@
 				A528A152296D9FDD00FAC27E /* Main */,
 				A5EEE923297048D100882B4D /* Elements Matching */,
 				A528A153296D9FE800FAC27E /* Rating Stars */,
+				A5A867ED29719F7600D4F526 /* InteractiveFormatViewController.swift */,
+				A5A867F12971AAB300D4F526 /* InteractiveFormatViewController.ItemCell.swift */,
+				A5A867F32971AE6E00D4F526 /* InteractiveFormatViewController.TableViewInterlayer.swift */,
 			);
 			path = "Product Scenes";
 			sourceTree = "<group>";
@@ -304,6 +313,7 @@
 				A5EEE928297048D100882B4D /* ElementsMatchingViewController.swift in Sources */,
 				A528A161296DA68B00FAC27E /* RatingStarsView.swift in Sources */,
 				A528A15C296DA1C500FAC27E /* FakeData.swift in Sources */,
+				A5A867F42971AE6E00D4F526 /* InteractiveFormatViewController.TableViewInterlayer.swift in Sources */,
 				A528A15A296DA12C00FAC27E /* UITableViewCell.swift in Sources */,
 				A5EEE927297048D100882B4D /* ElementsMatchingCell.swift in Sources */,
 				A528A155296D9FF700FAC27E /* RatingStarsViewController.swift in Sources */,
@@ -312,7 +322,9 @@
 				A5D1E1AF296C3BE2002AA67C /* SceneDelegate.swift in Sources */,
 				A528A158296DA10F00FAC27E /* RatingStarsCell.swift in Sources */,
 				A5D1E1D0296C46A6002AA67C /* UIColor.swift in Sources */,
+				A5A867EE29719F7600D4F526 /* InteractiveFormatViewController.swift in Sources */,
 				A528A15E296DA1FC00FAC27E /* RatingStarsModel.swift in Sources */,
+				A5A867F22971AAB300D4F526 /* InteractiveFormatViewController.ItemCell.swift in Sources */,
 				A5EEE92A297049A100882B4D /* ElementsMatchingModel.swift in Sources */,
 				A528A163296DA6A300FAC27E /* RatingStarsView.StarView.swift in Sources */,
 				A5EEE92C297051C500882B4D /* OptionView.swift in Sources */,

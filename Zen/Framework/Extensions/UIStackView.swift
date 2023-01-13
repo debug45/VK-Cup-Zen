@@ -24,7 +24,7 @@ extension UIStackView {
         return self
     }
     
-    func removeAllArrangedSubviews() {
+    func removeArrangedSubviews() {
         while let first = arrangedSubviews.first {
             removeArrangedSubview(first)
             first.removeFromSuperview()

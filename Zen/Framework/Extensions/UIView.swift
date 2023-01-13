@@ -11,11 +11,6 @@ extension UIView: Withable {
     
     @discardableResult
     func addSubviews(_ subviews: UIView...) -> UIView {
-        return addSubviews(subviews)
-    }
-
-    @discardableResult
-    func addSubviews(_ subviews: [UIView]) -> UIView {
         subviews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
