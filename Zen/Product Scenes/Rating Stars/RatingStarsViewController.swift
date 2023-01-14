@@ -16,7 +16,7 @@ final class RatingStarsViewController: InteractiveFormatViewController<
         return InteractiveFormat.ratingStars.title
     }
     
-    override var correspondingFormatGuide: String {
+    override var correspondingFormatGuide: (string: String, boldRanges: [NSRange]) {
         return LocalizedStrings.Scene.RatingStars.guide
     }
     

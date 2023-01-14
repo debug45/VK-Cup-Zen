@@ -16,7 +16,7 @@ final class ElementsMatchingViewController: InteractiveFormatViewController<
         return InteractiveFormat.elementsMatching.title
     }
     
-    override var correspondingFormatGuide: String {
+    override var correspondingFormatGuide: (string: String, boldRanges: [NSRange]) {
         return LocalizedStrings.Scene.ElementsMatching.guide
     }
     

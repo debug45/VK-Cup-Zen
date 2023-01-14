@@ -17,7 +17,6 @@ class InteractiveFormatViewController<
     private lazy var guideLabel = UILabel {
         $0.alpha = 0.5
         $0.numberOfLines = 0
-        $0.text = correspondingFormatGuide
         $0.textAlignment = .center
     }
     
@@ -66,6 +65,7 @@ class InteractiveFormatViewController<
         ])
         
         tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseIdentifier)
+        configureGuideLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,8 +77,8 @@ class InteractiveFormatViewController<
         return ""
     }
     
-    var correspondingFormatGuide: String {
-        return ""
+    var correspondingFormatGuide: (string: String, boldRanges: [NSRange]) {
+        return ("", [])
     }
     
     func createItemModelsPortion() -> [ItemModel] {
@@ -112,6 +112,25 @@ class InteractiveFormatViewController<
         }
         
         appendItemModels()
+    }
+    
+    private func configureGuideLabel() {
+        let data = correspondingFormatGuide
+        let fontSize: CGFloat = 18
+        
+        let attributedString = NSMutableAttributedString(string: data.string, attributes: [
+            .font: UIFont.systemFont(ofSize: fontSize)
+        ])
+        
+        data.boldRanges.forEach {
+            attributedString.addAttribute(
+                .font,
+                value: UIFont.systemFont(ofSize: fontSize, weight: .bold),
+                range: $0
+            )
+        }
+        
+        guideLabel.attributedText = attributedString
     }
     
 }

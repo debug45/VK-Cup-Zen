@@ -15,12 +15,23 @@ enum LocalizedStrings {
         }
         
         enum ElementsMatching {
-            static let guide = NSLocalizedString("Scene.ElementsMatching.Guide", comment: "")
+            
+            static let guide: (string: String, boldRanges: [NSRange]) = {
+                let template = NSLocalizedString("Scene.ElementsMatching.Guide", comment: "")
+                return LocalizedStrings.parseTemplate(template)
+            } ()
+            
             static let checkButton = NSLocalizedString("Scene.ElementsMatching.CheckButton", comment: "")
+            
         }
         
         enum RatingStars {
-            static let guide = NSLocalizedString("Scene.RatingStars.Guide", comment: "")
+            
+            static let guide: (string: String, boldRanges: [NSRange]) = {
+                let template = NSLocalizedString("Scene.RatingStars.Guide", comment: "")
+                return LocalizedStrings.parseTemplate(template)
+            } ()
+            
         }
     }
     
@@ -32,6 +43,32 @@ enum LocalizedStrings {
         static let editableTextGaps = NSLocalizedString("InteractiveFormat.EditableTextGaps", comment: "")
         static let ratingStars = NSLocalizedString("InteractiveFormat.RatingStars", comment: "")
         
+    }
+    
+    fileprivate static func parseTemplate(_ template: String) -> (string: String, boldRanges: [NSRange]) {
+        var boldRanges: [NSRange] = []
+        
+        var currentTotalIndex = 0
+        var lastTagIndex: Int?
+        
+        for substring in template.split(separator: "*") {
+            let substringCount = substring.count
+            
+            if let lastTagIndexUnwrapped = lastTagIndex {
+                boldRanges.append(
+                    .init(location: lastTagIndexUnwrapped, length: substringCount)
+                )
+                
+                lastTagIndex = nil
+            } else {
+                lastTagIndex = currentTotalIndex + substringCount
+            }
+            
+            currentTotalIndex += substringCount
+        }
+        
+        let string = template.replacingOccurrences(of: "*", with: "")
+        return (string: string, boldRanges: boldRanges)
     }
     
 }
