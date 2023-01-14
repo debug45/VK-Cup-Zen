@@ -10,7 +10,7 @@ import UIKit
 protocol InteractiveFormatViewControllerItemCell<Model>: UITableViewCell {
     
     associatedtype Model
-    func configure(with model: Model)
+    var model: Model? { get set }
     
 }
 

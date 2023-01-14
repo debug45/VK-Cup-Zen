@@ -14,7 +14,7 @@ extension RatingStarsView {
         
         private lazy var backgroundImageView = UIImageView {
             $0.image = image
-            $0.tintColor = .secondaryLabel
+            $0.tintColor = .Zen.foreground.withAlphaComponent(0.3)
         }
         
         private lazy var foregroundImageView = UIImageView {

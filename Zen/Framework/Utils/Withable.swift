@@ -16,8 +16,9 @@ extension Withable {
         configuration(self)
     }
     
-    func with(_ configuration: (Self) -> Void) {
+    func with(_ configuration: (Self) -> Void) -> Self {
         configuration(self)
+        return self
     }
     
 }

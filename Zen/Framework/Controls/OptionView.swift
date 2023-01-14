@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class OptionView: UIView {
+final class OptionView: UIControl {
     
     private let titleLabel = UILabel {
         $0.textAlignment = .center
@@ -17,9 +17,7 @@ final class OptionView: UIView {
         super.init(frame: frame)
         backgroundColor = .Zen.background
         
-        layer.borderColor = UIColor.Zen.foreground.cgColor
         layer.borderWidth = 1.5
-        
         layer.cornerRadius = 16
         
         addSubviews(
@@ -40,6 +38,19 @@ final class OptionView: UIView {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var isHighlighted: Bool {
+        didSet {
+            alpha = isHighlighted ? 0.5 : 1
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            let colors = UIColor.Zen.self
+            layer.borderColor = (isSelected ? colors.accent : colors.foreground).cgColor
+        }
     }
     
     var title: String {

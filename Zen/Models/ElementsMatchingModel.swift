@@ -8,6 +8,6 @@
 struct ElementsMatchingModel {
     
     let title: String
-    let pairs: [(String, String)]
+    let pairs: [String: String]
     
 }

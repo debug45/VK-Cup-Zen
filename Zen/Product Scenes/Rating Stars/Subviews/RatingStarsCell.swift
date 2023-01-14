@@ -9,15 +9,13 @@ import UIKit
 
 final class RatingStarsViewControllerRatingStarsCell: UITableViewCell, InteractiveFormatViewController.ItemCell {
     
-    private var currentModel: Model?
-    
     private let titleLabel = UILabel {
         $0.numberOfLines = 0
     }
     
     private lazy var ratingStarsView = RatingStarsView {
         $0.ratingChangeHandler = { [weak self] newValue in
-            self?.currentModel?.score = newValue
+            self?.model?.score = newValue
         }
     }
     
@@ -49,11 +47,15 @@ final class RatingStarsViewControllerRatingStarsCell: UITableViewCell, Interacti
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with model: Model) {
-        titleLabel.text = model.title
-        ratingStarsView.rating = model.score ?? 0
-        
-        currentModel = model
+    var model: Model? {
+        didSet {
+            guard let model else {
+                return
+            }
+            
+            titleLabel.text = model.title
+            ratingStarsView.rating = model.score ?? 0
+        }
     }
     
 }

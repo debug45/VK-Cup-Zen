@@ -63,8 +63,8 @@ final class RatingStarsView: UIControl {
         }
     }
     
-    @objc private func someGestureDidRecognize(_ gestureRecognizer: UIGestureRecognizer) {
-        let point = gestureRecognizer.location(in: stackView)
+    @objc private func someGestureDidRecognize(_ sender: UIGestureRecognizer) {
+        let point = sender.location(in: stackView)
         
         for (index, view) in starViews.enumerated() {
             guard view.frame.contains(point) else {
@@ -73,7 +73,7 @@ final class RatingStarsView: UIControl {
             
             rating = Double(index + 1)
             
-            if gestureRecognizer is UIPanGestureRecognizer {
+            if sender is UIPanGestureRecognizer {
                 let point = stackView.convert(point, to: view)
                 rating += point.x / view.bounds.width - 1
             }

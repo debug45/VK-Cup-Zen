@@ -29,19 +29,19 @@ enum InteractiveFormat: CaseIterable {
     }
     
     var title: String {
-        let localizedStrings = LocalizedStrings.InteractiveFormat.self
+        let strings = LocalizedStrings.InteractiveFormat.self
         
         switch self {
         case .stepwisePoll:
-            return localizedStrings.stepwisePolls
+            return strings.stepwisePolls
         case .elementsMatching:
-            return localizedStrings.elementsMatching
+            return strings.elementsMatching
         case .simpleTextGaps:
-            return localizedStrings.simpleTextGaps
+            return strings.simpleTextGaps
         case .editableTextGaps:
-            return localizedStrings.editableTextGaps
+            return strings.editableTextGaps
         case .ratingStars:
-            return localizedStrings.ratingStars
+            return strings.ratingStars
         }
     }
     

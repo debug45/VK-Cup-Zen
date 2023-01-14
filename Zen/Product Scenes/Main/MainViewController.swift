@@ -11,16 +11,16 @@ final class MainViewController: UIViewController {
     
     private let cellType = InteractiveFormatCell.self
     
+    private lazy var tableView = UITableView {
+        $0.dataSource = self
+        $0.delegate = self
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = LocalizedStrings.Scene.Main.title
         view.backgroundColor = .Zen.background
-        
-        let tableView = UITableView {
-            $0.dataSource = self
-            $0.delegate = self
-        }
         
         view.addSubviews(
             tableView

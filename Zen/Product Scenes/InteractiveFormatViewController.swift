@@ -102,8 +102,7 @@ class InteractiveFormatViewController<
             return nil
         }
         
-        let model = itemModels[indexPath.row]
-        cell.configure(with: model)
+        cell.model = itemModels[indexPath.row]
         return cell
     }
     

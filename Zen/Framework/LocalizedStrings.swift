@@ -16,6 +16,7 @@ enum LocalizedStrings {
         
         enum ElementsMatching {
             static let guide = NSLocalizedString("Scene.ElementsMatching.Guide", comment: "")
+            static let checkButton = NSLocalizedString("Scene.ElementsMatching.CheckButton", comment: "")
         }
         
         enum RatingStars {
