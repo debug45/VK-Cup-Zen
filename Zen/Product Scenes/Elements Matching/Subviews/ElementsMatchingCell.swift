@@ -64,6 +64,9 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
         
         let defaultInset: CGFloat = 20
         
+        let lastVerticalConstraint = resultStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -defaultInset)
+        lastVerticalConstraint.priority = .defaultLow
+        
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
@@ -81,7 +84,7 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
             resultStackView.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -defaultInset),
             
             resultStackView.topAnchor.constraint(equalTo: primaryStackView.bottomAnchor, constant: 16),
-            resultStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -defaultInset)
+            lastVerticalConstraint
         ])
         
         let selector = #selector(checkResultButtonDidPress)
@@ -142,7 +145,7 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
             reconfigureElementViews()
             
             updateCheckResultButton()
-            resultIconView.isHidden = true
+            updateVisibleResult()
         }
     }
     
@@ -156,8 +159,6 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
             return
         }
         
-        let selector = #selector(someOptionViewDidTap)
-        
         for (elements, stackView) in [
             (model.primaryElements, primaryStackView),
             (model.secondaryElements, secondaryStackView)
@@ -167,9 +168,16 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
                     $0.title = element.title
                 }
                 
-                optionView.addTarget(self, action: selector, for: .touchUpInside)
-                stackView.addArrangedSubview(optionView)
+                var selector = #selector(panGestureDidRecognize)
                 
+                optionView.addGestureRecognizer(
+                    UIPanGestureRecognizer(target: self, action: selector)
+                )
+                
+                selector = #selector(someOptionViewDidTap)
+                optionView.addTarget(self, action: selector, for: .touchUpInside)
+                
+                stackView.addArrangedSubview(optionView)
                 currentOptionViewMatches[element] = optionView
             }
         }
@@ -194,6 +202,22 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
         }
         
         checkResultButton.isEnabled = model.userPairs.count == model.pairs.count
+    }
+    
+    private func updateVisibleResult() {
+        if let actualCheckResult = model?.actualCheckResult {
+            resultIconView.isHidden = false
+            
+            if actualCheckResult {
+                resultIconView.image = .init(systemName: "checkmark.circle.fill")
+                resultIconView.tintColor = .green
+            } else {
+                resultIconView.image = .init(systemName: "xmark.circle.fill")
+                resultIconView.tintColor = .red
+            }
+        } else {
+            resultIconView.isHidden = true
+        }
     }
     
     @objc private func someOptionViewDidTap(_ sender: OptionView) {
@@ -227,12 +251,14 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
                 }
                 
                 model.userPairs[firstElement] = secondElement
+                
                 model.selectedElement = nil
+                model.actualCheckResult = nil
                 
                 setNeedsDisplay()
                 
                 updateCheckResultButton()
-                resultIconView.isHidden = true
+                updateVisibleResult()
             }
         } else {
             model.selectedElement = firstElement
@@ -241,20 +267,71 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
         updateVisibleSelection()
     }
     
+    @objc private func panGestureDidRecognize(_ sender: UIPanGestureRecognizer) {
+        guard let optionView = sender.view as? OptionView, let parentStackView = optionView.superview as? UIStackView else {
+            return
+        }
+        
+        let animatingDuration: TimeInterval = 0.25
+        
+        switch sender.state {
+            case .began:
+                model?.selectedElement = currentOptionViewMatches.first(where: { $0.value == optionView })?.key
+                updateVisibleSelection()
+                
+            case .changed:
+                parentStackView.superview?.bringSubviewToFront(parentStackView)
+                optionView.superview?.bringSubviewToFront(optionView)
+                
+                let translation = sender.translation(in: optionView)
+                optionView.transform = .init(translationX: translation.x, y: translation.y)
+                
+                let frame = optionView.convert(optionView.bounds, to: contentView)
+                
+                if frame.minY < 0 || frame.maxY > contentView.bounds.height {
+                    sender.releaseCurrentGesture()
+                    optionView.transform = .init(translationX: translation.x, y: translation.y)
+                    
+                    UIView.animate(withDuration: animatingDuration) {
+                        optionView.transform = .identity
+                    }
+                }
+                
+            case .ended:
+                let anotherStackView = parentStackView == primaryStackView ? secondaryStackView : primaryStackView
+                var correspondingOptionView: OptionView?
+            
+                for anotherOptionView in anotherStackView.arrangedSubviews {
+                    let point = sender.location(in: anotherOptionView)
+                    
+                    if anotherOptionView.bounds.contains(point) {
+                        correspondingOptionView = anotherOptionView as? OptionView
+                        break
+                    }
+                }
+                
+                UIView.animate(withDuration: animatingDuration, animations: {
+                    optionView.transform = .identity
+                }) { isFinished in
+                    guard isFinished, let correspondingOptionView else {
+                        return
+                    }
+                    
+                    self.someOptionViewDidTap(correspondingOptionView)
+                }
+                
+                default:
+                    optionView.transform = .identity
+        }
+    }
+    
     @objc private func checkResultButtonDidPress() {
         guard let model else {
             return
         }
         
-        resultIconView.isHidden = false
-        
-        if model.pairs.allSatisfy({ model.userPairs[$0.key] == $0.value }) {
-            resultIconView.image = .init(systemName: "checkmark.circle.fill")
-            resultIconView.tintColor = .green
-        } else {
-            resultIconView.image = .init(systemName: "xmark.circle.fill")
-            resultIconView.tintColor = .red
-        }
+        model.actualCheckResult = model.pairs.allSatisfy { model.userPairs[$0.key] == $0.value }
+        updateVisibleResult()
     }
     
 }
@@ -274,6 +351,8 @@ extension ElementsMatchingViewController.ElementsMatchingCell {
         
         var selectedElement: Element?
         var userPairs: [Element: Element] = [:]
+        
+        var actualCheckResult: Bool?
         
         init(title: String, pairs: [Element: Element]) {
             self.title = title
