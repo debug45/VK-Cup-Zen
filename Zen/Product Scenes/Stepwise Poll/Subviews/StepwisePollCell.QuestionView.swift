@@ -66,8 +66,13 @@ extension StepwisePollViewController.StepwisePollCell {
                         totalNumberOfVotes += 1
                     }
                     
-                    $0.numberOfVotes = numberOfVotes
-                    $0.fillingMultiplier = CGFloat(numberOfVotes) / CGFloat(totalNumberOfVotes)
+                    let percentOfVotes = Double(numberOfVotes) / Double(totalNumberOfVotes)
+                    
+                    $0.percentOfVotes = Instances.percentFormatter.string(
+                        from: .init(value: percentOfVotes)
+                    )?.replacingOccurrences(of: " ", with: "\u{2009}")
+                    
+                    $0.fillingMultiplier = CGFloat(percentOfVotes)
                     
                     let currentState: BarView.State
                     

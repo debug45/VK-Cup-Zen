@@ -93,7 +93,7 @@ extension MainViewController: UITableViewDelegate {
         }
         
         if let target {
-            Instances.shared.rootNavigationController.pushViewController(target, animated: true)
+            Instances.rootNavigationController.pushViewController(target, animated: true)
         }
     }
     

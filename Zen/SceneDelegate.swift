@@ -10,10 +10,10 @@ import UIKit
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        let mainWindow = Instances.shared.mainWindow
+        let mainWindow = Instances.mainWindow
         mainWindow.windowScene = scene as? UIWindowScene
         
-        Instances.shared.rootNavigationController.setViewControllers([
+        Instances.rootNavigationController.setViewControllers([
             MainViewController()
         ], animated: false)
         

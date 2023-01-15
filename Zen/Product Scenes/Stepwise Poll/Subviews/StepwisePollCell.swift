@@ -9,11 +9,6 @@ import UIKit
 
 final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, InteractiveFormatViewController.ItemCell {
     
-    private static let percentFormatter = NumberFormatter {
-        $0.maximumFractionDigits = 0
-        $0.numberStyle = .percent
-    }
-    
     private let titleLabel = UILabel {
         $0.alpha = 0.5
         $0.font = .systemFont(ofSize: 14)
@@ -146,11 +141,11 @@ final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, Interac
         
         let numberOfCorrectlyAnswered = model.questions.filter({ $0.userAnswerID == $0.correctAnswerID }).count
         
-        let totalResult = NSNumber(
-            value: Double(numberOfCorrectlyAnswered) / Double(model.questions.count)
-        )
-        
-        resultsLabel.text = Self.percentFormatter.string(from: totalResult)?.replacingOccurrences(of: " ", with: "\u{2009}")
+        resultsLabel.text = Instances.percentFormatter.string(
+            from: .init(
+                value: Double(numberOfCorrectlyAnswered) / Double(model.questions.count)
+            )
+        )?.replacingOccurrences(of: " ", with: "\u{2009}")
     }
     
     private func handleUserAnswer(index: Int) {

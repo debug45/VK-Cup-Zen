@@ -28,7 +28,7 @@ extension StepwisePollViewController.StepwisePollCell.QuestionView {
             $0.tintColor = .Zen.foreground
         }
         
-        private let numberOfVotesLabel = UILabel {
+        private let percentOfVotesLabel = UILabel {
             $0.font = .systemFont(ofSize: 14)
         }
         
@@ -46,7 +46,7 @@ extension StepwisePollViewController.StepwisePollCell.QuestionView {
                 
                 trailingContainerView.addArrangedSubviews(
                     stateIconView,
-                    numberOfVotesLabel
+                    percentOfVotesLabel
                 )
             )
             
@@ -92,15 +92,16 @@ extension StepwisePollViewController.StepwisePollCell.QuestionView {
             }
         }
         
-        var numberOfVotes: Int? {
+        var percentOfVotes: String? {
             didSet {
-                numberOfVotesLabel.text = .init(numberOfVotes ?? 0)
+                percentOfVotesLabel.text = percentOfVotes
             }
         }
         
         var currentState: State? {
             didSet {
                 var isEnabled = false
+                var titleFontWeight = UIFont.Weight.regular
                 
                 var fillerColor: UIColor?
                 var stateIcon: UIImage?
@@ -113,10 +114,14 @@ extension StepwisePollViewController.StepwisePollCell.QuestionView {
                         fillerColor = .Zen.foreground.withAlphaComponent(0.1)
                         
                     case .correctAnswer:
+                        titleFontWeight = .bold
+                        
                         fillerColor = .green.withAlphaComponent(0.5)
                         stateIcon = .init(systemName: "hand.thumbsup")
                         
                     case .incorrectAnswer:
+                        titleFontWeight = .bold
+                        
                         fillerColor = .red.withAlphaComponent(0.5)
                         stateIcon = .init(systemName: "hand.thumbsdown")
                         
@@ -125,6 +130,10 @@ extension StepwisePollViewController.StepwisePollCell.QuestionView {
                 }
                 
                 self.isEnabled = isEnabled
+                
+                let size = UIFont.systemFontSize
+                titleLabel.font = .systemFont(ofSize: size, weight: titleFontWeight)
+                
                 trailingContainerView.isHidden = currentState == .waitingForAnswer
                 
                 fillerView.backgroundColor = fillerColor

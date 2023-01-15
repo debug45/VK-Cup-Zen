@@ -9,13 +9,15 @@ import UIKit
 
 final class Instances {
     
-    static let shared = Instances()
+    static let mainWindow = UIWindow {
+        $0.rootViewController = rootNavigationController
+    }
     
-    let mainWindow = UIWindow()
-    let rootNavigationController = UINavigationController()
+    static let rootNavigationController = UINavigationController()
     
-    private init() {
-        mainWindow.rootViewController = rootNavigationController
+    static let percentFormatter = NumberFormatter {
+        $0.maximumFractionDigits = 0
+        $0.numberStyle = .percent
     }
     
 }

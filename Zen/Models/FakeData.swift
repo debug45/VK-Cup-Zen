@@ -223,7 +223,7 @@ final class FakeData {
                         .init(
                             id: "ad3efd6d-399e-4928-8144-0c0044671638",
                             title: "Гайана",
-                            numberOfVotes: 81
+                            numberOfVotes: 162
                         ),
                         .init(
                             id: "2c7c969a-bb30-4175-a14a-dfe66bbcbf23",

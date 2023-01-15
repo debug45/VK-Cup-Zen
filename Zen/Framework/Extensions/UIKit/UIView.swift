@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIView: Withable {
+extension UIView {
     
     @discardableResult
     func addSubviews(_ subviews: UIView...) -> UIView {
