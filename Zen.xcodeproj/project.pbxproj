@@ -37,6 +37,7 @@
 		A5D2DDFB2973E90E00F7AB58 /* StepwisePollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DDFA2973E90E00F7AB58 /* StepwisePollModel.swift */; };
 		A5D2DDFD2973FD6300F7AB58 /* StepwisePollCell.QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DDFC2973FD6300F7AB58 /* StepwisePollCell.QuestionView.swift */; };
 		A5D2DDFF2973FF2300F7AB58 /* StepwisePollCell.QuestionView.BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DDFE2973FF2300F7AB58 /* StepwisePollCell.QuestionView.BarView.swift */; };
+		A5D2DE012974043D00F7AB58 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DE002974043D00F7AB58 /* FooterView.swift */; };
 		A5DCF7262973261A008664E5 /* UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DCF7252973261A008664E5 /* UIGestureRecognizer.swift */; };
 		A5EEE927297048D100882B4D /* ElementsMatchingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEE926297048D100882B4D /* ElementsMatchingCell.swift */; };
 		A5EEE928297048D100882B4D /* ElementsMatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEE924297048D100882B4D /* ElementsMatchingViewController.swift */; };
@@ -77,6 +78,7 @@
 		A5D2DDFA2973E90E00F7AB58 /* StepwisePollModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepwisePollModel.swift; sourceTree = "<group>"; };
 		A5D2DDFC2973FD6300F7AB58 /* StepwisePollCell.QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepwisePollCell.QuestionView.swift; sourceTree = "<group>"; };
 		A5D2DDFE2973FF2300F7AB58 /* StepwisePollCell.QuestionView.BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepwisePollCell.QuestionView.BarView.swift; sourceTree = "<group>"; };
+		A5D2DE002974043D00F7AB58 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		A5DCF7252973261A008664E5 /* UIGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizer.swift; sourceTree = "<group>"; };
 		A5EEE924297048D100882B4D /* ElementsMatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMatchingViewController.swift; sourceTree = "<group>"; };
 		A5EEE926297048D100882B4D /* ElementsMatchingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMatchingCell.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				A5D1E1D5296C4831002AA67C /* InteractiveFormatCell.swift */,
+				A5D2DE002974043D00F7AB58 /* FooterView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				A5D2DDF92973E88F00F7AB58 /* StepwisePollCell.swift in Sources */,
 				A5D1E1AF296C3BE2002AA67C /* SceneDelegate.swift in Sources */,
 				A528A158296DA10F00FAC27E /* RatingStarsCell.swift in Sources */,
+				A5D2DE012974043D00F7AB58 /* FooterView.swift in Sources */,
 				A5D1E1D0296C46A6002AA67C /* UIColor.swift in Sources */,
 				A5D2DDFF2973FF2300F7AB58 /* StepwisePollCell.QuestionView.BarView.swift in Sources */,
 				A5D2DDFB2973E90E00F7AB58 /* StepwisePollModel.swift in Sources */,

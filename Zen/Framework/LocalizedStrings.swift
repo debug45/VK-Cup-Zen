@@ -11,11 +11,17 @@ enum LocalizedStrings {
     
     enum Scene {
         enum Main {
+            
             static let title = NSLocalizedString("Scene.Main.Title", comment: "")
+            static let footer = NSLocalizedString("Scene.Main.Footer", comment: "")
+            
         }
         
         enum StepwisePoll {
+            
             static let guide = NSLocalizedString("Scene.StepwisePoll.Guide", comment: "")
+            static let nextButton = NSLocalizedString("Scene.StepwisePoll.NextButton", comment: "")
+            
         }
         
         enum ElementsMatching {

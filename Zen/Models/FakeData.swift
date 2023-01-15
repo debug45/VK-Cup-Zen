@@ -16,22 +16,22 @@ final class FakeData {
                     answers: [
                         .init(
                             id: "e6a01709-e83e-4686-a927-b7973dd7d026",
-                            title: "Empire State Building (🇺🇸)",
+                            title: "Empire State Building 🇺🇸",
                             numberOfVotes: 690
                         ),
                         .init(
                             id: "918d83d9-4897-4f89-8187-9672b392323d",
-                            title: "Лахта Центр (🇷🇺)",
+                            title: "Лахта Центр 🇷🇺",
                             numberOfVotes: 315
                         ),
                         .init(
                             id: "0fbaa0ea-cea0-45e7-91c0-813e54b7a370",
-                            title: "Телебашня Гуанчжоу (🇨🇳)",
+                            title: "Телебашня Гуанчжоу 🇨🇳",
                             numberOfVotes: 605
                         ),
                         .init(
                             id: "7c33162c-28eb-4176-805d-47ace243e2de",
-                            title: "Бурдж-Халифа (🇦🇪)",
+                            title: "Бурдж-Халифа 🇦🇪",
                             numberOfVotes: 838
                         )
                     ],

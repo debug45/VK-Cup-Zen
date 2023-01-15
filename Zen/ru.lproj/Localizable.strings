@@ -7,8 +7,10 @@
 */
 
 "Scene.Main.Title" = "Интерактивные форматы";
+"Scene.Main.Footer" = "Сергей Москвин\n(debug45)";
 
 "Scene.StepwisePoll.Guide" = "Проверьте свою эрудицию! Удастся\U00A0ли вам правильно на\U00A0всё ответить?";
+"Scene.StepwisePoll.NextButton" = "Далее";
 
 "Scene.ElementsMatching.Guide" = "Сумеете правильно сопоставить все элементы из\U00A0левой и\U00A0правой колонок?\n\nВы можете последовательно *нажимать* на\U00A0них либо\U00A0же просто *перетаскивать*\U00A0их друг\U00A0на\U00A0друга.";
 "Scene.ElementsMatching.CheckButton" = "Проверить";

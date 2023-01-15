@@ -16,19 +16,31 @@ final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, Interac
         $0.textColor = .Zen.foreground
     }
     
-    private let questionView = QuestionView()
+    private lazy var questionView = QuestionView {
+        $0.someBarPressHandler = { [weak self] index in
+            self?.handleUserAnswer(index: index)
+        }
+    }
+    
+    private let nextButton = UIButton(type: .system).with {
+        $0.setTitle(LocalizedStrings.Scene.StepwisePoll.nextButton, for: .normal)
+        
+        $0.setTitleColor(.Zen.accent, for: .normal)
+        $0.setTitleColor(.Zen.accent.withAlphaComponent(0.3), for: .disabled)
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.addSubviews(
             titleLabel,
-            questionView
+            questionView,
+            nextButton
         )
         
         let defaultInset: CGFloat = 20
         
-        let lastVerticalConstraint = questionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -defaultInset)
+        let lastVerticalConstraint = nextButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -defaultInset)
         lastVerticalConstraint.priority = .defaultLow
         
         NSLayoutConstraint.activate([
@@ -41,6 +53,11 @@ final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, Interac
             questionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
             
             questionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
+            
+            nextButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
+            nextButton.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -defaultInset),
+            
+            nextButton.topAnchor.constraint(equalTo: questionView.bottomAnchor, constant: 16),
             lastVerticalConstraint
         ])
     }
@@ -52,13 +69,39 @@ final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, Interac
     
     var model: Model? {
         didSet {
-            guard let model, let firstQuestion = model.questions.first else {
-                return
-            }
-            
-            titleLabel.text = model.title
-            questionView.configure(with: firstQuestion, index: 0)
+            titleLabel.text = model?.title
+            reconfigureQuestionView()
         }
+    }
+    
+    private func reconfigureQuestionView() {
+        guard let model else {
+            return
+        }
+        
+        let currentQuestionIndex = model.currentQuestionIndex
+        let question = model.questions[currentQuestionIndex]
+        
+        questionView.configure(
+            with: question,
+            index: currentQuestionIndex
+        )
+        
+        nextButton.isEnabled = question.userAnswerID != nil
+    }
+    
+    private func handleUserAnswer(index: Int) {
+        guard let model else {
+            return
+        }
+        
+        let question = model.questions[model.currentQuestionIndex]
+        question.userAnswerID = question.answers[index].id
+        
+        reconfigureQuestionView()
+        questionView.animateBarsFilling()
+        
+        nextButton.isEnabled = true
     }
     
 }
@@ -73,23 +116,39 @@ extension StepwisePollViewController.StepwisePollCell {
         let title: String
         let questions: [Question]
         
+        var currentQuestionIndex = 0
+        
         init(title: String, questions: [Question]) {
             self.title = title
             self.questions = questions
         }
         
-        struct Question {
+        final class Question {
             
             let title: String
             
             let answers: [Answer]
             let correctAnswerID: String
             
-            struct Answer {
+            var userAnswerID: String?
+            
+            init(title: String, answers: [Answer], correctAnswerID: String) {
+                self.title = title
+                self.answers = answers
+                self.correctAnswerID = correctAnswerID
+            }
+            
+            final class Answer {
                 
                 let id: String
                 let title: String
                 let numberOfVotes: Int
+                
+                init(id: String, title: String, numberOfVotes: Int) {
+                    self.id = id
+                    self.title = title
+                    self.numberOfVotes = numberOfVotes
+                }
                 
             }
             
