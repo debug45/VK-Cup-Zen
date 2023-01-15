@@ -55,11 +55,11 @@ extension MainViewController: UITableViewDataSource {
             cell.configure(title: title)
             
             switch model {
-                case .elementsMatching, .ratingStars:
+                case .stepwisePoll, .elementsMatching, .ratingStars:
                     cell.contentView.alpha = 1
                     cell.selectionStyle = .default
                     
-                case .stepwisePoll, .simpleTextGaps, .editableTextGaps:
+                case .simpleTextGaps, .editableTextGaps:
                     cell.contentView.alpha = 0.5
                     cell.selectionStyle = .none
             }
@@ -80,7 +80,7 @@ extension MainViewController: UITableViewDelegate {
         
         switch InteractiveFormat.allCases[indexPath.row] {
             case .stepwisePoll:
-                break
+                target = StepwisePollViewController()
             case .elementsMatching:
                 target = ElementsMatchingViewController()
             case .simpleTextGaps:

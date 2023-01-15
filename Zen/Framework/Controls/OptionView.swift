@@ -11,6 +11,7 @@ final class OptionView: UIControl {
     
     private let titleLabel = UILabel {
         $0.textAlignment = .center
+        $0.textColor = .Zen.foreground
     }
     
     override init(frame: CGRect) {

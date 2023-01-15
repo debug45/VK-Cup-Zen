@@ -10,7 +10,9 @@ import UIKit
 extension MainViewController {
     final class InteractiveFormatCell: UITableViewCell {
         
-        private let titleLabel = UILabel()
+        private let titleLabel = UILabel {
+            $0.textColor = .Zen.foreground
+        }
         
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)

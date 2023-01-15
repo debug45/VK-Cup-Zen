@@ -14,6 +14,10 @@ enum LocalizedStrings {
             static let title = NSLocalizedString("Scene.Main.Title", comment: "")
         }
         
+        enum StepwisePoll {
+            static let guide = NSLocalizedString("Scene.StepwisePoll.Guide", comment: "")
+        }
+        
         enum ElementsMatching {
             
             static let guide: (string: String, boldRanges: [NSRange]) = {

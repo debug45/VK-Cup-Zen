@@ -32,6 +32,11 @@
 		A5D1E1D0296C46A6002AA67C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1CF296C46A6002AA67C /* UIColor.swift */; };
 		A5D1E1D3296C47A7002AA67C /* InteractiveFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1D2296C47A7002AA67C /* InteractiveFormat.swift */; };
 		A5D1E1D6296C4831002AA67C /* InteractiveFormatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1E1D5296C4831002AA67C /* InteractiveFormatCell.swift */; };
+		A5D2DDF82973E88F00F7AB58 /* StepwisePollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DDF52973E88F00F7AB58 /* StepwisePollViewController.swift */; };
+		A5D2DDF92973E88F00F7AB58 /* StepwisePollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DDF72973E88F00F7AB58 /* StepwisePollCell.swift */; };
+		A5D2DDFB2973E90E00F7AB58 /* StepwisePollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DDFA2973E90E00F7AB58 /* StepwisePollModel.swift */; };
+		A5D2DDFD2973FD6300F7AB58 /* StepwisePollCell.QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DDFC2973FD6300F7AB58 /* StepwisePollCell.QuestionView.swift */; };
+		A5D2DDFF2973FF2300F7AB58 /* StepwisePollCell.QuestionView.BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DDFE2973FF2300F7AB58 /* StepwisePollCell.QuestionView.BarView.swift */; };
 		A5DCF7262973261A008664E5 /* UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DCF7252973261A008664E5 /* UIGestureRecognizer.swift */; };
 		A5EEE927297048D100882B4D /* ElementsMatchingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEE926297048D100882B4D /* ElementsMatchingCell.swift */; };
 		A5EEE928297048D100882B4D /* ElementsMatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EEE924297048D100882B4D /* ElementsMatchingViewController.swift */; };
@@ -67,6 +72,11 @@
 		A5D1E1CF296C46A6002AA67C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A5D1E1D2296C47A7002AA67C /* InteractiveFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveFormat.swift; sourceTree = "<group>"; };
 		A5D1E1D5296C4831002AA67C /* InteractiveFormatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveFormatCell.swift; sourceTree = "<group>"; };
+		A5D2DDF52973E88F00F7AB58 /* StepwisePollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepwisePollViewController.swift; sourceTree = "<group>"; };
+		A5D2DDF72973E88F00F7AB58 /* StepwisePollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepwisePollCell.swift; sourceTree = "<group>"; };
+		A5D2DDFA2973E90E00F7AB58 /* StepwisePollModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepwisePollModel.swift; sourceTree = "<group>"; };
+		A5D2DDFC2973FD6300F7AB58 /* StepwisePollCell.QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepwisePollCell.QuestionView.swift; sourceTree = "<group>"; };
+		A5D2DDFE2973FF2300F7AB58 /* StepwisePollCell.QuestionView.BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepwisePollCell.QuestionView.BarView.swift; sourceTree = "<group>"; };
 		A5DCF7252973261A008664E5 /* UIGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizer.swift; sourceTree = "<group>"; };
 		A5EEE924297048D100882B4D /* ElementsMatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMatchingViewController.swift; sourceTree = "<group>"; };
 		A5EEE926297048D100882B4D /* ElementsMatchingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMatchingCell.swift; sourceTree = "<group>"; };
@@ -178,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				A528A152296D9FDD00FAC27E /* Main */,
+				A5D2DDF42973E88F00F7AB58 /* Stepwise Poll */,
 				A5EEE923297048D100882B4D /* Elements Matching */,
 				A528A153296D9FE800FAC27E /* Rating Stars */,
 				A5A867ED29719F7600D4F526 /* InteractiveFormatViewController.swift */,
@@ -204,6 +215,7 @@
 			children = (
 				A528A15B296DA1C500FAC27E /* FakeData.swift */,
 				A5D1E1D2296C47A7002AA67C /* InteractiveFormat.swift */,
+				A5D2DDFA2973E90E00F7AB58 /* StepwisePollModel.swift */,
 				A5EEE929297049A100882B4D /* ElementsMatchingModel.swift */,
 				A528A15D296DA1FC00FAC27E /* RatingStarsModel.swift */,
 			);
@@ -214,6 +226,25 @@
 			isa = PBXGroup;
 			children = (
 				A5D1E1D5296C4831002AA67C /* InteractiveFormatCell.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		A5D2DDF42973E88F00F7AB58 /* Stepwise Poll */ = {
+			isa = PBXGroup;
+			children = (
+				A5D2DDF62973E88F00F7AB58 /* Subviews */,
+				A5D2DDF52973E88F00F7AB58 /* StepwisePollViewController.swift */,
+			);
+			path = "Stepwise Poll";
+			sourceTree = "<group>";
+		};
+		A5D2DDF62973E88F00F7AB58 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A5D2DDF72973E88F00F7AB58 /* StepwisePollCell.swift */,
+				A5D2DDFC2973FD6300F7AB58 /* StepwisePollCell.QuestionView.swift */,
+				A5D2DDFE2973FF2300F7AB58 /* StepwisePollCell.QuestionView.BarView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -310,6 +341,7 @@
 				A528A167296DAA0B00FAC27E /* UIStackView.swift in Sources */,
 				A5D1E1B1296C3BE2002AA67C /* MainViewController.swift in Sources */,
 				A5DCF7262973261A008664E5 /* UIGestureRecognizer.swift in Sources */,
+				A5D2DDFD2973FD6300F7AB58 /* StepwisePollCell.QuestionView.swift in Sources */,
 				A5D1E1AD296C3BE2002AA67C /* AppDelegate.swift in Sources */,
 				A528A151296D9ACA00FAC27E /* LocalizedStrings.swift in Sources */,
 				A5D1E1C9296C3FF8002AA67C /* Instances.swift in Sources */,
@@ -323,13 +355,17 @@
 				A528A155296D9FF700FAC27E /* RatingStarsViewController.swift in Sources */,
 				A528A16D296DAE5300FAC27E /* Withable.swift in Sources */,
 				A5D1E1D6296C4831002AA67C /* InteractiveFormatCell.swift in Sources */,
+				A5D2DDF92973E88F00F7AB58 /* StepwisePollCell.swift in Sources */,
 				A5D1E1AF296C3BE2002AA67C /* SceneDelegate.swift in Sources */,
 				A528A158296DA10F00FAC27E /* RatingStarsCell.swift in Sources */,
 				A5D1E1D0296C46A6002AA67C /* UIColor.swift in Sources */,
+				A5D2DDFF2973FF2300F7AB58 /* StepwisePollCell.QuestionView.BarView.swift in Sources */,
+				A5D2DDFB2973E90E00F7AB58 /* StepwisePollModel.swift in Sources */,
 				A5A867EE29719F7600D4F526 /* InteractiveFormatViewController.swift in Sources */,
 				A528A15E296DA1FC00FAC27E /* RatingStarsModel.swift in Sources */,
 				A5A867F22971AAB300D4F526 /* InteractiveFormatViewController.ItemCell.swift in Sources */,
 				A5EEE92A297049A100882B4D /* ElementsMatchingModel.swift in Sources */,
+				A5D2DDF82973E88F00F7AB58 /* StepwisePollViewController.swift in Sources */,
 				A528A163296DA6A300FAC27E /* RatingStarsView.StarView.swift in Sources */,
 				A5EEE92C297051C500882B4D /* OptionView.swift in Sources */,
 			);

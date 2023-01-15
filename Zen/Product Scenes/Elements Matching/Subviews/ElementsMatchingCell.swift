@@ -14,6 +14,7 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
     private let titleLabel = UILabel {
         $0.font = .systemFont(ofSize: UIFont.systemFontSize, weight: .bold)
         $0.numberOfLines = 0
+        $0.textColor = .Zen.foreground
     }
     
     private let primaryStackView = UIStackView {

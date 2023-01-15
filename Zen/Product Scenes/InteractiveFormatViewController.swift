@@ -18,6 +18,7 @@ class InteractiveFormatViewController<
         $0.alpha = 0.5
         $0.numberOfLines = 0
         $0.textAlignment = .center
+        $0.textColor = .Zen.foreground
     }
     
     private lazy var tableView = UITableView {

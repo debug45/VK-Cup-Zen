@@ -11,6 +11,7 @@ final class RatingStarsViewControllerRatingStarsCell: UITableViewCell, Interacti
     
     private let titleLabel = UILabel {
         $0.numberOfLines = 0
+        $0.textColor = .Zen.foreground
     }
     
     private lazy var ratingStarsView = RatingStarsView {
