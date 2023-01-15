@@ -9,6 +9,11 @@ import UIKit
 
 final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, InteractiveFormatViewController.ItemCell {
     
+    private static let percentFormatter = NumberFormatter {
+        $0.maximumFractionDigits = 0
+        $0.numberStyle = .percent
+    }
+    
     private let titleLabel = UILabel {
         $0.alpha = 0.5
         $0.font = .systemFont(ofSize: 14)
@@ -16,17 +21,26 @@ final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, Interac
         $0.textColor = .Zen.foreground
     }
     
-    private lazy var questionView = QuestionView {
+    private let questionsStackView = UIStackView {
+        $0.alignment = .leading
+        $0.axis = .vertical
+        $0.spacing = 16
+    }
+    
+    private lazy var currentQuestionView = QuestionView {
         $0.someBarPressHandler = { [weak self] index in
             self?.handleUserAnswer(index: index)
         }
     }
     
-    private let nextButton = UIButton(type: .system).with {
-        $0.setTitle(LocalizedStrings.Scene.StepwisePoll.nextButton, for: .normal)
-        
+    private let commitButton = UIButton(type: .system).with {
         $0.setTitleColor(.Zen.accent, for: .normal)
         $0.setTitleColor(.Zen.accent.withAlphaComponent(0.3), for: .disabled)
+    }
+    
+    private let resultsLabel = UILabel {
+        $0.font = .systemFont(ofSize: 100, weight: .bold)
+        $0.textColor = .Zen.foreground
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -34,13 +48,18 @@ final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, Interac
         
         contentView.addSubviews(
             titleLabel,
-            questionView,
-            nextButton
+            
+            questionsStackView.addArrangedSubviews(
+                currentQuestionView,
+                commitButton
+            ),
+            
+            resultsLabel
         )
         
         let defaultInset: CGFloat = 20
         
-        let lastVerticalConstraint = nextButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -defaultInset)
+        let lastVerticalConstraint = questionsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -defaultInset)
         lastVerticalConstraint.priority = .defaultLow
         
         NSLayoutConstraint.activate([
@@ -49,17 +68,20 @@ final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, Interac
             
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             
-            questionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
-            questionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
+            questionsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
+            questionsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
             
-            questionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
+            questionsStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
+            lastVerticalConstraint,
             
-            nextButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
-            nextButton.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -defaultInset),
+            currentQuestionView.widthAnchor.constraint(equalTo: questionsStackView.widthAnchor),
             
-            nextButton.topAnchor.constraint(equalTo: questionView.bottomAnchor, constant: 16),
-            lastVerticalConstraint
+            resultsLabel.centerXAnchor.constraint(equalTo: questionsStackView.centerXAnchor),
+            resultsLabel.centerYAnchor.constraint(equalTo: questionsStackView.centerYAnchor)
         ])
+        
+        let selector = #selector(commitButtonDidPress)
+        commitButton.addTarget(self, action: selector, for: .touchUpInside)
     }
     
     @available(*, unavailable)
@@ -70,24 +92,65 @@ final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, Interac
     var model: Model? {
         didSet {
             titleLabel.text = model?.title
-            reconfigureQuestionView()
+            
+            updateMainViews()
+            reconfigureCurrentQuestionView()
+            
+            updateCommitButton()
+            updateResultsLabel()
         }
     }
     
-    private func reconfigureQuestionView() {
+    private func updateMainViews() {
         guard let model else {
             return
         }
         
-        let currentQuestionIndex = model.currentQuestionIndex
+        questionsStackView.isHidden = model.currentQuestionIndex >= model.questions.count
+        resultsLabel.isHidden = !questionsStackView.isHidden
+    }
+    
+    private func reconfigureCurrentQuestionView() {
+        guard let model else {
+            return
+        }
+        
+        let currentQuestionIndex = model.currentQuestionIndex < model.questions.count ? model.currentQuestionIndex : 0
         let question = model.questions[currentQuestionIndex]
         
-        questionView.configure(
+        currentQuestionView.configure(
             with: question,
             index: currentQuestionIndex
         )
+    }
+    
+    private func updateCommitButton() {
+        guard !questionsStackView.isHidden, let model else {
+            return
+        }
         
-        nextButton.isEnabled = question.userAnswerID != nil
+        let strings = LocalizedStrings.Scene.StepwisePoll.CommitButton.self
+        
+        commitButton.setTitle(
+            model.currentQuestionIndex < model.questions.count - 1 ? strings.nextQuestion : strings.showResults,
+            for: .normal
+        )
+        
+        commitButton.isEnabled = model.questions[model.currentQuestionIndex].userAnswerID != nil
+    }
+    
+    private func updateResultsLabel() {
+        guard !resultsLabel.isHidden, let model else {
+            return
+        }
+        
+        let numberOfCorrectlyAnswered = model.questions.filter({ $0.userAnswerID == $0.correctAnswerID }).count
+        
+        let totalResult = NSNumber(
+            value: Double(numberOfCorrectlyAnswered) / Double(model.questions.count)
+        )
+        
+        resultsLabel.text = Self.percentFormatter.string(from: totalResult)?.replacingOccurrences(of: " ", with: "\u{2009}")
     }
     
     private func handleUserAnswer(index: Int) {
@@ -98,10 +161,57 @@ final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, Interac
         let question = model.questions[model.currentQuestionIndex]
         question.userAnswerID = question.answers[index].id
         
-        reconfigureQuestionView()
-        questionView.animateBarsFilling()
+        reconfigureCurrentQuestionView()
+        currentQuestionView.animateBarsFilling()
         
-        nextButton.isEnabled = true
+        updateCommitButton()
+    }
+    
+    @objc private func commitButtonDidPress(_ sender: Any) {
+        guard let model else {
+            return
+        }
+        
+        let animatingDuration: TimeInterval = 0.25
+        let translation: CGFloat = 20
+        
+        UIView.animate(withDuration: animatingDuration, delay: 0, options: .curveEaseIn, animations: {
+            self.questionsStackView.alpha = 0
+            self.questionsStackView.transform = .init(translationX: -translation, y: 0)
+        }, completion: { isFinished in
+            guard isFinished else {
+                return
+            }
+            
+            model.currentQuestionIndex += 1
+            
+            self.updateMainViews()
+            self.reconfigureCurrentQuestionView()
+            
+            UIView.performWithoutAnimation {
+                self.updateCommitButton()
+                self.contentView.layoutIfNeeded()
+            }
+            
+            self.updateResultsLabel()
+            
+            let mainViews = [
+                self.questionsStackView,
+                self.resultsLabel
+            ]
+            
+            mainViews.forEach {
+                $0.alpha = 0
+                $0.transform = .init(translationX: translation, y: 0)
+            }
+            
+            UIView.animate(withDuration: animatingDuration, delay: 0, options: .curveEaseOut) {
+                mainViews.forEach {
+                    $0.alpha = 1
+                    $0.transform = .identity
+                }
+            }
+        })
     }
     
 }

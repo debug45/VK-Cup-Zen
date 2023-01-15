@@ -313,13 +313,13 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
                 
                 UIView.animate(withDuration: animatingDuration, animations: {
                     optionView.transform = .identity
-                }) { isFinished in
+                }, completion: { isFinished in
                     guard isFinished, let correspondingOptionView else {
                         return
                     }
                     
                     self.someOptionViewDidTap(correspondingOptionView)
-                }
+                })
                 
                 default:
                     optionView.transform = .identity

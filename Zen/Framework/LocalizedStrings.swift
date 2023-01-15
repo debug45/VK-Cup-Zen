@@ -20,7 +20,13 @@ enum LocalizedStrings {
         enum StepwisePoll {
             
             static let guide = NSLocalizedString("Scene.StepwisePoll.Guide", comment: "")
-            static let nextButton = NSLocalizedString("Scene.StepwisePoll.NextButton", comment: "")
+            
+            enum CommitButton {
+                
+                static let nextQuestion = NSLocalizedString("Scene.StepwisePoll.CommitButton.NextQuestion", comment: "")
+                static let showResults = NSLocalizedString("Scene.StepwisePoll.CommitButton.ShowResults", comment: "")
+                
+            }
             
         }
         

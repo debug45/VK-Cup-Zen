@@ -97,7 +97,7 @@ extension StepwisePollViewController.StepwisePollCell {
             }
         }
         
-        @objc private func someBarViewDidPress(_ sender: BarView) {
+        @objc private func someBarViewDidPress(_ sender: UIView) {
             guard let index = barsStackView.arrangedSubviews.firstIndex(of: sender) else {
                 return
             }
