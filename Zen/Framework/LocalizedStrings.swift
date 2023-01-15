@@ -41,6 +41,13 @@ enum LocalizedStrings {
             
         }
         
+        enum EditableTextGaps {
+            
+            static let guide = NSLocalizedString("Scene.EditableTextGaps.Guide", comment: "")
+            static let checkButton = NSLocalizedString("Scene.EditableTextGaps.CheckButton", comment: "")
+            
+        }
+        
         enum RatingStars {
             
             static let guide: (string: String, boldRanges: [NSRange]) = {
@@ -67,7 +74,7 @@ enum LocalizedStrings {
         var currentTotalIndex = 0
         var lastTagIndex: Int?
         
-        for substring in template.split(separator: "*") {
+        for substring in template.components(separatedBy: "**") {
             let substringCount = substring.count
             
             if let lastTagIndexUnwrapped = lastTagIndex {
@@ -83,7 +90,7 @@ enum LocalizedStrings {
             currentTotalIndex += substringCount
         }
         
-        let string = template.replacingOccurrences(of: "*", with: "")
+        let string = template.replacingOccurrences(of: "**", with: "")
         return (string: string, boldRanges: boldRanges)
     }
     

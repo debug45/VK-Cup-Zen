@@ -55,11 +55,11 @@ extension MainViewController: UITableViewDataSource {
             cell.configure(title: title)
             
             switch model {
-                case .stepwisePoll, .elementsMatching, .ratingStars:
+                case .stepwisePoll, .elementsMatching, .editableTextGaps, .ratingStars:
                     cell.contentView.alpha = 1
                     cell.selectionStyle = .default
                     
-                case .simpleTextGaps, .editableTextGaps:
+                case .simpleTextGaps:
                     cell.contentView.alpha = 0.5
                     cell.selectionStyle = .none
             }
@@ -87,7 +87,7 @@ extension MainViewController: UITableViewDelegate {
             case .simpleTextGaps:
                 break
             case .editableTextGaps:
-                break
+                target = EditableTextGapsViewController()
             case .ratingStars:
                 target = RatingStarsViewController()
         }
