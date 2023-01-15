@@ -40,6 +40,8 @@ extension EditableTextGapsViewController.EditableTextGapsCell {
         
         var maxTextLength: Int?
         
+        var returnKeyPressHandler: (() -> Void)?
+        
     }
 }
 
@@ -51,6 +53,11 @@ extension EditableTextGapsViewController.EditableTextGapsCell.TextField: UITextF
         }
         
         return (textField.text?.count ?? 0) - range.length + string.count <= maxTextLength
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        returnKeyPressHandler?()
+        return true
     }
     
 }

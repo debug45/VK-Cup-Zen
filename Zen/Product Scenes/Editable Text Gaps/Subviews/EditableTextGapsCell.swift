@@ -58,9 +58,8 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
             wrappingCollectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: defaultInset),
             
             resultStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
-            resultStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
-            
             resultStackView.topAnchor.constraint(equalTo: wrappingCollectionView.bottomAnchor, constant: 14),
+            
             lastVerticalConstraint
         ])
         
@@ -108,12 +107,29 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
                 )
             } else {
                 let gapIndex = currentTextFields.count
-                
                 let view = TextField()
+                
                 view.text = model.userInput[gapIndex]
+                view.returnKeyType = gapIndex < model.inserts.count - 1 ? .next : .done
                 
                 let insert = model.inserts[gapIndex]
                 view.maxTextLength = insert.count
+                
+                view.returnKeyPressHandler = { [weak self] in
+                    guard let self = self else {
+                        return
+                    }
+                    
+                    if view.returnKeyType == .next {
+                        self.currentTextFields[gapIndex + 1].becomeFirstResponder()
+                    } else {
+                        view.endEditing(true)
+                        
+                        if self.checkResultButton.isEnabled {
+                            self.checkResultButtonDidPress()
+                        }
+                    }
+                }
                 
                 let selector = #selector(someTextFieldValueDidChange)
                 view.addTarget(self, action: selector, for: .editingChanged)
@@ -175,7 +191,10 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
         }
         
         model.userInput[index] = sender.text ?? ""
+        model.actualCheckResult = nil
+        
         updateCheckResultButton()
+        updateVisibleResult()
     }
     
     @objc private func checkResultButtonDidPress() {
