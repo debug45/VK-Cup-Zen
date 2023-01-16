@@ -66,7 +66,7 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
             wrappingCollectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: defaultInset + 8),
             
             resultStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
-            resultStackView.topAnchor.constraint(equalTo: wrappingCollectionView.bottomAnchor, constant: 14),
+            resultStackView.topAnchor.constraint(equalTo: wrappingCollectionView.bottomAnchor, constant: 12),
             
             lastVerticalConstraint
         ])

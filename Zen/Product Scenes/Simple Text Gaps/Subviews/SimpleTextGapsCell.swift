@@ -9,7 +9,7 @@ import UIKit
 
 final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, InteractiveFormatViewController.ItemCell {
     
-    private let optionViewDefaultTransform = CGAffineTransform(translationX: 0, y: -4)
+    private let optionViewDefaultTransform = CGAffineTransform(translationX: 0, y: -3)
     
     private var currentTextOptionViews: [OptionView] = []
     private var currentInsertsOptionViews: [OptionView] = []
@@ -206,7 +206,10 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
                 let insert = model.orderedInserts[gapIndex]
                 
                 let tuple = createOptionView(for: insert, for: textWrappingCollectionView)
-                tuple.view.isTemplate = !model.userInput.keys.contains(insert)
+                let isEmpty = !model.userInput.keys.contains(insert)
+                
+                tuple.view.isTemplate = isEmpty
+                tuple.view.isUserInteractionEnabled = isEmpty
                 
                 children.append(tuple)
                 currentTextOptionViews.append(tuple.view)
@@ -305,7 +308,7 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
             return
         }
         
-        checkResultButton.isEnabled = model.userInput.count == model.shuffledInserts.count && model.checkResult == nil
+        checkResultButton.isEnabled = model.userInput.count == model.shuffledInserts.count
     }
     
     private func updateVisibleResult() {
@@ -414,7 +417,11 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
                     }
                 }
                 
-                optionView.transform = defaultTransform
+                let duration: TimeInterval = correspondingOptionView == nil ? animatingDuration : 0
+                
+                UIView.animate(withDuration: duration) {
+                    optionView.transform = defaultTransform
+                }
                 
                 if let correspondingOptionView {
                     someOptionViewDidPress(correspondingOptionView)

@@ -11,12 +11,21 @@ final class InteractiveFormatViewControllerTableViewInterlayer: NSObject {
     
     private let getNumberOfItems: () -> Int
     private let getItemCell: (IndexPath) -> UITableViewCell
-    private let handleItemCellAppearance: (IndexPath) -> Void
     
-    init(getNumberOfItems: @escaping () -> Int, getItemCell: @escaping (IndexPath) -> UITableViewCell, handleItemCellAppearance: @escaping (IndexPath) -> Void) {
+    private let handleItemCellAppearance: (IndexPath) -> Void
+    private let handleSomeScroll: () -> Void
+    
+    init(
+        getNumberOfItems: @escaping () -> Int,
+        getItemCell: @escaping (IndexPath) -> UITableViewCell,
+        handleItemCellAppearance: @escaping (IndexPath) -> Void,
+        handleSomeScroll: @escaping () -> Void
+    ) {
         self.getNumberOfItems = getNumberOfItems
         self.getItemCell = getItemCell
+        
         self.handleItemCellAppearance = handleItemCellAppearance
+        self.handleSomeScroll = handleSomeScroll
     }
     
 }
@@ -43,6 +52,10 @@ extension InteractiveFormatViewController.TableViewInterlayer: UITableViewDelega
         DispatchQueue.main.async {
             self.handleItemCellAppearance(indexPath)
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        handleSomeScroll()
     }
     
 }

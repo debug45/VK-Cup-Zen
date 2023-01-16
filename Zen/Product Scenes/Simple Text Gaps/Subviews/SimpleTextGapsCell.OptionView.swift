@@ -34,8 +34,8 @@ extension SimpleTextGapsViewController.SimpleTextGapsCell {
                 titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Self.titleHorizontalInset),
                 titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Self.titleHorizontalInset),
                 
-                titleLabel.topAnchor.constraint(equalTo: topAnchor),
-                titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+                titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: -1),
+                titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1)
             ])
         }
         

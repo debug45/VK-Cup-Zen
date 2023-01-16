@@ -398,8 +398,8 @@ final class FakeData {
         ),
         
         .init(
-            template: "Тише %@\u{00A0}— дальше %@",
-            inserts: ["едешь", "будешь"]
+            template: "%@ едешь\u{00A0}— дальше %@",
+            inserts: ["Тише", "будешь"]
         ),
         
         .init(

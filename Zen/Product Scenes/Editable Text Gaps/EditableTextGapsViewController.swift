@@ -41,6 +41,10 @@ final class EditableTextGapsViewController: InteractiveFormatViewController<
         }
     }
     
+    override func handleSomeScroll() {
+        view.endEditing(true)
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         reloadTableView()

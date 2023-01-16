@@ -16,7 +16,6 @@ class InteractiveFormatViewController<
     private var itemModels: [ItemModel] = []
     
     private lazy var guideLabel = UILabel {
-        $0.alpha = 0.5
         $0.numberOfLines = 0
         $0.textAlignment = .center
         $0.textColor = .Zen.foreground
@@ -35,8 +34,12 @@ class InteractiveFormatViewController<
         getItemCell: { [weak self] in
             self?.getItemCell(for: $0) ?? .init()
         },
+        
         handleItemCellAppearance: { [weak self] in
             self?.handleItemCellAppearance(indexPath: $0)
+        },
+        handleSomeScroll: { [weak self] in
+            self?.handleSomeScroll()
         }
     )
     
@@ -98,6 +101,8 @@ class InteractiveFormatViewController<
         tableView.reloadData()
     }
     
+    func handleSomeScroll () { }
+    
     private func appendItemModels() {
         itemModels.append(
             contentsOf: createItemModelsPortion()
@@ -131,18 +136,20 @@ class InteractiveFormatViewController<
     
     private func configureGuideLabel() {
         let data = correspondingFormatGuide
+        
         let fontSize: CGFloat = 17
+        let color = UIColor.Zen.foreground
         
         let attributedString = NSMutableAttributedString(string: data.string, attributes: [
-            .font: UIFont.systemFont(ofSize: fontSize)
+            .font: UIFont.systemFont(ofSize: fontSize),
+            .foregroundColor: color.withAlphaComponent(0.5)
         ])
         
         data.boldRanges.forEach {
-            attributedString.addAttribute(
-                .font,
-                value: UIFont.systemFont(ofSize: fontSize, weight: .bold),
-                range: $0
-            )
+            attributedString.addAttributes([
+                .font: UIFont.systemFont(ofSize: fontSize, weight: .bold),
+                .foregroundColor: color
+            ], range: $0)
         }
         
         guideLabel.attributedText = attributedString
