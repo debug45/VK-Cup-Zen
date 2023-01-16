@@ -18,6 +18,11 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
         $0.interitemSpacing = .init(4)
     }
     
+    private let insertsWrappingCollectionViewContainer = UIView {
+        $0.backgroundColor = .Zen.foreground.withAlphaComponent(0.1)
+        $0.layer.cornerRadius = 12
+    }
+    
     private let insertsWrappingCollectionView = WrappingCollectionView {
         $0.interitemSpacing = .init(8)
     }
@@ -39,10 +44,18 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
         )
     }
     
+    private let resetButton = UIButton(type: .system).with {
+        $0.setTitle(LocalizedStrings.Scene.SimpleTextGaps.resetButton, for: .normal)
+        $0.setTitleColor(.Zen.accent, for: .normal)
+    }
+    
     private let resultIconView = UIImageView()
     
     private var textWrappingCollectionViewLeadingConstraint: NSLayoutConstraint!
     private var textWrappingCollectionViewTrailingConstraint: NSLayoutConstraint!
+    
+    private var insertsWrappingCollectionViewContainerLeadingConstraint: NSLayoutConstraint!
+    private var insertsWrappingCollectionViewContainerTrailingConstraint: NSLayoutConstraint!
     
     private var insertsWrappingCollectionViewLeadingConstraint: NSLayoutConstraint!
     private var insertsWrappingCollectionViewTrailingConstraint: NSLayoutConstraint!
@@ -55,21 +68,30 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
         
         contentView.addSubviews(
             textWrappingCollectionView,
-            insertsWrappingCollectionView,
+            
+            insertsWrappingCollectionViewContainer.addSubviews(
+                insertsWrappingCollectionView
+            ),
             
             resultStackView.addArrangedSubviews(
                 checkResultButton,
                 resultIconView
-            )
+            ),
+            
+            resetButton
         )
         
         let defaultInset: CGFloat = 20
+        let insertsContainerInset: CGFloat = 12
         
         textWrappingCollectionViewLeadingConstraint = textWrappingCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset)
         textWrappingCollectionViewTrailingConstraint = textWrappingCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset)
         
-        insertsWrappingCollectionViewLeadingConstraint = insertsWrappingCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset)
-        insertsWrappingCollectionViewTrailingConstraint = insertsWrappingCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset)
+        insertsWrappingCollectionViewContainerLeadingConstraint = insertsWrappingCollectionViewContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset)
+        insertsWrappingCollectionViewContainerTrailingConstraint = insertsWrappingCollectionViewContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset)
+        
+        insertsWrappingCollectionViewLeadingConstraint = insertsWrappingCollectionView.leadingAnchor.constraint(equalTo: insertsWrappingCollectionViewContainer.leadingAnchor, constant: insertsContainerInset)
+        insertsWrappingCollectionViewTrailingConstraint = insertsWrappingCollectionView.trailingAnchor.constraint(equalTo: insertsWrappingCollectionViewContainer.trailingAnchor, constant: -insertsContainerInset)
         
         let lastVerticalConstraint = resultStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -defaultInset)
         lastVerticalConstraint.priority = .defaultLow
@@ -80,19 +102,31 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
             
             textWrappingCollectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: defaultInset + 8),
             
+            insertsWrappingCollectionViewContainerLeadingConstraint,
+            insertsWrappingCollectionViewContainerTrailingConstraint,
+            
+            insertsWrappingCollectionViewContainer.topAnchor.constraint(equalTo: textWrappingCollectionView.bottomAnchor, constant: 16),
+            
             insertsWrappingCollectionViewLeadingConstraint!,
             insertsWrappingCollectionViewTrailingConstraint!,
             
-            insertsWrappingCollectionView.topAnchor.constraint(equalTo: textWrappingCollectionView.bottomAnchor, constant: 24),
+            insertsWrappingCollectionView.topAnchor.constraint(equalTo: insertsWrappingCollectionViewContainer.topAnchor, constant: insertsContainerInset - optionViewDefaultTransform.ty),
+            insertsWrappingCollectionView.bottomAnchor.constraint(equalTo: insertsWrappingCollectionViewContainer.bottomAnchor, constant: -insertsContainerInset - optionViewDefaultTransform.ty),
             
             resultStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
-            resultStackView.topAnchor.constraint(equalTo: insertsWrappingCollectionView.bottomAnchor, constant: 4),
+            resultStackView.topAnchor.constraint(equalTo: insertsWrappingCollectionViewContainer.bottomAnchor, constant: 12),
+            
+            resetButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
+            resetButton.centerYAnchor.constraint(equalTo: checkResultButton.centerYAnchor),
             
             lastVerticalConstraint
         ])
         
-        let selector = #selector(checkResultButtonDidPress)
+        var selector = #selector(checkResultButtonDidPress)
         checkResultButton.addTarget(self, action: selector, for: .touchUpInside)
+        
+        selector = #selector(resetButtonDidPress)
+        resetButton.addTarget(self, action: selector, for: .touchUpInside)
     }
     
     @available(*, unavailable)
@@ -108,6 +142,8 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
             reconfigureInsertsWrappingCollectionView()
             
             updateCheckResultButton()
+            resetButton.isHidden = model?.checkResult == nil
+            
             updateVisibleResult()
         }
     }
@@ -143,7 +179,7 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
                 let insert = model.orderedInserts[gapIndex]
                 
                 let tuple = createOptionView(for: insert, for: textWrappingCollectionView)
-                tuple.view.isTemplate = true
+                tuple.view.isTemplate = !model.userInput.keys.contains(insert)
                 
                 children.append(tuple)
                 currentTextOptionViews.append(tuple.view)
@@ -178,6 +214,7 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
         
         for insert in model.shuffledInserts {
             let tuple = createOptionView(for: insert, for: insertsWrappingCollectionView)
+            tuple.view.isHidden = model.userInput.values.contains(insert)
             
             children.append(tuple)
             currentInsertsOptionViews.append(tuple.view)
@@ -187,6 +224,8 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
             insertsWrappingCollectionView.availableWidth = availableWidth
                 - insertsWrappingCollectionViewLeadingConstraint.constant
                 + insertsWrappingCollectionViewTrailingConstraint.constant
+                - insertsWrappingCollectionViewContainerLeadingConstraint.constant
+                + insertsWrappingCollectionViewContainerTrailingConstraint.constant
         }
         
         insertsWrappingCollectionView.children = children
@@ -203,8 +242,8 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
     
     private func createOptionView(for insert: Model.Insert, for container: WrappingCollectionView) -> (view: OptionView, size: CGSize) {
         let optionView = OptionView {
-            $0.title = insert.title
-            $0.isSelected = insert === model?.selectedInsert
+            $0.insert = insert
+            $0.isSelected = insert == model?.selectedInsert
             
             $0.transform = optionViewDefaultTransform
         }
@@ -228,9 +267,9 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
         return (optionView, size)
     }
     
-    private func updateVisibleSelection(selectedView: OptionView) {
+    private func updateVisibleSelection() {
         (currentTextOptionViews + currentInsertsOptionViews).forEach {
-            $0.isSelected = $0 == selectedView
+            $0.isSelected = $0.insert == model?.selectedInsert
         }
     }
     
@@ -239,11 +278,11 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
             return
         }
         
-        checkResultButton.isEnabled = model.userState.count == model.shuffledInserts.count
+        checkResultButton.isEnabled = model.userInput.count == model.shuffledInserts.count && model.checkResult == nil
     }
     
     private func updateVisibleResult() {
-        if let actualCheckResult = model?.actualCheckResult {
+        if let actualCheckResult = model?.checkResult {
             resultIconView.isHidden = false
             
             if actualCheckResult {
@@ -259,22 +298,47 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
     }
     
     @objc private func someOptionViewDidPress(_ sender: OptionView) {
-        guard let model else {
+        let firstView = sender
+        
+        guard let model, let firstInsert = sender.insert, !model.userInput.keys.contains(firstInsert) else {
             return
         }
         
-        var insert: Model.Insert?
-        
-        if let index = currentTextOptionViews.firstIndex(of: sender) {
-            insert = model.orderedInserts[index]
-        } else {
-            if let index = currentInsertsOptionViews.firstIndex(of: sender) {
-                insert = model.shuffledInserts[index]
+        if let secondInsert = model.selectedInsert {
+            guard
+                firstInsert != secondInsert,
+                let secondView = (currentTextOptionViews + currentInsertsOptionViews).first(where: { $0.insert == secondInsert })
+            else {
+                return
             }
+            
+            if [currentTextOptionViews, currentInsertsOptionViews].contains(where: { $0.contains(firstView) && $0.contains(secondView) }) {
+                model.selectedInsert = firstInsert
+            } else {
+                var firstView = firstView
+                var secondView = secondView
+                
+                var firstInsert = firstInsert
+                var secondInsert = secondInsert
+                
+                if currentTextOptionViews.contains(secondView) || currentInsertsOptionViews.contains(firstView) {
+                    (firstInsert, secondInsert) = (secondInsert, firstInsert)
+                    (firstView, secondView) = (secondView, firstView)
+                }
+                
+                model.userInput[firstInsert] = secondInsert
+                model.selectedInsert = nil
+                
+                firstView.isTemplate = false
+                secondView.isHidden = true
+                
+                updateCheckResultButton()
+            }
+        } else {
+            model.selectedInsert = firstInsert
         }
         
-        model.selectedInsert = insert
-        updateVisibleSelection(selectedView: sender)
+        updateVisibleSelection()
     }
     
     @objc private func panGestureDidRecognize(_ sender: UIPanGestureRecognizer) {
@@ -287,10 +351,8 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
         
         switch sender.state {
             case .began:
-                if let index = currentInsertsOptionViews.firstIndex(of: optionView) {
-                    model.selectedInsert = model.shuffledInserts[index]
-                    updateVisibleSelection(selectedView: optionView)
-                }
+                model.selectedInsert = optionView.insert
+                updateVisibleSelection()
                 
             case .changed:
                 if let contentView = optionView.superview, let cell = contentView.superview {
@@ -343,11 +405,19 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
             return
         }
         
-        model.actualCheckResult =
-            model.userState.count == model.shuffledInserts.count &&
-            model.userState.allSatisfy { model.orderedInserts[$0.key].title == model.shuffledInserts[$0.value].title }
+        model.checkResult =
+            model.userInput.count == model.shuffledInserts.count &&
+            model.userInput.allSatisfy { $0.key.title == $0.value.title }
+        
+        resetButton.isHidden = false
+        updateCheckResultButton()
         
         updateVisibleResult()
+    }
+    
+    @objc private func resetButtonDidPress() {
+        model?.resetState()
+        model = nil ?? model
     }
     
 }
@@ -368,20 +438,39 @@ extension SimpleTextGapsViewController.SimpleTextGapsCell {
         
         var selectedInsert: Insert?
         
-        var userState: [Int: Int] = [:]
-        var actualCheckResult: Bool?
+        var userInput: [Insert: Insert] = [:]
+        var checkResult: Bool?
         
         init(template: String, inserts: [Insert]) {
             self.template = template
             self.orderedInserts = inserts
         }
         
-        final class Insert {
+        func resetState() {
+            selectedInsert = nil
+            
+            userInput = [:]
+            checkResult = nil
+        }
+        
+        final class Insert: Hashable {
+            
+            typealias Insert = SimpleTextGapsViewControllerSimpleTextGapsCell.Model.Insert
             
             let title: String
             
+            private let id = UUID().uuidString
+            
             init(title: String) {
                 self.title = title
+            }
+            
+            static func == (lhs: Insert, rhs: Insert) -> Bool {
+                return lhs.id == rhs.id
+            }
+            
+            func hash(into hasher: inout Hasher) {
+                hasher.combine(id)
             }
             
         }

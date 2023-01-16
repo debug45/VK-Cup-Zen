@@ -49,6 +49,7 @@ enum LocalizedStrings {
             } ()
             
             static let checkButton = NSLocalizedString("Scene.SimpleTextGaps.CheckButton", comment: "")
+            static let resetButton = NSLocalizedString("Scene.SimpleTextGaps.ResetButton", comment: "")
             
         }
         

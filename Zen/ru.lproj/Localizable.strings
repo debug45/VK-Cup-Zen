@@ -18,6 +18,7 @@
 
 "Scene.SimpleTextGaps.Guide" = "Подставьте пропущенные слова в\U00A0известные пословицы и\U00A0поговорки!\n\nВы можете последовательно **нажимать** на\U00A0варианты и\U00A0пропуски либо\U00A0же просто **перетаскивать**\U00A0их друг\U00A0на\U00A0друга.";
 "Scene.SimpleTextGaps.CheckButton" = "Проверить";
+"Scene.SimpleTextGaps.ResetButton" = "Начать заново";
 
 "Scene.EditableTextGaps.Guide" = "Введите пропущенные слова из\U00A0известных пословиц и\U00A0поговорок";
 "Scene.EditableTextGaps.CheckButton" = "Проверить";

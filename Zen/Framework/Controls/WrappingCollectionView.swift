@@ -12,6 +12,7 @@ final class WrappingCollectionView: UIView {
     private lazy var collectionViewLayout = Layout(delegate: self)
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout).with {
+        $0.backgroundColor = nil
         $0.clipsToBounds = false
         
         $0.allowsSelection = false

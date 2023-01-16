@@ -52,11 +52,9 @@ extension SimpleTextGapsViewController.SimpleTextGapsCell {
             }
         }
         
-        var title: String {
-            get {
-                return titleLabel.text ?? ""
-            } set {
-                titleLabel.text = newValue
+        var insert: SimpleTextGapsViewController.SimpleTextGapsCell.Model.Insert? {
+            didSet {
+                titleLabel.text = insert?.title
             }
         }
         
