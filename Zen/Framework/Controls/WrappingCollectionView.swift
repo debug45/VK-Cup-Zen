@@ -9,11 +9,13 @@ import UIKit
 
 final class WrappingCollectionView: UIView {
     
-    private let layout = Layout()
+    private lazy var collectionViewLayout = Layout(delegate: self)
     
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout).with {
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout).with {
         $0.dataSource = self
-        $0.delegate = self
+        
+        $0.allowsSelection = false
+        $0.isScrollEnabled = false
     }
     
     override init(frame: CGRect) {
@@ -68,10 +70,14 @@ extension WrappingCollectionView: UICollectionViewDataSource {
     
 }
 
-extension WrappingCollectionView: UICollectionViewDelegateFlowLayout {
+extension WrappingCollectionView: WrappingCollectionViewLayoutDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return children[indexPath.row].size
+    func getSizeForItem(at indexPath: IndexPath) -> CGSize {
+        return children[indexPath.item].size
+    }
+    
+    func getInteritemSpacing() -> CGSize {
+        return .init(width: 4, height: 4)
     }
     
 }
