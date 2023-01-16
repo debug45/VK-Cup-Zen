@@ -335,7 +335,7 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
             return
         }
         
-        model.actualCheckResult = model.pairs.allSatisfy { model.userPairs[$0.key] == $0.value }
+        model.actualCheckResult = model.pairs.allSatisfy { model.userPairs[$0.key]?.title == $0.value.title }
         updateVisibleResult()
     }
     

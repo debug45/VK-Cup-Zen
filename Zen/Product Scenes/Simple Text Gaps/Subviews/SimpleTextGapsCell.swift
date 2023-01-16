@@ -127,6 +127,8 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
         
         for templateComponent in templateComponents {
             if templateComponent != "%@" {
+                let templateComponent = templateComponent.trimmingCharacters(in: .whitespaces)
+                
                 let view = UILabel {
                     $0.text = templateComponent
                 }

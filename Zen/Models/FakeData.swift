@@ -393,22 +393,22 @@ final class FakeData {
     
     static let simpleTextGapsModels: [TextGapsModel] = [
         .init(
-            template: "Без %@ не %@ и %@ из пруда",
+            template: "Без\u{00A0}%@ не\u{00A0}%@ и\u{00A0}%@ из\u{00A0}пруда",
             inserts: ["труда", "выловишь", "рыбку"]
         ),
         
         .init(
-            template: "Тише %@ — дальше %@",
+            template: "Тише %@\u{00A0}— дальше %@",
             inserts: ["едешь", "будешь"]
         ),
         
         .init(
-            template: "У кого что %@, тот о том и %@",
+            template: "У\u{00A0}кого что %@, тот о\u{00A0}том и\u{00A0}%@",
             inserts: ["болит", "говорит"]
         ),
         
         .init(
-            template: "Добрый %@ — всему %@ %@",
+            template: "Добрый %@\u{00A0}— всему %@ %@",
             inserts: ["конец", "делу", "венец"]
         ),
         
@@ -425,7 +425,7 @@ final class FakeData {
         ),
         
         .init(
-            template: "Что %@ — не %@, потерявши %@",
+            template: "Что %@\u{00A0}— не\u{00A0}%@, потерявши\u{00A0}— %@",
             inserts: ["имеем", "храним", "плачем"]
         ),
         
@@ -435,12 +435,12 @@ final class FakeData {
         ),
         
         .init(
-            template: "В %@ омуте %@ водятся",
+            template: "В\u{00A0}%@ омуте %@ водятся",
             inserts: ["тихом", "черти"]
         ),
         
         .init(
-            template: "Что %@ %@, того не %@ топором",
+            template: "Что %@ %@, того не\u{00A0}%@ топором",
             inserts: ["написано", "пером", "вырубишь"]
         )
     ]
