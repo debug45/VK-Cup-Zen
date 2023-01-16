@@ -14,6 +14,9 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
     private var currentTextOptionViews: [OptionView] = []
     private var currentInsertsOptionViews: [OptionView] = []
     
+    private var currentOptionViewMatches: [OptionView: Model.Insert] = [:]
+    private var maxInsertWidth: CGFloat?
+    
     private let textWrappingCollectionView = WrappingCollectionView {
         $0.interitemSpacing = .init(4)
     }
@@ -138,14 +141,38 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
     
     var model: Model? {
         didSet {
-            reconfigureTextWrappingCollectionView()
-            reconfigureInsertsWrappingCollectionView()
+            guard let model, let availableWidth else {
+                return
+            }
+            
+            var maxInsertWidth = availableWidth
+                - insertsWrappingCollectionViewLeadingConstraint.constant
+                + insertsWrappingCollectionViewTrailingConstraint.constant
+                - insertsWrappingCollectionViewContainerLeadingConstraint.constant
+                + insertsWrappingCollectionViewContainerTrailingConstraint.constant
+                - OptionView.titleHorizontalInset * 2
+            
+            maxInsertWidth = model.orderedInserts
+                .map { $0.title.calculateVisibleSize(font: OptionView.titleFont, maxWidth: maxInsertWidth).width }
+                .max() ?? 0
+            
+            maxInsertWidth += OptionView.titleHorizontalInset * 2
+            self.maxInsertWidth = maxInsertWidth
+            
+            reconfigureWrappingCollectionViews()
             
             updateCheckResultButton()
-            resetButton.isHidden = model?.checkResult == nil
+            resetButton.isHidden = model.checkResult == nil
             
             updateVisibleResult()
         }
+    }
+    
+    private func reconfigureWrappingCollectionViews() {
+        currentOptionViewMatches = [:]
+        
+        reconfigureTextWrappingCollectionView()
+        reconfigureInsertsWrappingCollectionView()
     }
     
     private func reconfigureTextWrappingCollectionView() {
@@ -242,16 +269,11 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
     
     private func createOptionView(for insert: Model.Insert, for container: WrappingCollectionView) -> (view: OptionView, size: CGSize) {
         let optionView = OptionView {
-            $0.insert = insert
+            $0.title = model?.userInput[insert]?.title ?? insert.title
             $0.isSelected = insert == model?.selectedInsert
             
             $0.transform = optionViewDefaultTransform
         }
-        
-        var size = insert.title.calculateVisibleSize(font: optionView.titleFont, maxWidth: container.bounds.width)
-        
-        size.width += 16
-        size.height = 28
         
         var selector = #selector(someOptionViewDidPress)
         optionView.addTarget(self, action: selector, for: .touchUpInside)
@@ -264,12 +286,17 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
             )
         }
         
-        return (optionView, size)
+        currentOptionViewMatches[optionView] = insert
+        
+        return (
+            optionView,
+            CGSize(width: maxInsertWidth ?? 0, height: 28)
+        )
     }
     
     private func updateVisibleSelection() {
-        (currentTextOptionViews + currentInsertsOptionViews).forEach {
-            $0.isSelected = $0.insert == model?.selectedInsert
+        currentOptionViewMatches.forEach {
+            $0.key.isSelected = $0.value == model?.selectedInsert
         }
     }
     
@@ -300,14 +327,14 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
     @objc private func someOptionViewDidPress(_ sender: OptionView) {
         let firstView = sender
         
-        guard let model, let firstInsert = sender.insert, !model.userInput.keys.contains(firstInsert) else {
+        guard let model, let firstInsert = currentOptionViewMatches[sender], !model.userInput.keys.contains(firstInsert) else {
             return
         }
         
         if let secondInsert = model.selectedInsert {
             guard
                 firstInsert != secondInsert,
-                let secondView = (currentTextOptionViews + currentInsertsOptionViews).first(where: { $0.insert == secondInsert })
+                let secondView = currentOptionViewMatches.first(where: { $0.value == secondInsert })?.key
             else {
                 return
             }
@@ -329,9 +356,7 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
                 model.userInput[firstInsert] = secondInsert
                 model.selectedInsert = nil
                 
-                firstView.isTemplate = false
-                secondView.isHidden = true
-                
+                reconfigureWrappingCollectionViews()
                 updateCheckResultButton()
             }
         } else {
@@ -351,7 +376,7 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
         
         switch sender.state {
             case .began:
-                model.selectedInsert = optionView.insert
+                model.selectedInsert = currentOptionViewMatches[optionView]
                 updateVisibleSelection()
                 
             case .changed:

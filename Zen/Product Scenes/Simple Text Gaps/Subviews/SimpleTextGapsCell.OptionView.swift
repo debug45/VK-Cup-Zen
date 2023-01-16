@@ -10,7 +10,11 @@ import UIKit
 extension SimpleTextGapsViewController.SimpleTextGapsCell {
     final class OptionView: UIControl {
         
-        private let titleLabel = UILabel {
+        static let titleFont = UIFont.systemFont(ofSize: 17)
+        static let titleHorizontalInset: CGFloat = 8
+        
+        private lazy var titleLabel = UILabel {
+            $0.font = Self.titleFont
             $0.textAlignment = .center
             $0.textColor = .Zen.foreground
         }
@@ -27,8 +31,8 @@ extension SimpleTextGapsViewController.SimpleTextGapsCell {
             )
             
             NSLayoutConstraint.activate([
-                titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-                titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+                titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Self.titleHorizontalInset),
+                titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Self.titleHorizontalInset),
                 
                 titleLabel.topAnchor.constraint(equalTo: topAnchor),
                 titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
@@ -52,14 +56,12 @@ extension SimpleTextGapsViewController.SimpleTextGapsCell {
             }
         }
         
-        var insert: SimpleTextGapsViewController.SimpleTextGapsCell.Model.Insert? {
-            didSet {
-                titleLabel.text = insert?.title
+        var title: String {
+            get {
+                return titleLabel.text ?? ""
+            } set {
+                titleLabel.text = newValue
             }
-        }
-        
-        var titleFont: UIFont {
-            return titleLabel.font
         }
         
         var isTemplate: Bool? {

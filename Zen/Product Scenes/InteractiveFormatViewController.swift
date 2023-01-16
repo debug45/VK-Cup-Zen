@@ -131,7 +131,7 @@ class InteractiveFormatViewController<
     
     private func configureGuideLabel() {
         let data = correspondingFormatGuide
-        let fontSize: CGFloat = 18
+        let fontSize: CGFloat = 17
         
         let attributedString = NSMutableAttributedString(string: data.string, attributes: [
             .font: UIFont.systemFont(ofSize: fontSize)
