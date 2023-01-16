@@ -391,7 +391,34 @@ final class FakeData {
         )
     ]
     
-    static let editableTextGapsModels: [EditableTextGapsModel] = [
+    static let simpleTextGapsModels: [TextGapsModel] = [
+        .init(
+            template: "Без %@ не %@ и %@ из пруда",
+            inserts: ["труда", "выловишь", "рыбку"]
+        ),
+        
+        .init(
+            template: "Тише %@ — дальше %@",
+            inserts: ["едешь", "будешь"]
+        ),
+        
+        .init(
+            template: "У кого что %@, тот о том и %@",
+            inserts: ["болит", "говорит"]
+        ),
+        
+        .init(
+            template: "Добрый %@ — всему %@ %@",
+            inserts: ["конец", "делу", "венец"]
+        ),
+        
+        .init(
+            template: "Грамоте %@ всегда %@",
+            inserts: ["учиться", "пригодится"]
+        )
+    ]
+    
+    static let editableTextGapsModels: [TextGapsModel] = [
         .init(
             template: "Любишь %@, люби и саночки %@",
             inserts: ["кататься", "возить"]

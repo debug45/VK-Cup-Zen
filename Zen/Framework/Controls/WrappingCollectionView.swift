@@ -53,6 +53,8 @@ final class WrappingCollectionView: UIView {
         return collectionView.contentSize
     }
     
+    var interitemSpacing = CGSize.zero
+    
 }
 
 extension WrappingCollectionView: UICollectionViewDataSource {
@@ -79,7 +81,7 @@ extension WrappingCollectionView: WrappingCollectionViewLayoutDelegate {
     }
     
     func getInteritemSpacing() -> CGSize {
-        return .init(width: 4, height: 4)
+        return interitemSpacing
     }
     
 }

@@ -9,6 +9,10 @@ import UIKit
 
 final class RatingStarsViewControllerRatingStarsCell: UITableViewCell, InteractiveFormatViewController.ItemCell {
     
+    private static let scoreFormatter = NumberFormatter {
+        $0.maximumFractionDigits = 1
+    }
+    
     private let titleLabel = UILabel {
         $0.numberOfLines = 0
         $0.textColor = .Zen.foreground
@@ -16,8 +20,13 @@ final class RatingStarsViewControllerRatingStarsCell: UITableViewCell, Interacti
     
     private lazy var ratingStarsView = RatingStarsView {
         $0.ratingChangeHandler = { [weak self] newValue in
-            self?.model?.score = newValue
+            self?.handleUserScore(newValue)
         }
+    }
+    
+    private let scoreLabel = UILabel {
+        $0.alpha = 0.5
+        $0.textColor = .Zen.foreground
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -25,7 +34,8 @@ final class RatingStarsViewControllerRatingStarsCell: UITableViewCell, Interacti
         
         contentView.addSubviews(
             titleLabel,
-            ratingStarsView
+            ratingStarsView,
+            scoreLabel
         )
         
         let defaultInset: CGFloat = 20
@@ -39,7 +49,10 @@ final class RatingStarsViewControllerRatingStarsCell: UITableViewCell, Interacti
             ratingStarsView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
             ratingStarsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             
-            ratingStarsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset - 2)
+            ratingStarsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset - 2),
+            
+            scoreLabel.leadingAnchor.constraint(equalTo: ratingStarsView.trailingAnchor, constant: 16),
+            scoreLabel.centerYAnchor.constraint(equalTo: ratingStarsView.centerYAnchor)
         ])
     }
     
@@ -56,7 +69,22 @@ final class RatingStarsViewControllerRatingStarsCell: UITableViewCell, Interacti
             
             titleLabel.text = model.title
             ratingStarsView.rating = model.score ?? 0
+            
+            updateScoreLabel()
         }
+    }
+    
+    private func updateScoreLabel() {
+        let string = Self.scoreFormatter.string(
+            from: .init(value: model?.score ?? 0)
+        )
+        
+        scoreLabel.text = string != "0" ? string : nil
+    }
+    
+    private func handleUserScore(_ value: Double) {
+        model?.score = value
+        updateScoreLabel()
     }
     
 }

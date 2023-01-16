@@ -108,8 +108,9 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
             } else {
                 let gapIndex = currentTextFields.count
                 
-                let view = TextField()
-                view.transform = .init(translationX: 0, y: -4)
+                let view = TextField {
+                    $0.transform = .init(translationX: 0, y: -4)
+                }
                 
                 view.text = model.userInput[gapIndex]
                 view.returnKeyType = gapIndex < model.inserts.count - 1 ? .next : .done
@@ -204,12 +205,14 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
             return
         }
         
-        model.actualCheckResult = true
+        model.actualCheckResult = model.userInput.count == model.inserts.count
         
-        for (index, insert) in model.inserts.enumerated() {
-            if currentTextFields[index].text != insert {
-                model.actualCheckResult = false
-                break
+        if model.actualCheckResult == true {
+            for (index, insert) in model.inserts.enumerated() {
+                if model.userInput[index] != insert {
+                    model.actualCheckResult = false
+                    break
+                }
             }
         }
         

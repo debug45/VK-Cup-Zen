@@ -51,18 +51,9 @@ extension MainViewController: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier, for: indexPath) as? InteractiveFormatCell {
             let model = InteractiveFormat.allCases[indexPath.row]
             
-            let title = "\(model.icon) \(model.title)"
-            cell.configure(title: title)
-            
-            switch model {
-                case .stepwisePoll, .elementsMatching, .editableTextGaps, .ratingStars:
-                    cell.contentView.alpha = 1
-                    cell.selectionStyle = .default
-                    
-                case .simpleTextGaps:
-                    cell.contentView.alpha = 0.5
-                    cell.selectionStyle = .none
-            }
+            cell.configure(
+                title: "\(model.icon) \(model.title)"
+            )
             
             configured = cell
         }
@@ -85,7 +76,7 @@ extension MainViewController: UITableViewDelegate {
             case .elementsMatching:
                 target = ElementsMatchingViewController()
             case .simpleTextGaps:
-                break
+                target = SimpleTextGapsViewController()
             case .editableTextGaps:
                 target = EditableTextGapsViewController()
             case .ratingStars:

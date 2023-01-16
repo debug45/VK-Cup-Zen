@@ -41,6 +41,17 @@ enum LocalizedStrings {
             
         }
         
+        enum SimpleTextGaps {
+            
+            static let guide: (string: String, boldRanges: [NSRange]) = {
+                let template = NSLocalizedString("Scene.SimpleTextGaps.Guide", comment: "")
+                return LocalizedStrings.parseTemplate(template)
+            } ()
+            
+            static let checkButton = NSLocalizedString("Scene.SimpleTextGaps.CheckButton", comment: "")
+            
+        }
+        
         enum EditableTextGaps {
             
             static let guide = NSLocalizedString("Scene.EditableTextGaps.Guide", comment: "")
