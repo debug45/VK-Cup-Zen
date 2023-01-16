@@ -107,7 +107,9 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
                 )
             } else {
                 let gapIndex = currentTextFields.count
+                
                 let view = TextField()
+                view.transform = .init(translationX: 0, y: -4)
                 
                 view.text = model.userInput[gapIndex]
                 view.returnKeyType = gapIndex < model.inserts.count - 1 ? .next : .done
