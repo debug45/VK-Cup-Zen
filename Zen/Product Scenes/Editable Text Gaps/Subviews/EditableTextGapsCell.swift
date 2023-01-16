@@ -234,6 +234,7 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
             }
         }
         
+        contentView.endEditing(true)
         updateVisibleResult()
     }
     

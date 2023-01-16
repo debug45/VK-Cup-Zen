@@ -12,6 +12,16 @@ final class EditableTextGapsViewController: InteractiveFormatViewController<
     EditableTextGapsViewControllerEditableTextGapsCell
 > {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let selector = #selector(tapGestureDidRecognize)
+        
+        view.addGestureRecognizer(
+            UITapGestureRecognizer(target: self, action: selector)
+        )
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reloadTableView()
@@ -34,6 +44,10 @@ final class EditableTextGapsViewController: InteractiveFormatViewController<
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         reloadTableView()
+    }
+    
+    @objc private func tapGestureDidRecognize() {
+        view.endEditing(true)
     }
     
 }
