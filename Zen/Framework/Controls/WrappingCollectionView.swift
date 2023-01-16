@@ -43,6 +43,14 @@ final class WrappingCollectionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var availableWidth: CGFloat? {
+        get {
+            return collectionViewLayout.availableWidth
+        } set {
+            collectionViewLayout.availableWidth = newValue
+        }
+    }
+    
     var children: [(view: UIView, size: CGSize)] = [] {
         didSet {
             collectionView.reloadData()

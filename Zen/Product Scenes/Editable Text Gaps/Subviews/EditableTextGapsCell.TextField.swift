@@ -30,6 +30,10 @@ extension EditableTextGapsViewController.EditableTextGapsCell {
             fatalError("init(coder:) has not been implemented")
         }
         
+        var maxTextLength: Int?
+        
+        var returnKeyPressHandler: (() -> Void)?
+        
         override func editingRect(forBounds bounds: CGRect) -> CGRect {
             let horizontal: CGFloat = 8
             
@@ -37,10 +41,6 @@ extension EditableTextGapsViewController.EditableTextGapsCell {
                 by: .init(top: 0, left: horizontal, bottom: 0, right: horizontal)
             )
         }
-        
-        var maxTextLength: Int?
-        
-        var returnKeyPressHandler: (() -> Void)?
         
     }
 }

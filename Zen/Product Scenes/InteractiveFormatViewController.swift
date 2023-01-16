@@ -12,6 +12,7 @@ class InteractiveFormatViewController<
     ItemCell: InteractiveFormatViewControllerItemCell<ItemModel>
 >: UIViewController {
     
+    private var availableWidth: CGFloat?
     private var itemModels: [ItemModel] = []
     
     private lazy var guideLabel = UILabel {
@@ -71,6 +72,8 @@ class InteractiveFormatViewController<
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        availableWidth = view.bounds.width
         appendItemModels()
     }
     
@@ -82,8 +85,17 @@ class InteractiveFormatViewController<
         return ("", [])
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        availableWidth = size.width
+    }
+    
     func createItemModelsPortion() -> [ItemModel] {
         return []
+    }
+    
+    func reloadTableView() {
+        tableView.reloadData()
     }
     
     private func appendItemModels() {
@@ -103,7 +115,9 @@ class InteractiveFormatViewController<
             return nil
         }
         
+        cell.availableWidth = availableWidth
         cell.model = itemModels[indexPath.row]
+        
         return cell
     }
     

@@ -12,6 +12,8 @@ protocol InteractiveFormatViewControllerItemCell<Model>: UITableViewCell {
     associatedtype Model
     var model: Model? { get set }
     
+    var availableWidth: CGFloat? { get set }
+    
 }
 
 extension InteractiveFormatViewController {

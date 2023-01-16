@@ -29,12 +29,14 @@ extension WrappingCollectionView {
             return calculatedParameters?.contentSize ?? .init()
         }
         
+        var availableWidth: CGFloat?
+        
         override func prepare() {
             guard let collectionView = collectionView, let delegate = delegate else {
                 return
             }
             
-            let availableWidth = collectionView.bounds.width
+            let availableWidth = availableWidth ?? collectionView.bounds.width
             let interitemSpacing = delegate.getInteritemSpacing()
             
             var layoutAttributes: [UICollectionViewLayoutAttributes] = []

@@ -61,6 +61,8 @@ final class RatingStarsViewControllerRatingStarsCell: UITableViewCell, Interacti
         fatalError("init(coder:) has not been implemented")
     }
     
+    var availableWidth: CGFloat?
+    
     var model: Model? {
         didSet {
             guard let model else {

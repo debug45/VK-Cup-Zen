@@ -88,6 +88,8 @@ final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, Interac
         fatalError("init(coder:) has not been implemented")
     }
     
+    var availableWidth: CGFloat?
+    
     var model: Model? {
         didSet {
             titleLabel.text = model?.title

@@ -99,10 +99,26 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
         fatalError("init(coder:) has not been implemented")
     }
     
+    var availableWidth: CGFloat?
+    
+    var model: Model? {
+        didSet {
+            guard let model else {
+                return
+            }
+            
+            titleLabel.text = model.title
+            reconfigureElementViews()
+            
+            updateCheckResultButton()
+            updateVisibleResult()
+        }
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        guard let model = model, let context = UIGraphicsGetCurrentContext() else {
+        guard let model, let context = UIGraphicsGetCurrentContext() else {
             return
         }
             
@@ -138,20 +154,6 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
         }
     }
     
-    var model: Model? {
-        didSet {
-            guard let model else {
-                return
-            }
-            
-            titleLabel.text = model.title
-            reconfigureElementViews()
-            
-            updateCheckResultButton()
-            updateVisibleResult()
-        }
-    }
-    
     private func reconfigureElementViews() {
         currentOptionViewMatches = [:]
         
@@ -177,7 +179,7 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
                     UIPanGestureRecognizer(target: self, action: selector)
                 )
                 
-                selector = #selector(someOptionViewDidTap)
+                selector = #selector(someOptionViewDidPress)
                 optionView.addTarget(self, action: selector, for: .touchUpInside)
                 
                 stackView.addArrangedSubview(optionView)
@@ -223,7 +225,7 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
         }
     }
     
-    @objc private func someOptionViewDidTap(_ sender: OptionView) {
+    @objc private func someOptionViewDidPress(_ sender: OptionView) {
         let firstView = sender
         
         guard let model, let firstElement = currentOptionViewMatches.first(where: { $0.value == firstView })?.key else {
@@ -320,7 +322,7 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
                         return
                     }
                     
-                    self.someOptionViewDidTap(correspondingOptionView)
+                    self.someOptionViewDidPress(correspondingOptionView)
                 })
                 
                 default:

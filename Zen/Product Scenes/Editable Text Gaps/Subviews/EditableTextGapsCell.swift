@@ -11,7 +11,9 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
     
     private var currentTextFields: [UITextField] = []
     
-    private let wrappingCollectionView = WrappingCollectionView()
+    private let wrappingCollectionView = WrappingCollectionView {
+        $0.interitemSpacing = .init(4)
+    }
     
     private let resultStackView = UIStackView {
         $0.alignment = .center
@@ -32,6 +34,9 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
     
     private let resultIconView = UIImageView()
     
+    private var wrappingCollectionViewLeadingConstraint: NSLayoutConstraint!
+    private var wrappingCollectionViewTrailingConstraint: NSLayoutConstraint!
+    
     private var wrappingCollectionViewHeightConstraint: NSLayoutConstraint?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -48,14 +53,17 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
         
         let defaultInset: CGFloat = 20
         
+        wrappingCollectionViewLeadingConstraint = wrappingCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset)
+        wrappingCollectionViewTrailingConstraint = wrappingCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset)
+        
         let lastVerticalConstraint = resultStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -defaultInset)
         lastVerticalConstraint.priority = .defaultLow
         
         NSLayoutConstraint.activate([
-            wrappingCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
-            wrappingCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
+            wrappingCollectionViewLeadingConstraint,
+            wrappingCollectionViewTrailingConstraint,
             
-            wrappingCollectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: defaultInset),
+            wrappingCollectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: defaultInset + 8),
             
             resultStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
             resultStackView.topAnchor.constraint(equalTo: wrappingCollectionView.bottomAnchor, constant: 14),
@@ -71,6 +79,8 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    var availableWidth: CGFloat?
     
     var model: Model? {
         didSet {
@@ -150,6 +160,12 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
                 
                 currentTextFields.append(view)
             }
+        }
+        
+        if let availableWidth {
+            wrappingCollectionView.availableWidth = availableWidth
+                - wrappingCollectionViewLeadingConstraint.constant
+                + wrappingCollectionViewTrailingConstraint.constant
         }
         
         wrappingCollectionView.children = children
