@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5247E5F29867E2100E06A33 /* ElementsMixingCell.OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E5E29867E2100E06A33 /* ElementsMixingCell.OptionView.swift */; };
+		A5247E6029867E2100E06A33 /* ElementsMixingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E5B29867E2100E06A33 /* ElementsMixingViewController.swift */; };
+		A5247E6129867E2100E06A33 /* ElementsMixingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E5D29867E2100E06A33 /* ElementsMixingCell.swift */; };
+		A5247E6329867E9800E06A33 /* ElementsMixingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E6229867E9800E06A33 /* ElementsMixingModel.swift */; };
+		A5247E652989758900E06A33 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E642989758900E06A33 /* UIDevice.swift */; };
 		A528A151296D9ACA00FAC27E /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A150296D9ACA00FAC27E /* LocalizedStrings.swift */; };
 		A528A155296D9FF700FAC27E /* RatingStarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A154296D9FF700FAC27E /* RatingStarsViewController.swift */; };
 		A528A158296DA10F00FAC27E /* RatingStarsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A157296DA10F00FAC27E /* RatingStarsCell.swift */; };
@@ -61,6 +66,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A5247E5B29867E2100E06A33 /* ElementsMixingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMixingViewController.swift; sourceTree = "<group>"; };
+		A5247E5D29867E2100E06A33 /* ElementsMixingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMixingCell.swift; sourceTree = "<group>"; };
+		A5247E5E29867E2100E06A33 /* ElementsMixingCell.OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMixingCell.OptionView.swift; sourceTree = "<group>"; };
+		A5247E6229867E9800E06A33 /* ElementsMixingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMixingModel.swift; sourceTree = "<group>"; };
+		A5247E642989758900E06A33 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		A528A150296D9ACA00FAC27E /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		A528A154296D9FF700FAC27E /* RatingStarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStarsViewController.swift; sourceTree = "<group>"; };
 		A528A157296DA10F00FAC27E /* RatingStarsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStarsCell.swift; sourceTree = "<group>"; };
@@ -127,6 +137,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5247E5A29867E2100E06A33 /* Elements Mixing */ = {
+			isa = PBXGroup;
+			children = (
+				A5247E5C29867E2100E06A33 /* Subviews */,
+				A5247E5B29867E2100E06A33 /* ElementsMixingViewController.swift */,
+			);
+			path = "Elements Mixing";
+			sourceTree = "<group>";
+		};
+		A5247E5C29867E2100E06A33 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A5247E5D29867E2100E06A33 /* ElementsMixingCell.swift */,
+				A5247E5E29867E2100E06A33 /* ElementsMixingCell.OptionView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		A528A14F296D9AC200FAC27E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				A528A152296D9FDD00FAC27E /* Main */,
+				A5247E5A29867E2100E06A33 /* Elements Mixing */,
 				A5D2DDF42973E88F00F7AB58 /* Stepwise Poll */,
 				A5EEE923297048D100882B4D /* Elements Matching */,
 				A56FF24629755798003C853D /* Simple Text Gaps */,
@@ -277,6 +306,7 @@
 			children = (
 				A528A15B296DA1C500FAC27E /* FakeData.swift */,
 				A5D1E1D2296C47A7002AA67C /* InteractiveFormat.swift */,
+				A5247E6229867E9800E06A33 /* ElementsMixingModel.swift */,
 				A5D2DDFA2973E90E00F7AB58 /* StepwisePollModel.swift */,
 				A5EEE929297049A100882B4D /* ElementsMatchingModel.swift */,
 				A5D2DE0D297442AA00F7AB58 /* TextGapsModel.swift */,
@@ -318,6 +348,7 @@
 			children = (
 				A5D2DE1E2974554600F7AB58 /* UICollectionViewCell.swift */,
 				A5D1E1CF296C46A6002AA67C /* UIColor.swift */,
+				A5247E642989758900E06A33 /* UIDevice.swift */,
 				A5DCF7252973261A008664E5 /* UIGestureRecognizer.swift */,
 				A528A166296DAA0B00FAC27E /* UIStackView.swift */,
 				A528A159296DA12C00FAC27E /* UITableViewCell.swift */,
@@ -451,6 +482,8 @@
 				A528A151296D9ACA00FAC27E /* LocalizedStrings.swift in Sources */,
 				A5D1E1C9296C3FF8002AA67C /* Instances.swift in Sources */,
 				A56FF251297570C2003C853D /* SimpleTextGapsCell.OptionView.swift in Sources */,
+				A5247E6329867E9800E06A33 /* ElementsMixingModel.swift in Sources */,
+				A5247E5F29867E2100E06A33 /* ElementsMixingCell.OptionView.swift in Sources */,
 				A5D1E1D3296C47A7002AA67C /* InteractiveFormat.swift in Sources */,
 				A5D2DE232974574400F7AB58 /* WrappingCollectionView.Layout.swift in Sources */,
 				A5EEE928297048D100882B4D /* ElementsMatchingViewController.swift in Sources */,
@@ -465,11 +498,13 @@
 				A56FF24D29755798003C853D /* SimpleTextGapsViewController.swift in Sources */,
 				A5EEE927297048D100882B4D /* ElementsMatchingCell.swift in Sources */,
 				A528A155296D9FF700FAC27E /* RatingStarsViewController.swift in Sources */,
+				A5247E6029867E2100E06A33 /* ElementsMixingViewController.swift in Sources */,
 				A528A16D296DAE5300FAC27E /* Withable.swift in Sources */,
 				A5D2DE0E297442AA00F7AB58 /* TextGapsModel.swift in Sources */,
 				A5D2DE102974453500F7AB58 /* EditableTextGapsViewController.swift in Sources */,
 				A5D1E1D6296C4831002AA67C /* InteractiveFormatCell.swift in Sources */,
 				A5D2DDF92973E88F00F7AB58 /* StepwisePollCell.swift in Sources */,
+				A5247E6129867E2100E06A33 /* ElementsMixingCell.swift in Sources */,
 				A5D1E1AF296C3BE2002AA67C /* SceneDelegate.swift in Sources */,
 				A528A158296DA10F00FAC27E /* RatingStarsCell.swift in Sources */,
 				A5D2DE012974043D00F7AB58 /* FooterView.swift in Sources */,
@@ -484,6 +519,7 @@
 				A5D2DE212974567500F7AB58 /* WrappingCollectionView.Cell.swift in Sources */,
 				A5EEE92A297049A100882B4D /* ElementsMatchingModel.swift in Sources */,
 				A5D2DE282974749400F7AB58 /* EditableTextGapsCell.TextField.swift in Sources */,
+				A5247E652989758900E06A33 /* UIDevice.swift in Sources */,
 				A5D2DDF82973E88F00F7AB58 /* StepwisePollViewController.swift in Sources */,
 				A528A163296DA6A300FAC27E /* RatingStarsView.StarView.swift in Sources */,
 				A5EEE92C297051C500882B4D /* ElementsMatchingCell.OptionView.swift in Sources */,

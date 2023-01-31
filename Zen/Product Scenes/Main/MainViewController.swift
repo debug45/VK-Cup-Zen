@@ -11,6 +11,11 @@ final class MainViewController: UIViewController {
     
     private let cellType = InteractiveFormatCell.self
     
+    private let interactiveFormats: [[InteractiveFormat]] = [
+        [.elementsMixing],
+        [.stepwisePoll, .elementsMatching, .simpleTextGaps, .editableTextGaps, .ratingStars]
+    ]
+    
     private lazy var tableView = UITableView {
         $0.dataSource = self
         $0.delegate = self
@@ -41,15 +46,19 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return interactiveFormats.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return InteractiveFormat.allCases.count
+        return interactiveFormats[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var configured: UITableViewCell?
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier, for: indexPath) as? InteractiveFormatCell {
-            let model = InteractiveFormat.allCases[indexPath.row]
+            let model = interactiveFormats[indexPath.section][indexPath.row]
             
             cell.configure(
                 title: "\(model.icon) \(model.title)"
@@ -70,7 +79,10 @@ extension MainViewController: UITableViewDelegate {
         
         var target: UIViewController?
         
-        switch InteractiveFormat.allCases[indexPath.row] {
+        switch interactiveFormats[indexPath.section][indexPath.row] {
+            case .elementsMixing:
+                target = ElementsMixingViewController()
+                
             case .stepwisePoll:
                 target = StepwisePollViewController()
             case .elementsMatching:
@@ -88,7 +100,25 @@ extension MainViewController: UITableViewDelegate {
         }
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let localizedStrings = LocalizedStrings.Scene.Main.Subtitle.self
+        
+        switch section {
+            case 0:
+                return localizedStrings.currentStage
+            case 1:
+                return localizedStrings.previousStage
+                
+            default:
+                return nil
+        }
+    }
+    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard section == interactiveFormats.count - 1 else {
+            return nil
+        }
+        
         return FooterView()
     }
     

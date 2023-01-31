@@ -7,6 +7,174 @@
 
 final class FakeData {
     
+    static let elementsMixingModels: [ElementsMixingModel] = [
+        .init(
+            title: "Традиционные салаты",
+            resultIcon: "🥗",
+            possibleCombinations: [
+                .init(
+                    components: [
+                        (title: "Картофель", count: 1),
+                        (title: "Морковь", count: 1),
+                        (title: "Горох", count: 1),
+                        (title: "Яйца", count: 1),
+                        (title: "Колбаса", count: 1),
+                        (title: "Солёные огурцы", count: 1),
+                        (title: "Майонез", count: 1)
+                    ],
+                    result: "Оливье"
+                ),
+                
+                .init(
+                    components: [
+                        (title: "Картофель", count: 1),
+                        (title: "Морковь", count: 1),
+                        (title: "Свёкла", count: 1),
+                        (title: "Яйца", count: 1),
+                        (title: "Сельдь", count: 1),
+                        (title: "Майонез", count: 1)
+                    ],
+                    result: "Сельдь под\u{00A0}шубой"
+                ),
+                
+                .init(
+                    components: [
+                        (title: "Картофель", count: 1),
+                        (title: "Морковь", count: 1),
+                        (title: "Яйца", count: 1),
+                        (title: "Сайра", count: 1),
+                        (title: "Майонез", count: 1)
+                    ],
+                    result: "Мимоза"
+                ),
+                
+                .init(
+                    components: [
+                        (title: "Картофель", count: 1),
+                        (title: "Морковь", count: 1),
+                        (title: "Свёкла", count: 1),
+                        (title: "Горох", count: 1),
+                        (title: "Солёные огурцы", count: 1),
+                        (title: "Масло", count: 1)
+                    ],
+                    result: "Винегрет"
+                )
+            ],
+            isOrderImportant: false
+        ),
+        
+        .init(
+            title: "Приготовление кофе",
+            resultIcon: "☕️",
+            possibleCombinations: [
+                .init(
+                    components: [
+                        (title: "Эспрессо", count: 1),
+                        (title: "Вода", count: 1)
+                    ],
+                    result: "Американо"
+                ),
+                
+                .init(
+                    components: [
+                        (title: "Эспрессо", count: 1),
+                        (title: "Молоко", count: 1),
+                        (title: "Молочная пена", count: 1)
+                    ],
+                    result: "Капучино"
+                ),
+                
+                .init(
+                    components: [
+                        (title: "Сироп", count: 1),
+                        (title: "Эспрессо", count: 1),
+                        (title: "Молочная пена", count: 1)
+                    ],
+                    result: "Раф"
+                ),
+                
+                .init(
+                    components: [
+                        (title: "Эспрессо", count: 1),
+                        (title: "Взбитые сливки", count: 1)
+                    ],
+                    result: "По-венски"
+                )
+            ],
+            isOrderImportant: true
+        ),
+        
+        .init(
+            title: "Химические соединения",
+            resultIcon: "⚗️",
+            possibleCombinations: [
+                .init(
+                    components: [
+                        (title: "H", count: 2)
+                    ],
+                    result: "Молекула водорода (H₂)"
+                ),
+                
+                .init(
+                    components: [
+                        (title: "O", count: 2)
+                    ],
+                    result: "Молекула кислорода (O₂)"
+                ),
+                
+                .init(
+                    components: [
+                        (title: "S", count: 1)
+                    ],
+                    result: "Молекула серы (S)"
+                ),
+                
+                .init(
+                    components: [
+                        (title: "H", count: 2),
+                        (title: "O", count: 1)
+                    ],
+                    result: "Вода (H₂O)"
+                ),
+                
+                .init(
+                    components: [
+                        (title: "H", count: 2),
+                        (title: "O", count: 2)
+                    ],
+                    result: "Пероксид водорода (H₂O₂)"
+                ),
+                
+                .init(
+                    components: [
+                        (title: "H", count: 2),
+                        (title: "S", count: 1)
+                    ],
+                    result: "Сероводород (H₂S)"
+                ),
+                
+                .init(
+                    components: [
+                        (title: "H", count: 2),
+                        (title: "S", count: 1),
+                        (title: "O", count: 3)
+                    ],
+                    result: "Сернистая кислота (H₂SO₃)"
+                ),
+                
+                .init(
+                    components: [
+                        (title: "H", count: 2),
+                        (title: "S", count: 1),
+                        (title: "O", count: 4)
+                    ],
+                    result: "Серная кислота (H₂SO₄)"
+                )
+            ],
+            isOrderImportant: false
+        )
+    ]
+    
     static let stepwisePollModels: [StepwisePollModel] = [
         .init(
             title: "Всё самое, самое, самое",

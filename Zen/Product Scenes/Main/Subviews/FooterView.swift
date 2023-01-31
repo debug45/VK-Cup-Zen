@@ -31,7 +31,7 @@ extension MainViewController {
                 contentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: defaultInset),
                 contentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -defaultInset),
                 
-                contentLabel.topAnchor.constraint(equalTo: topAnchor, constant: defaultInset),
+                contentLabel.topAnchor.constraint(equalTo: topAnchor, constant: defaultInset + 32),
                 contentLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -defaultInset)
             ])
         }

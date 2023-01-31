@@ -74,8 +74,8 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
             
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            primaryStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 22),
+            primaryStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 22),
             
             secondaryStackView.topAnchor.constraint(equalTo: primaryStackView.topAnchor),
             secondaryStackView.bottomAnchor.constraint(equalTo: primaryStackView.bottomAnchor),
@@ -325,8 +325,8 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
                     self.someOptionViewDidPress(correspondingOptionView)
                 })
                 
-                default:
-                    optionView.transform = .identity
+            default:
+                optionView.transform = .identity
         }
     }
     

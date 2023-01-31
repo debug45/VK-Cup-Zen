@@ -205,7 +205,7 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
                 let gapIndex = currentTextOptionViews.count
                 let insert = model.orderedInserts[gapIndex]
                 
-                let tuple = createOptionView(for: insert, for: textWrappingCollectionView)
+                let tuple = createOptionView(insert, for: textWrappingCollectionView)
                 let isEmpty = !model.userInput.keys.contains(insert)
                 
                 tuple.view.isTemplate = isEmpty
@@ -243,7 +243,7 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
         currentInsertsOptionViews = []
         
         for insert in model.shuffledInserts {
-            let tuple = createOptionView(for: insert, for: insertsWrappingCollectionView)
+            let tuple = createOptionView(insert, for: insertsWrappingCollectionView)
             tuple.view.isHidden = model.userInput.values.contains(insert)
             
             children.append(tuple)
@@ -270,7 +270,7 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
         insertsWrappingCollectionViewHeightConstraint?.isActive = true
     }
     
-    private func createOptionView(for insert: Model.Insert, for container: WrappingCollectionView) -> (view: OptionView, size: CGSize) {
+    private func createOptionView(_ insert: Model.Insert, for container: WrappingCollectionView) -> (view: OptionView, size: CGSize) {
         let optionView = OptionView {
             $0.title = model?.userInput[insert]?.title ?? insert.title
             $0.isSelected = insert == model?.selectedInsert

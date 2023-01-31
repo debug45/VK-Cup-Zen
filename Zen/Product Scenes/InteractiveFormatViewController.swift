@@ -97,11 +97,15 @@ class InteractiveFormatViewController<
         return []
     }
     
+    func getVisibleCells() -> [UITableViewCell] {
+        return tableView.visibleCells
+    }
+    
     func reloadTableView() {
         tableView.reloadData()
     }
     
-    func handleSomeScroll () { }
+    func handleSomeScroll() { }
     
     private func appendItemModels() {
         itemModels.append(
@@ -138,17 +142,17 @@ class InteractiveFormatViewController<
         let data = correspondingFormatGuide
         
         let fontSize: CGFloat = 17
-        let color = UIColor.Zen.foreground
+        let textColor = UIColor.Zen.foreground
         
         let attributedString = NSMutableAttributedString(string: data.string, attributes: [
             .font: UIFont.systemFont(ofSize: fontSize),
-            .foregroundColor: color.withAlphaComponent(0.5)
+            .foregroundColor: textColor.withAlphaComponent(0.5)
         ])
         
         data.boldRanges.forEach {
             attributedString.addAttributes([
                 .font: UIFont.systemFont(ofSize: fontSize, weight: .bold),
-                .foregroundColor: color
+                .foregroundColor: textColor
             ], range: $0)
         }
         

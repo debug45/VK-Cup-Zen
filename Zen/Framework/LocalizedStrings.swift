@@ -15,6 +15,56 @@ enum LocalizedStrings {
             static let title = NSLocalizedString("Scene.Main.Title", comment: "")
             static let footer = NSLocalizedString("Scene.Main.Footer", comment: "")
             
+            enum Subtitle {
+                
+                static let currentStage = NSLocalizedString("Scene.Main.Subtitle.CurrentStage", comment: "")
+                static let previousStage = NSLocalizedString("Scene.Main.Subtitle.PreviousStage", comment: "")
+                
+            }
+            
+        }
+        
+        enum ElementsMixing {
+            
+            static let guide: (string: String, boldRanges: [NSRange]) = {
+                let template = NSLocalizedString("Scene.ElementsMixing.Guide", comment: "")
+                return LocalizedStrings.parseTemplate(template)
+            } ()
+            
+            enum AddingHint {
+                
+                static let nonImportantOrder: (string: String, boldRanges: [NSRange]) = {
+                    let template = NSLocalizedString("Scene.ElementsMixing.AddingHint.NonImportantOrder", comment: "")
+                    return LocalizedStrings.parseTemplate(template)
+                } ()
+                
+                static let importantOrder: (string: String, boldRanges: [NSRange]) = {
+                    let template = NSLocalizedString("Scene.ElementsMixing.AddingHint.ImportantOrder", comment: "")
+                    return LocalizedStrings.parseTemplate(template)
+                } ()
+                
+                static let anyCounts: (string: String, boldRanges: [NSRange]) = {
+                    let template = NSLocalizedString("Scene.ElementsMixing.AddingHint.AnyCounts", comment: "")
+                    return LocalizedStrings.parseTemplate(template)
+                } ()
+                
+            }
+            
+            enum CheckResult {
+                
+                static let button = NSLocalizedString("Scene.ElementsMixing.CheckResult.Button", comment: "")
+                
+                static func hint(_ insert: String) -> String {
+                    let template = NSLocalizedString("Scene.ElementsMixing.CheckResult.Hint.Template", comment: "")
+                    return .init(format: template, insert)
+                }
+                
+            }
+            
+            enum VisibleResult {
+                static let failure = NSLocalizedString("Scene.ElementsMixing.VisibleResult.Failure", comment: "")
+            }
+            
         }
         
         enum StepwisePoll {
@@ -72,12 +122,28 @@ enum LocalizedStrings {
     
     enum InteractiveFormat {
         
+        static let elementsMixing = NSLocalizedString("InteractiveFormat.ElementsMixing", comment: "")
+        
         static let stepwisePolls = NSLocalizedString("InteractiveFormat.StepwisePolls", comment: "")
         static let elementsMatching = NSLocalizedString("InteractiveFormat.ElementsMatching", comment: "")
         static let simpleTextGaps = NSLocalizedString("InteractiveFormat.SimpleTextGaps", comment: "")
         static let editableTextGaps = NSLocalizedString("InteractiveFormat.EditableTextGaps", comment: "")
         static let ratingStars = NSLocalizedString("InteractiveFormat.RatingStars", comment: "")
         
+    }
+    
+    enum Other {
+        enum Device {
+            
+            static let iPhone = NSLocalizedString("Other.Device.iPhone", comment: "")
+            static let iPad = NSLocalizedString("Other.Device.iPad", comment: "")
+            
+            static let mac = NSLocalizedString("Other.Device.Mac", comment: "")
+            static let appleTV = NSLocalizedString("Other.Device.AppleTV", comment: "")
+            static let carPlay = NSLocalizedString("Other.Device.CarPlay", comment: "")
+            static let unknown = NSLocalizedString("Other.Device.Unknown", comment: "")
+            
+        }
     }
     
     fileprivate static func parseTemplate(_ template: String) -> (string: String, boldRanges: [NSRange]) {
