@@ -101,6 +101,8 @@ final class ElementsMatchingViewControllerElementsMatchingCell: UITableViewCell,
     
     var availableWidth: CGFloat?
     
+    weak var delegate: InteractiveFormatViewController.ItemCell.Delegate?
+    
     var model: Model? {
         didSet {
             guard let model else {

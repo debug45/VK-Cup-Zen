@@ -82,6 +82,8 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
     
     var availableWidth: CGFloat?
     
+    weak var delegate: InteractiveFormatViewController.ItemCell.Delegate?
+    
     var model: Model? {
         didSet {
             reconfigureWrappingCollectionView()

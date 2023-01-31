@@ -60,7 +60,8 @@ final class FakeData {
                     result: "Винегрет"
                 )
             ],
-            isOrderImportant: false
+            isOrderImportant: false,
+            isLowercasingAllowed: true
         ),
         
         .init(
@@ -101,7 +102,8 @@ final class FakeData {
                     result: "По-венски"
                 )
             ],
-            isOrderImportant: true
+            isOrderImportant: true,
+            isLowercasingAllowed: true
         ),
         
         .init(
@@ -171,7 +173,8 @@ final class FakeData {
                     result: "Серная кислота (H₂SO₄)"
                 )
             ],
-            isOrderImportant: false
+            isOrderImportant: false,
+            isLowercasingAllowed: false
         )
     ]
     

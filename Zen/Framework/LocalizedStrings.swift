@@ -31,6 +31,19 @@ enum LocalizedStrings {
                 return LocalizedStrings.parseTemplate(template)
             } ()
             
+            enum HelpAlert {
+                
+                static let title = NSLocalizedString("Scene.ElementsMixing.HelpAlert.Title", comment: "")
+                
+                static func numberOfElements(count: Int) -> String {
+                    let template = NSLocalizedString("Scene.ElementsMixing.HelpAlert.NumberOfElements.Template", comment: "")
+                    return .init(format: template, count)
+                }
+                
+                static let closeButton = NSLocalizedString("Scene.ElementsMixing.HelpAlert.CloseButton", comment: "")
+                
+            }
+            
             enum AddingHint {
                 
                 static let nonImportantOrder: (string: String, boldRanges: [NSRange]) = {
@@ -54,9 +67,9 @@ enum LocalizedStrings {
                 
                 static let button = NSLocalizedString("Scene.ElementsMixing.CheckResult.Button", comment: "")
                 
-                static func hint(_ insert: String) -> String {
+                static func hint(deviceType: String) -> String {
                     let template = NSLocalizedString("Scene.ElementsMixing.CheckResult.Hint.Template", comment: "")
-                    return .init(format: template, insert)
+                    return .init(format: template, deviceType)
                 }
                 
             }

@@ -33,7 +33,8 @@ final class ElementsMixingViewController: InteractiveFormatViewController<
                 title: $0.title,
                 resultIcon: $0.resultIcon,
                 possibleCombinations: possibleCombinations,
-                isOrderImportant: $0.isOrderImportant
+                isOrderImportant: $0.isOrderImportant,
+                isLowercasingAllowed: $0.isLowercasingAllowed
             )
         }
     }

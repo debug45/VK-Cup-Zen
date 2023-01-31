@@ -11,7 +11,9 @@ struct ElementsMixingModel {
     let resultIcon: String
     
     let possibleCombinations: [PossibleCombination]
+    
     let isOrderImportant: Bool
+    let isLowercasingAllowed: Bool
     
     struct PossibleCombination {
         

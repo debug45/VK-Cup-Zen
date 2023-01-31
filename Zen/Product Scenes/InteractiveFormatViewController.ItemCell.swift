@@ -13,6 +13,7 @@ protocol InteractiveFormatViewControllerItemCell<Model>: UITableViewCell {
     var model: Model? { get set }
     
     var availableWidth: CGFloat? { get set }
+    var delegate: Delegate? { get set }
     
 }
 

@@ -139,6 +139,8 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
     
     var availableWidth: CGFloat?
     
+    weak var delegate: InteractiveFormatViewController.ItemCell.Delegate?
+    
     var model: Model? {
         didSet {
             guard let model, let availableWidth else {

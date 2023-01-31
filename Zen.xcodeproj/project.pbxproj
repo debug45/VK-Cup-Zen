@@ -12,6 +12,7 @@
 		A5247E6129867E2100E06A33 /* ElementsMixingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E5D29867E2100E06A33 /* ElementsMixingCell.swift */; };
 		A5247E6329867E9800E06A33 /* ElementsMixingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E6229867E9800E06A33 /* ElementsMixingModel.swift */; };
 		A5247E652989758900E06A33 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E642989758900E06A33 /* UIDevice.swift */; };
+		A5247E6729898DDA00E06A33 /* InteractiveFormatViewController.ItemCell.Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E6629898DDA00E06A33 /* InteractiveFormatViewController.ItemCell.Delegate.swift */; };
 		A528A151296D9ACA00FAC27E /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A150296D9ACA00FAC27E /* LocalizedStrings.swift */; };
 		A528A155296D9FF700FAC27E /* RatingStarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A154296D9FF700FAC27E /* RatingStarsViewController.swift */; };
 		A528A158296DA10F00FAC27E /* RatingStarsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A157296DA10F00FAC27E /* RatingStarsCell.swift */; };
@@ -71,6 +72,7 @@
 		A5247E5E29867E2100E06A33 /* ElementsMixingCell.OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMixingCell.OptionView.swift; sourceTree = "<group>"; };
 		A5247E6229867E9800E06A33 /* ElementsMixingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMixingModel.swift; sourceTree = "<group>"; };
 		A5247E642989758900E06A33 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		A5247E6629898DDA00E06A33 /* InteractiveFormatViewController.ItemCell.Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveFormatViewController.ItemCell.Delegate.swift; sourceTree = "<group>"; };
 		A528A150296D9ACA00FAC27E /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		A528A154296D9FF700FAC27E /* RatingStarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStarsViewController.swift; sourceTree = "<group>"; };
 		A528A157296DA10F00FAC27E /* RatingStarsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStarsCell.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				A528A153296D9FE800FAC27E /* Rating Stars */,
 				A5A867ED29719F7600D4F526 /* InteractiveFormatViewController.swift */,
 				A5A867F12971AAB300D4F526 /* InteractiveFormatViewController.ItemCell.swift */,
+				A5247E6629898DDA00E06A33 /* InteractiveFormatViewController.ItemCell.Delegate.swift */,
 				A5A867F32971AE6E00D4F526 /* InteractiveFormatViewController.TableViewInterlayer.swift */,
 			);
 			path = "Product Scenes";
@@ -486,6 +489,7 @@
 				A5247E5F29867E2100E06A33 /* ElementsMixingCell.OptionView.swift in Sources */,
 				A5D1E1D3296C47A7002AA67C /* InteractiveFormat.swift in Sources */,
 				A5D2DE232974574400F7AB58 /* WrappingCollectionView.Layout.swift in Sources */,
+				A5247E6729898DDA00E06A33 /* InteractiveFormatViewController.ItemCell.Delegate.swift in Sources */,
 				A5EEE928297048D100882B4D /* ElementsMatchingViewController.swift in Sources */,
 				A528A161296DA68B00FAC27E /* RatingStarsView.swift in Sources */,
 				A528A15C296DA1C500FAC27E /* FakeData.swift in Sources */,

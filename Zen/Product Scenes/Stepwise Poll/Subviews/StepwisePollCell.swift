@@ -90,6 +90,8 @@ final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, Interac
     
     var availableWidth: CGFloat?
     
+    weak var delegate: InteractiveFormatViewController.ItemCell.Delegate?
+    
     var model: Model? {
         didSet {
             titleLabel.text = model?.title

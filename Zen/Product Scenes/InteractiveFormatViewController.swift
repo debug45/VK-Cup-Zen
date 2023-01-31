@@ -125,8 +125,9 @@ class InteractiveFormatViewController<
         }
         
         cell.availableWidth = availableWidth
-        cell.model = itemModels[indexPath.row]
+        cell.delegate = self
         
+        cell.model = itemModels[indexPath.row]
         return cell
     }
     
@@ -157,6 +158,14 @@ class InteractiveFormatViewController<
         }
         
         guideLabel.attributedText = attributedString
+    }
+    
+}
+
+extension InteractiveFormatViewController: InteractiveFormatViewControllerItemCellDelegate {
+    
+    func presentAlertController(_ alertController: UIAlertController) {
+        present(alertController, animated: true)
     }
     
 }

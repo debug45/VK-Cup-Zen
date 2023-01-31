@@ -12,6 +12,9 @@
 "Scene.Main.Subtitle.PreviousStage" = "Предыдущий этап";
 
 "Scene.ElementsMixing.Guide" = "Какие результаты вы получите, смешивая предложенные элементы?\n\nВы можете **нажимать** на\U00A0элементы либо\U00A0же просто **перетаскивать**\U00A0их в\U00A0лунки.";
+"Scene.ElementsMixing.HelpAlert.Title" = "Подсказки для\U00A0жюри";
+"Scene.ElementsMixing.HelpAlert.NumberOfElements.Template" = "(%d\U00A0шт)";
+"Scene.ElementsMixing.HelpAlert.CloseButton" = "Закрыть";
 "Scene.ElementsMixing.AddingHint.NonImportantOrder" = "Порядок добавления **не**\U00A0важен";
 "Scene.ElementsMixing.AddingHint.ImportantOrder" = "Важен **порядок** добавления";
 "Scene.ElementsMixing.AddingHint.AnyCounts" = "Можно добавить **любое** количество";

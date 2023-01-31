@@ -22,6 +22,13 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         $0.textColor = .Zen.foreground
     }
     
+    private let helpButton = UIButton(type: .system).with {
+        $0.setImage(
+            .init(systemName: "info.circle"),
+            for: .normal
+        )
+    }
+    
     private let holeContainerView = UIView()
     
     private let holeLabel = UILabel {
@@ -33,7 +40,7 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
     
     private let addedCountLabel = UILabel {
         $0.font = .systemFont(ofSize: 14)
-        $0.textColor = .Zen.background
+        $0.textColor = .white
     }
     
     private let wrappingCollectionViewContainer = UIView {
@@ -78,7 +85,7 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         $0.font = .systemFont(ofSize: 15)
         
         let deviceType = UIDevice.current.typeName
-        $0.text = LocalizedStrings.Scene.ElementsMixing.CheckResult.hint(deviceType)
+        $0.text = LocalizedStrings.Scene.ElementsMixing.CheckResult.hint(deviceType: deviceType)
         
         $0.textColor = .Zen.foreground.withAlphaComponent(0.5)
     }
@@ -97,6 +104,7 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         
         contentView.addSubviews(
             titleLabel,
+            helpButton,
             
             holeContainerView.addSubviews(
                 holeLabel,
@@ -137,9 +145,15 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
-            
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 22),
+            
+            helpButton.widthAnchor.constraint(equalToConstant: 20),
+            helpButton.heightAnchor.constraint(equalTo: helpButton.widthAnchor),
+            
+            helpButton.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 6),
+            helpButton.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -defaultInset),
+            
+            helpButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             
             holeContainerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             holeContainerView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
@@ -196,7 +210,10 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
             lastVerticalConstraint
         ])
         
-        let selector = #selector(checkResultButtonDidPress)
+        var selector = #selector(helpButtonDidPress)
+        helpButton.addTarget(self, action: selector, for: .touchUpInside)
+        
+        selector = #selector(checkResultButtonDidPress)
         checkResultButton.addTarget(self, action: selector, for: .touchUpInside)
     }
     
@@ -206,6 +223,8 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
     }
     
     var availableWidth: CGFloat?
+    
+    weak var delegate: InteractiveFormatViewController.ItemCell.Delegate?
     
     var model: Model? {
         didSet {
@@ -572,6 +591,56 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         }
     }
     
+    @objc private func helpButtonDidPress() {
+        guard let model else {
+            return
+        }
+        
+        let localizedStrings = LocalizedStrings.Scene.ElementsMixing.HelpAlert.self
+        var message = ""
+        
+        for possibleCombination in model.possibleCombinations {
+            if !message.isEmpty {
+                message += "\n\n"
+            }
+            
+            message += possibleCombination.result
+            message += ": "
+            
+            message += possibleCombination.components.map {
+                var substring = $0.title
+                
+                if model.isLowercasingAllowed {
+                    substring = substring.lowercased()
+                }
+                
+                if model.withMultiplicity {
+                    substring += "\u{00A0}" + localizedStrings.numberOfElements(count: $0.count)
+                }
+                
+                return substring
+            }
+            .joined(separator: ", ")
+            
+            message += "."
+        }
+        
+        let alertController = UIAlertController(
+            title: localizedStrings.title,
+            message: message,
+            preferredStyle: .alert
+        )
+        
+        alertController.addAction(
+            .init(
+                title: LocalizedStrings.Scene.ElementsMixing.HelpAlert.closeButton,
+                style: .default
+            )
+        )
+        
+        delegate?.presentAlertController(alertController)
+    }
+    
     @objc private func checkResultButtonDidPress() {
         checkResultIfAppropriate()
     }
@@ -594,10 +663,12 @@ extension ElementsMixingViewController.ElementsMixingCell {
         let isOrderImportant: Bool
         let withMultiplicity: Bool
         
+        let isLowercasingAllowed: Bool
+        
         var userMixture: [Component] = []
         var checkResult: CheckResult?
         
-        init(title: String, resultIcon: String, possibleCombinations: [PossibleCombination], isOrderImportant: Bool) {
+        init(title: String, resultIcon: String, possibleCombinations: [PossibleCombination], isOrderImportant: Bool, isLowercasingAllowed: Bool) {
             self.title = title
             self.resultIcon = resultIcon
             
@@ -615,6 +686,8 @@ extension ElementsMixingViewController.ElementsMixingCell {
                     $0.components.contains { $0.count > 1 }
                 }
             )
+            
+            self.isLowercasingAllowed = isLowercasingAllowed
         }
         
         struct Component: Hashable {

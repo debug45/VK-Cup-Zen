@@ -23,7 +23,9 @@ extension ElementsMixingViewController.ElementsMixingCell {
             super.init(frame: frame)
             backgroundColor = .Zen.background
             
+            layer.borderColor = UIColor.Zen.foreground.cgColor
             layer.borderWidth = 1.5
+            
             layer.cornerRadius = 12
             
             addSubviews(
