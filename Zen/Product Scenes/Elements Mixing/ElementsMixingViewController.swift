@@ -50,4 +50,9 @@ final class ElementsMixingViewController: InteractiveFormatViewController<
         visibleCells.forEach { $0.checkResultIfAppropriate() }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        reloadTableView()
+    }
+    
 }

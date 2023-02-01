@@ -43,8 +43,8 @@
 
 "InteractiveFormat.StepwisePolls" = "Многошаговые опросы";
 "InteractiveFormat.ElementsMatching" = "Сопоставление элементов";
-"InteractiveFormat.SimpleTextGaps" = "Заполнение пропусков с\U00A0вариантами";
-"InteractiveFormat.EditableTextGaps" = "Заполнение пропусков путём ввода";
+"InteractiveFormat.SimpleTextGaps" = "Заполнение пропусков вариантами";
+"InteractiveFormat.EditableTextGaps" = "Заполнение пропусков вводом";
 "InteractiveFormat.RatingStars" = "Оценивание звёздами";
 
 "Other.Device.iPhone" = "iPhone";

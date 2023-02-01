@@ -76,7 +76,7 @@ class InteractiveFormatViewController<
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        availableWidth = view.bounds.width
+        updateAvailableWidth()
         appendItemModels()
     }
     
@@ -88,9 +88,17 @@ class InteractiveFormatViewController<
         return ("", [])
     }
     
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        updateAvailableWidth()
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        availableWidth = size.width
+        
+        coordinator.animate { _ in
+            self.updateAvailableWidth()
+        }
     }
     
     func createItemModelsPortion() -> [ItemModel] {
@@ -158,6 +166,11 @@ class InteractiveFormatViewController<
         }
         
         guideLabel.attributedText = attributedString
+    }
+    
+    private func updateAvailableWidth() {
+        let safeAreaInsets = view.safeAreaInsets
+        availableWidth = view.bounds.width - safeAreaInsets.left - safeAreaInsets.right
     }
     
 }
