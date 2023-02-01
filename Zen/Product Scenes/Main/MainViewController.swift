@@ -12,7 +12,7 @@ final class MainViewController: UIViewController {
     private let cellType = InteractiveFormatCell.self
     
     private let interactiveFormats: [[InteractiveFormat]] = [
-        [.elementsMixing],
+        [.elementsMixing, .hapticSlider],
         [.stepwisePoll, .elementsMatching, .simpleTextGaps, .editableTextGaps, .ratingStars]
     ]
     
@@ -100,6 +100,8 @@ extension MainViewController: UITableViewDelegate {
         switch interactiveFormats[indexPath.section][indexPath.row] {
             case .elementsMixing:
                 target = ElementsMixingViewController()
+            case .hapticSlider:
+                target = HapticSliderViewController()
                 
             case .stepwisePoll:
                 target = StepwisePollViewController()

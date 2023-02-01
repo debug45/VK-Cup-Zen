@@ -86,6 +86,12 @@ enum LocalizedStrings {
             
         }
         
+        enum HapticSlider {
+            
+            static let guide = NSLocalizedString("Scene.HapticSlider.Guide", comment: "")
+            
+        }
+        
         enum StepwisePoll {
             
             static let guide = NSLocalizedString("Scene.StepwisePoll.Guide", comment: "")
@@ -142,6 +148,7 @@ enum LocalizedStrings {
     enum InteractiveFormat {
         
         static let elementsMixing = NSLocalizedString("InteractiveFormat.ElementsMixing", comment: "")
+        static let hapticSlider = NSLocalizedString("InteractiveFormat.HapticSlider", comment: "")
         
         static let stepwisePolls = NSLocalizedString("InteractiveFormat.StepwisePolls", comment: "")
         static let elementsMatching = NSLocalizedString("InteractiveFormat.ElementsMatching", comment: "")

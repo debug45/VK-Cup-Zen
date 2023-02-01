@@ -13,6 +13,8 @@
 		A5247E6329867E9800E06A33 /* ElementsMixingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E6229867E9800E06A33 /* ElementsMixingModel.swift */; };
 		A5247E652989758900E06A33 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E642989758900E06A33 /* UIDevice.swift */; };
 		A5247E6729898DDA00E06A33 /* InteractiveFormatViewController.ItemCell.Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E6629898DDA00E06A33 /* InteractiveFormatViewController.ItemCell.Delegate.swift */; };
+		A5247E6D298ACDA400E06A33 /* HapticSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E6A298ACDA400E06A33 /* HapticSliderViewController.swift */; };
+		A5247E6E298ACDA400E06A33 /* HapticSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5247E6C298ACDA400E06A33 /* HapticSliderCell.swift */; };
 		A528A151296D9ACA00FAC27E /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A150296D9ACA00FAC27E /* LocalizedStrings.swift */; };
 		A528A155296D9FF700FAC27E /* RatingStarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A154296D9FF700FAC27E /* RatingStarsViewController.swift */; };
 		A528A158296DA10F00FAC27E /* RatingStarsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A157296DA10F00FAC27E /* RatingStarsCell.swift */; };
@@ -24,6 +26,7 @@
 		A528A165296DA73C00FAC27E /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A164296DA73C00FAC27E /* UIView.swift */; };
 		A528A167296DAA0B00FAC27E /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A166296DAA0B00FAC27E /* UIStackView.swift */; };
 		A528A16D296DAE5300FAC27E /* Withable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528A16C296DAE5300FAC27E /* Withable.swift */; };
+		A548FFAE298ADCCF00F00E18 /* HapticSliderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A548FFAD298ADCCF00F00E18 /* HapticSliderModel.swift */; };
 		A56FF245297540CD003C853D /* WrappingCollectionView.Layout.Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56FF244297540CD003C853D /* WrappingCollectionView.Layout.Delegate.swift */; };
 		A56FF24B29755798003C853D /* SimpleTextGapsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56FF24929755798003C853D /* SimpleTextGapsCell.swift */; };
 		A56FF24D29755798003C853D /* SimpleTextGapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56FF24729755798003C853D /* SimpleTextGapsViewController.swift */; };
@@ -72,6 +75,8 @@
 		A5247E6229867E9800E06A33 /* ElementsMixingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsMixingModel.swift; sourceTree = "<group>"; };
 		A5247E642989758900E06A33 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		A5247E6629898DDA00E06A33 /* InteractiveFormatViewController.ItemCell.Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveFormatViewController.ItemCell.Delegate.swift; sourceTree = "<group>"; };
+		A5247E6A298ACDA400E06A33 /* HapticSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticSliderViewController.swift; sourceTree = "<group>"; };
+		A5247E6C298ACDA400E06A33 /* HapticSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticSliderCell.swift; sourceTree = "<group>"; };
 		A528A150296D9ACA00FAC27E /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		A528A154296D9FF700FAC27E /* RatingStarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStarsViewController.swift; sourceTree = "<group>"; };
 		A528A157296DA10F00FAC27E /* RatingStarsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStarsCell.swift; sourceTree = "<group>"; };
@@ -83,6 +88,7 @@
 		A528A164296DA73C00FAC27E /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A528A166296DAA0B00FAC27E /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		A528A16C296DAE5300FAC27E /* Withable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Withable.swift; sourceTree = "<group>"; };
+		A548FFAD298ADCCF00F00E18 /* HapticSliderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticSliderModel.swift; sourceTree = "<group>"; };
 		A56FF244297540CD003C853D /* WrappingCollectionView.Layout.Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingCollectionView.Layout.Delegate.swift; sourceTree = "<group>"; };
 		A56FF24729755798003C853D /* SimpleTextGapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextGapsViewController.swift; sourceTree = "<group>"; };
 		A56FF24929755798003C853D /* SimpleTextGapsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextGapsCell.swift; sourceTree = "<group>"; };
@@ -151,6 +157,23 @@
 			children = (
 				A5247E5D29867E2100E06A33 /* ElementsMixingCell.swift */,
 				A5247E5E29867E2100E06A33 /* ElementsMixingCell.OptionView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		A5247E69298ACDA400E06A33 /* Haptic Slider */ = {
+			isa = PBXGroup;
+			children = (
+				A5247E6B298ACDA400E06A33 /* Subviews */,
+				A5247E6A298ACDA400E06A33 /* HapticSliderViewController.swift */,
+			);
+			path = "Haptic Slider";
+			sourceTree = "<group>";
+		};
+		A5247E6B298ACDA400E06A33 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A5247E6C298ACDA400E06A33 /* HapticSliderCell.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -277,6 +300,7 @@
 			children = (
 				A528A152296D9FDD00FAC27E /* Main */,
 				A5247E5A29867E2100E06A33 /* Elements Mixing */,
+				A5247E69298ACDA400E06A33 /* Haptic Slider */,
 				A5D2DDF42973E88F00F7AB58 /* Stepwise Poll */,
 				A5EEE923297048D100882B4D /* Elements Matching */,
 				A56FF24629755798003C853D /* Simple Text Gaps */,
@@ -308,6 +332,7 @@
 				A528A15B296DA1C500FAC27E /* FakeData.swift */,
 				A5D1E1D2296C47A7002AA67C /* InteractiveFormat.swift */,
 				A5247E6229867E9800E06A33 /* ElementsMixingModel.swift */,
+				A548FFAD298ADCCF00F00E18 /* HapticSliderModel.swift */,
 				A5D2DDFA2973E90E00F7AB58 /* StepwisePollModel.swift */,
 				A5EEE929297049A100882B4D /* ElementsMatchingModel.swift */,
 				A5D2DE0D297442AA00F7AB58 /* TextGapsModel.swift */,
@@ -477,9 +502,11 @@
 				A528A167296DAA0B00FAC27E /* UIStackView.swift in Sources */,
 				A5D1E1B1296C3BE2002AA67C /* MainViewController.swift in Sources */,
 				A5DCF7262973261A008664E5 /* UIGestureRecognizer.swift in Sources */,
+				A5247E6D298ACDA400E06A33 /* HapticSliderViewController.swift in Sources */,
 				A5D2DDFD2973FD6300F7AB58 /* StepwisePollCell.QuestionView.swift in Sources */,
 				A5D1E1AD296C3BE2002AA67C /* AppDelegate.swift in Sources */,
 				A528A151296D9ACA00FAC27E /* LocalizedStrings.swift in Sources */,
+				A548FFAE298ADCCF00F00E18 /* HapticSliderModel.swift in Sources */,
 				A5D1E1C9296C3FF8002AA67C /* Instances.swift in Sources */,
 				A56FF251297570C2003C853D /* SimpleTextGapsCell.OptionView.swift in Sources */,
 				A5247E6329867E9800E06A33 /* ElementsMixingModel.swift in Sources */,
@@ -518,6 +545,7 @@
 				A5D2DE0F2974453200F7AB58 /* EditableTextGapsCell.swift in Sources */,
 				A5D2DE212974567500F7AB58 /* WrappingCollectionView.Cell.swift in Sources */,
 				A5EEE92A297049A100882B4D /* ElementsMatchingModel.swift in Sources */,
+				A5247E6E298ACDA400E06A33 /* HapticSliderCell.swift in Sources */,
 				A5D2DE282974749400F7AB58 /* EditableTextGapsCell.TextField.swift in Sources */,
 				A5247E652989758900E06A33 /* UIDevice.swift in Sources */,
 				A5D2DDF82973E88F00F7AB58 /* StepwisePollViewController.swift in Sources */,

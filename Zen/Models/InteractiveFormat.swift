@@ -8,6 +8,7 @@
 enum InteractiveFormat {
     
     case elementsMixing
+    case hapticSlider
     
     case stepwisePoll
     case elementsMatching
@@ -19,6 +20,8 @@ enum InteractiveFormat {
         switch self {
             case .elementsMixing:
                 return "🧑‍🔬"
+            case .hapticSlider:
+                return "📳"
                 
             case .stepwisePoll:
                 return "📊"
@@ -39,6 +42,8 @@ enum InteractiveFormat {
         switch self {
             case .elementsMixing:
                 return strings.elementsMixing
+            case .hapticSlider:
+                return strings.hapticSlider
                 
             case .stepwisePoll:
                 return strings.stepwisePolls

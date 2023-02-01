@@ -249,17 +249,12 @@ extension StepwisePollViewController.StepwisePollCell {
                 self.correctAnswerID = correctAnswerID
             }
             
-            final class Answer {
+            struct Answer {
                 
                 let id: String
+                
                 let title: String
                 let numberOfVotes: Int
-                
-                init(id: String, title: String, numberOfVotes: Int) {
-                    self.id = id
-                    self.title = title
-                    self.numberOfVotes = numberOfVotes
-                }
                 
             }
             
