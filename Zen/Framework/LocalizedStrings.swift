@@ -22,6 +22,13 @@ enum LocalizedStrings {
                 
             }
             
+            enum AboutDeveloper {
+                
+                static let title = NSLocalizedString("Scene.Main.AboutDeveloper.Title", comment: "")
+                static let content = NSLocalizedString("Scene.Main.AboutDeveloper.Content", comment: "")
+                
+            }
+            
         }
         
         enum ElementsMixing {

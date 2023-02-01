@@ -680,6 +680,7 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
             )
         )
         
+        alertController.view.tintColor = .Zen.accent
         delegate?.presentAlertController(alertController)
     }
     

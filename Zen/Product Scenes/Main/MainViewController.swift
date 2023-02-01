@@ -17,6 +17,8 @@ final class MainViewController: UIViewController {
     ]
     
     private lazy var tableView = UITableView {
+        $0.contentInset = .init(top: 0, left: 0, bottom: 36, right: 0)
+        
         $0.dataSource = self
         $0.delegate = self
     }
@@ -47,10 +49,14 @@ final class MainViewController: UIViewController {
 extension MainViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return interactiveFormats.count
+        return interactiveFormats.count + 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard section < interactiveFormats.count else {
+            return 1
+        }
+        
         return interactiveFormats[section].count
     }
     
@@ -58,11 +64,15 @@ extension MainViewController: UITableViewDataSource {
         var configured: UITableViewCell?
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier, for: indexPath) as? InteractiveFormatCell {
-            let model = interactiveFormats[indexPath.section][indexPath.row]
-            
-            cell.configure(
-                title: "\(model.icon) \(model.title)"
-            )
+            if indexPath.section < interactiveFormats.count {
+                let model = interactiveFormats[indexPath.section][indexPath.row]
+                
+                cell.configure(
+                    title: "\(model.icon) \(model.title)"
+                )
+            } else {
+                cell.configure(title: LocalizedStrings.Scene.Main.AboutDeveloper.content)
+            }
             
             configured = cell
         }
@@ -76,6 +86,14 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard indexPath.section < interactiveFormats.count else {
+            UIApplication.shared.open(
+                .init(string: "https://vk.com/id19187792")!
+            )
+            
+            return
+        }
         
         var target: UIViewController?
         
@@ -101,25 +119,18 @@ extension MainViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let localizedStrings = LocalizedStrings.Scene.Main.Subtitle.self
-        
         switch section {
             case 0:
-                return localizedStrings.currentStage
+                return LocalizedStrings.Scene.Main.Subtitle.currentStage
             case 1:
-                return localizedStrings.previousStage
+                return LocalizedStrings.Scene.Main.Subtitle.previousStage
+                
+            case 2:
+                return LocalizedStrings.Scene.Main.AboutDeveloper.title
                 
             default:
                 return nil
         }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard section == interactiveFormats.count - 1 else {
-            return nil
-        }
-        
-        return FooterView()
     }
     
 }

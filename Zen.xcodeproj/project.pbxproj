@@ -48,7 +48,6 @@
 		A5D2DDFB2973E90E00F7AB58 /* StepwisePollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DDFA2973E90E00F7AB58 /* StepwisePollModel.swift */; };
 		A5D2DDFD2973FD6300F7AB58 /* StepwisePollCell.QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DDFC2973FD6300F7AB58 /* StepwisePollCell.QuestionView.swift */; };
 		A5D2DDFF2973FF2300F7AB58 /* StepwisePollCell.QuestionView.BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DDFE2973FF2300F7AB58 /* StepwisePollCell.QuestionView.BarView.swift */; };
-		A5D2DE012974043D00F7AB58 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DE002974043D00F7AB58 /* FooterView.swift */; };
 		A5D2DE03297434C600F7AB58 /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DE02297434C600F7AB58 /* NSObject.swift */; };
 		A5D2DE0E297442AA00F7AB58 /* TextGapsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DE0D297442AA00F7AB58 /* TextGapsModel.swift */; };
 		A5D2DE0F2974453200F7AB58 /* EditableTextGapsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2DE0A2974424E00F7AB58 /* EditableTextGapsCell.swift */; };
@@ -110,7 +109,6 @@
 		A5D2DDFA2973E90E00F7AB58 /* StepwisePollModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepwisePollModel.swift; sourceTree = "<group>"; };
 		A5D2DDFC2973FD6300F7AB58 /* StepwisePollCell.QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepwisePollCell.QuestionView.swift; sourceTree = "<group>"; };
 		A5D2DDFE2973FF2300F7AB58 /* StepwisePollCell.QuestionView.BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepwisePollCell.QuestionView.BarView.swift; sourceTree = "<group>"; };
-		A5D2DE002974043D00F7AB58 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		A5D2DE02297434C600F7AB58 /* NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
 		A5D2DE082974424E00F7AB58 /* EditableTextGapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTextGapsViewController.swift; sourceTree = "<group>"; };
 		A5D2DE0A2974424E00F7AB58 /* EditableTextGapsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTextGapsCell.swift; sourceTree = "<group>"; };
@@ -322,7 +320,6 @@
 			isa = PBXGroup;
 			children = (
 				A5D1E1D5296C4831002AA67C /* InteractiveFormatCell.swift */,
-				A5D2DE002974043D00F7AB58 /* FooterView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -511,7 +508,6 @@
 				A5247E6129867E2100E06A33 /* ElementsMixingCell.swift in Sources */,
 				A5D1E1AF296C3BE2002AA67C /* SceneDelegate.swift in Sources */,
 				A528A158296DA10F00FAC27E /* RatingStarsCell.swift in Sources */,
-				A5D2DE012974043D00F7AB58 /* FooterView.swift in Sources */,
 				A5D1E1D0296C46A6002AA67C /* UIColor.swift in Sources */,
 				A5D2DDFF2973FF2300F7AB58 /* StepwisePollCell.QuestionView.BarView.swift in Sources */,
 				A56FF245297540CD003C853D /* WrappingCollectionView.Layout.Delegate.swift in Sources */,
