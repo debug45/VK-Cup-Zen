@@ -29,8 +29,6 @@ final class StepwisePollViewControllerStepwisePollCell: UITableViewCell, Interac
     }
     
     private let commitButton = UIButton(type: .system).with {
-        $0.setTitleColor(.Zen.accent, for: .normal)
-        
         $0.setTitleColor(
             .Zen.accent.withAlphaComponent(0.3),
             for: .disabled

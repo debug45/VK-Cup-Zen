@@ -23,11 +23,8 @@ final class EditableTextGapsViewControllerEditableTextGapsCell: UITableViewCell,
     private let checkResultButton = UIButton(type: .system).with {
         $0.setTitle(LocalizedStrings.Scene.EditableTextGaps.checkButton, for: .normal)
         
-        let titleColor = UIColor.Zen.accent
-        $0.setTitleColor(titleColor, for: .normal)
-        
         $0.setTitleColor(
-            titleColor.withAlphaComponent(0.3),
+            .Zen.accent.withAlphaComponent(0.3),
             for: .disabled
         )
     }

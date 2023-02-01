@@ -38,18 +38,14 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
     private let checkResultButton = UIButton(type: .system).with {
         $0.setTitle(LocalizedStrings.Scene.SimpleTextGaps.checkButton, for: .normal)
         
-        let titleColor = UIColor.Zen.accent
-        $0.setTitleColor(titleColor, for: .normal)
-        
         $0.setTitleColor(
-            titleColor.withAlphaComponent(0.3),
+            .Zen.accent.withAlphaComponent(0.3),
             for: .disabled
         )
     }
     
     private let resetButton = UIButton(type: .system).with {
         $0.setTitle(LocalizedStrings.Scene.SimpleTextGaps.resetButton, for: .normal)
-        $0.setTitleColor(.Zen.accent, for: .normal)
     }
     
     private let resultIconView = UIImageView()
@@ -386,6 +382,7 @@ final class SimpleTextGapsViewControllerSimpleTextGapsCell: UITableViewCell, Int
                 
             case .changed:
                 if let contentView = optionView.superview, let cell = contentView.superview {
+                    insertsWrappingCollectionViewContainer.superview?.bringSubviewToFront(insertsWrappingCollectionViewContainer)
                     cell.superview?.bringSubviewToFront(cell)
                 }
                 

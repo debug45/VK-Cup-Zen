@@ -74,9 +74,8 @@ enum LocalizedStrings {
                 
             }
             
-            enum VisibleResult {
-                static let failure = NSLocalizedString("Scene.ElementsMixing.VisibleResult.Failure", comment: "")
-            }
+            static let resetButton = NSLocalizedString("Scene.ElementsMixing.ResetButton", comment: "")
+            static let failure = NSLocalizedString("Scene.ElementsMixing.Failure", comment: "")
             
         }
         

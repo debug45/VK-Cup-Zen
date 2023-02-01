@@ -20,7 +20,8 @@
 "Scene.ElementsMixing.AddingHint.AnyCounts" = "Можно добавить **любое** количество";
 "Scene.ElementsMixing.CheckResult.Button" = "Проверить";
 "Scene.ElementsMixing.CheckResult.Hint.Template" = "(или просто встряхните %@)";
-"Scene.ElementsMixing.VisibleResult.Failure" = "Не\U00A0получилось";
+"Scene.ElementsMixing.ResetButton" = "Начать заново";
+"Scene.ElementsMixing.Failure" = "Не\U00A0получилось";
 
 "Scene.StepwisePoll.Guide" = "Проверьте свою эрудицию! Удастся\U00A0ли вам правильно на\U00A0всё ответить?";
 "Scene.StepwisePoll.CommitButton.NextQuestion" = "Следующий вопрос";

@@ -29,6 +29,8 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         )
     }
     
+    private let statesContainerView = UIView()
+    
     private let holeContainerView = UIView()
     
     private let holeLabel = UILabel {
@@ -76,9 +78,6 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
     
     private let checkResultButton = UIButton(type: .system).with {
         $0.setTitle(LocalizedStrings.Scene.ElementsMixing.CheckResult.button, for: .normal)
-        
-        let titleColor = UIColor.Zen.accent
-        $0.setTitleColor(titleColor, for: .normal)
     }
     
     private let checkResultHintLabel = UILabel {
@@ -88,6 +87,10 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         $0.text = LocalizedStrings.Scene.ElementsMixing.CheckResult.hint(deviceType: deviceType)
         
         $0.textColor = .Zen.foreground.withAlphaComponent(0.5)
+    }
+    
+    private let resetButton = UIButton(type: .system).with {
+        $0.setTitle(LocalizedStrings.Scene.ElementsMixing.resetButton, for: .normal)
     }
     
     private var wrappingCollectionViewContainerLeadingConstraint: NSLayoutConstraint!
@@ -106,26 +109,29 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
             titleLabel,
             helpButton,
             
-            holeContainerView.addSubviews(
-                holeLabel,
-                addedCountLabel
-            ),
-            
-            wrappingCollectionViewContainer.addSubviews(
-                hintLabel,
-                wrappingCollectionView
-            ),
-            
-            resultContainer.addSubviews(
-                resultNestedContainer.addSubviews(
-                    resultIconLabel,
-                    resultTitleLabel
+            statesContainerView.addSubviews(
+                holeContainerView.addSubviews(
+                    holeLabel,
+                    addedCountLabel
+                ),
+                
+                wrappingCollectionViewContainer.addSubviews(
+                    hintLabel,
+                    wrappingCollectionView
+                ),
+                
+                resultContainer.addSubviews(
+                    resultNestedContainer.addSubviews(
+                        resultIconLabel,
+                        resultTitleLabel
+                    )
+                ),
+                
+                checkResultStackView.addArrangedSubviews(
+                    checkResultButton,
+                    checkResultHintLabel,
+                    resetButton
                 )
-            ),
-            
-            checkResultStackView.addArrangedSubviews(
-                checkResultButton,
-                checkResultHintLabel
             )
         )
         
@@ -134,13 +140,13 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         let elementsContainerInset: CGFloat = 12
         let holeContainerInset: CGFloat = 12
         
-        wrappingCollectionViewContainerLeadingConstraint = wrappingCollectionViewContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset)
-        wrappingCollectionViewContainerTrailingConstraint = wrappingCollectionViewContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset)
+        wrappingCollectionViewContainerLeadingConstraint = wrappingCollectionViewContainer.leadingAnchor.constraint(equalTo: statesContainerView.leadingAnchor, constant: defaultInset)
+        wrappingCollectionViewContainerTrailingConstraint = wrappingCollectionViewContainer.trailingAnchor.constraint(equalTo: statesContainerView.trailingAnchor, constant: -defaultInset)
         
         wrappingCollectionViewLeadingConstraint = wrappingCollectionView.leadingAnchor.constraint(equalTo: wrappingCollectionViewContainer.leadingAnchor, constant: elementsContainerInset)
         wrappingCollectionViewTrailingConstraint = wrappingCollectionView.trailingAnchor.constraint(equalTo: wrappingCollectionViewContainer.trailingAnchor, constant: -elementsContainerInset)
         
-        let lastVerticalConstraint = checkResultStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -defaultInset)
+        let lastVerticalConstraint = statesContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         lastVerticalConstraint.priority = .defaultLow
         
         NSLayoutConstraint.activate([
@@ -155,8 +161,13 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
             
             helpButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             
-            holeContainerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            holeContainerView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            statesContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            statesContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            statesContainerView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            
+            holeContainerView.centerXAnchor.constraint(equalTo: statesContainerView.centerXAnchor),
+            holeContainerView.topAnchor.constraint(equalTo: statesContainerView.topAnchor, constant: 20),
             
             holeLabel.leadingAnchor.constraint(equalTo: holeContainerView.leadingAnchor, constant: holeContainerInset + 1),
             holeLabel.trailingAnchor.constraint(equalTo: holeContainerView.trailingAnchor, constant: -holeContainerInset + 1),
@@ -183,8 +194,8 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
             wrappingCollectionView.topAnchor.constraint(equalTo: hintLabel.bottomAnchor, constant: 10),
             wrappingCollectionView.bottomAnchor.constraint(equalTo: wrappingCollectionViewContainer.bottomAnchor, constant: -elementsContainerInset),
             
-            resultContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
-            resultContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
+            resultContainer.leadingAnchor.constraint(equalTo: statesContainerView.leadingAnchor, constant: defaultInset),
+            resultContainer.trailingAnchor.constraint(equalTo: statesContainerView.trailingAnchor, constant: -defaultInset),
             
             resultContainer.topAnchor.constraint(equalTo: holeContainerView.topAnchor, constant: -6),
             resultContainer.bottomAnchor.constraint(equalTo: wrappingCollectionViewContainer.bottomAnchor, constant: -10),
@@ -203,10 +214,12 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
             resultTitleLabel.topAnchor.constraint(equalTo: resultIconLabel.bottomAnchor, constant: 4),
             resultTitleLabel.bottomAnchor.constraint(equalTo: resultNestedContainer.bottomAnchor),
             
-            checkResultStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
-            checkResultStackView.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -defaultInset),
+            checkResultStackView.leadingAnchor.constraint(equalTo: statesContainerView.leadingAnchor, constant: defaultInset),
+            checkResultStackView.trailingAnchor.constraint(lessThanOrEqualTo: statesContainerView.trailingAnchor, constant: -defaultInset),
             
             checkResultStackView.topAnchor.constraint(equalTo: wrappingCollectionViewContainer.bottomAnchor, constant: 16),
+            checkResultStackView.bottomAnchor.constraint(equalTo: statesContainerView.bottomAnchor, constant: -defaultInset),
+            
             lastVerticalConstraint
         ])
         
@@ -215,6 +228,9 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         
         selector = #selector(checkResultButtonDidPress)
         checkResultButton.addTarget(self, action: selector, for: .touchUpInside)
+        
+        selector = #selector(resetButtonDidPress)
+        resetButton.addTarget(self, action: selector, for: .touchUpInside)
     }
     
     @available(*, unavailable)
@@ -255,7 +271,7 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
             resultContainer.isHidden = model.checkResult == nil
             updateVisibleResult()
             
-            updateCheckResultButton(withAnimation: false)
+            updateCheckResultViews(withAnimations: false)
         }
     }
     
@@ -273,7 +289,7 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         }
         
         model.checkResult = .init(relevantCombination: relevantCombination)
-        updateCheckResultButton(withAnimation: true)
+        updateCheckResultViews(withAnimations: true)
         
         UIView.animate(withDuration: animatingDuration, delay: 0, options: .curveEaseIn, animations: {
             self.holeContainerView.alpha = 0
@@ -397,20 +413,42 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
             resultTitleLabel.text = relevantCombination.result
         } else {
             resultIconLabel.text = "😔"
-            resultTitleLabel.text = LocalizedStrings.Scene.ElementsMixing.VisibleResult.failure
+            resultTitleLabel.text = LocalizedStrings.Scene.ElementsMixing.failure
         }
     }
     
-    private func updateCheckResultButton(withAnimation: Bool) {
+    private func updateCheckResultViews(withAnimations: Bool) {
         guard let model else {
             return
         }
         
-        checkResultStackView.isUserInteractionEnabled = !model.userMixture.isEmpty && model.checkResult == nil
+        let isResetButtonState = model.checkResult != nil
+        let isStateChangingAnimation = withAnimations && resetButton.isHidden == isResetButtonState
         
-        UIView.animate(withDuration: withAnimation ? animatingDuration : 0) {
-            self.checkResultStackView.alpha = self.checkResultStackView.isUserInteractionEnabled ? 1 : 0.3
-        }
+        UIView.animate(withDuration: isStateChangingAnimation ? animatingDuration : 0, delay: 0, options: .curveEaseIn, animations: {
+            if isStateChangingAnimation {
+                self.checkResultStackView.alpha = 0
+            }
+        }, completion: { isFinished in
+            guard isFinished else {
+                return
+            }
+            
+            self.checkResultStackView.isUserInteractionEnabled = !model.userMixture.isEmpty
+            
+            self.checkResultButton.isHidden = isResetButtonState
+            self.checkResultHintLabel.isHidden = self.checkResultButton.isHidden
+            
+            self.resetButton.isHidden = !isResetButtonState
+            
+            UIView.animate(
+                withDuration: withAnimations ? self.animatingDuration : 0,
+                delay: isStateChangingAnimation ? (self.animatingDuration * 2) : 0,
+                options: isStateChangingAnimation ? .curveEaseOut : .curveEaseInOut
+            ) {
+                self.checkResultStackView.alpha = self.checkResultStackView.isUserInteractionEnabled ? 1 : 0.3
+            }
+        })
     }
     
     private func createComplexTransform(for optionView: OptionView, translation: CGSize, fitToHole: Bool = false) -> CGAffineTransform {
@@ -423,7 +461,11 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         frame.origin.x += translation.width
         frame.origin.y += translation.height
         
-        let scalingThreshold = wrappingCollectionViewContainer.frame.minY
+        let scalingThreshold = wrappingCollectionViewContainer.convert(
+            wrappingCollectionViewContainer.bounds,
+            to: contentView
+        ).minY
+        
         var scale: CGFloat = 1
         
         if frame.maxY < scalingThreshold {
@@ -463,8 +505,6 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
             model.userMixture.append(component)
         }
         
-        updateCheckResultButton(withAnimation: true)
-        
         UIView.animate(withDuration: animatingDuration, delay: 0, options: .curveEaseIn, animations: {
             self.addedCountLabel.alpha = 0
         }, completion: { isFinished in
@@ -473,6 +513,7 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
             }
             
             self.updateVisibleAddedCount()
+            self.updateCheckResultViews(withAnimations: true)
             
             UIView.animate(withDuration: self.animatingDuration, delay: 0, options: .curveEaseOut) {
                 self.addedCountLabel.alpha = 1
@@ -496,7 +537,7 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         }
         
         let optionViewFrame = superview.convert(superview.bounds, to: contentView)
-        let holeContainerViewFrame = holeContainerView.frame
+        let holeContainerViewFrame = holeContainerView.convert(holeContainerView.bounds, to: contentView)
         
         let translation = CGSize(
             width: holeContainerViewFrame.midX - optionViewFrame.midX,
@@ -549,6 +590,7 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         switch sender.state {
             case .changed:
                 if let superview = optionView.superview, let cell = superview.superview {
+                    wrappingCollectionViewContainer.superview?.bringSubviewToFront(wrappingCollectionViewContainer)
                     cell.superview?.bringSubviewToFront(cell)
                 }
                 
@@ -574,11 +616,11 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
                 
             case .ended:
                 let optionViewFrame = optionView.convert(optionView.bounds, to: contentView)
-                let holeContainerViewFrame = holeContainerView.frame
+                let holeContainerViewFrame = holeContainerView.convert(holeContainerView.bounds, to: contentView)
                 
                 let xRange = (holeContainerViewFrame.midX - holeWidth / 2) ... (holeContainerViewFrame.midX + holeWidth / 2)
                 
-                if xRange.contains(optionViewFrame.midX) && optionViewFrame.midY <= holeContainerView.frame.midY {
+                if xRange.contains(optionViewFrame.midX) && optionViewFrame.midY <= holeContainerViewFrame.midY {
                     self.someOptionViewDidPress(optionView)
                 } else {
                     UIView.animate(withDuration: animatingDuration) {
@@ -645,6 +687,23 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         checkResultIfAppropriate()
     }
     
+    @objc private func resetButtonDidPress() {
+        UIView.animate(withDuration: animatingDuration, delay: 0, options: .curveEaseIn, animations: {
+            self.statesContainerView.alpha = 0
+        }, completion: { isFinished in
+            guard isFinished else {
+                return
+            }
+            
+            self.model?.resetState()
+            self.model = nil ?? self.model
+            
+            UIView.animate(withDuration: self.animatingDuration, delay: 0, options: .curveEaseOut) {
+                self.statesContainerView.alpha = 1
+            }
+        })
+    }
+    
 }
 
 extension ElementsMixingViewController {
@@ -688,6 +747,11 @@ extension ElementsMixingViewController.ElementsMixingCell {
             )
             
             self.isLowercasingAllowed = isLowercasingAllowed
+        }
+        
+        func resetState() {
+            userMixture = []
+            checkResult = nil
         }
         
         struct Component: Hashable {
