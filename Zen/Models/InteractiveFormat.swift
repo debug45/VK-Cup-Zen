@@ -36,7 +36,7 @@ enum InteractiveFormat {
         }
     }
     
-    var title: String {
+    var name: String {
         let strings = LocalizedStrings.InteractiveFormat.self
         
         switch self {

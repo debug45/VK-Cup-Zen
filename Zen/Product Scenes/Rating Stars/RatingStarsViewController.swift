@@ -13,7 +13,7 @@ final class RatingStarsViewController: InteractiveFormatViewController<
 > {
     
     override var navigationBarTitle: String {
-        return InteractiveFormat.ratingStars.title
+        return InteractiveFormat.ratingStars.name
     }
     
     override var correspondingFormatGuide: (string: String, boldRanges: [NSRange]) {

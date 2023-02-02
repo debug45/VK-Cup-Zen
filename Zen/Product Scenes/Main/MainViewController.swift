@@ -68,7 +68,7 @@ extension MainViewController: UITableViewDataSource {
                 let model = interactiveFormats[indexPath.section][indexPath.row]
                 
                 cell.configure(
-                    title: "\(model.icon) \(model.title)"
+                    title: "\(model.icon) \(model.name)"
                 )
             } else {
                 cell.configure(title: LocalizedStrings.Scene.Main.AboutDeveloper.content)

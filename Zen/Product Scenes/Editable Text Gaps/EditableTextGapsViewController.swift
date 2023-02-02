@@ -28,7 +28,7 @@ final class EditableTextGapsViewController: InteractiveFormatViewController<
     }
     
     override var navigationBarTitle: String {
-        return InteractiveFormat.editableTextGaps.title
+        return InteractiveFormat.editableTextGaps.name
     }
     
     override var correspondingFormatGuide: (string: String, boldRanges: [NSRange]) {

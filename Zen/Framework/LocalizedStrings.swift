@@ -74,9 +74,9 @@ enum LocalizedStrings {
                 
                 static let button = NSLocalizedString("Scene.ElementsMixing.CheckResult.Button", comment: "")
                 
-                static func hint(deviceType: String) -> String {
+                static func hint(deviceClassName: String) -> String {
                     let template = NSLocalizedString("Scene.ElementsMixing.CheckResult.Hint.Template", comment: "")
-                    return .init(format: template, deviceType)
+                    return .init(format: template, deviceClassName)
                 }
                 
             }
@@ -92,6 +92,21 @@ enum LocalizedStrings {
                 let template = NSLocalizedString("Scene.HapticSlider.Guide", comment: "")
                 return LocalizedStrings.parseTemplate(template)
             } ()
+            
+            enum UnsupportedDeviceAlert {
+                
+                static let title = NSLocalizedString("Scene.HapticSlider.UnsupportedDeviceAlert.Title", comment: "")
+                
+                enum Description {
+                    
+                    static let simulator = NSLocalizedString("Scene.HapticSlider.UnsupportedDeviceAlert.Description.Simulator", comment: "")
+                    static let other = NSLocalizedString("Scene.HapticSlider.UnsupportedDeviceAlert.Description.Other", comment: "")
+                    
+                }
+                
+                static let closeButton = NSLocalizedString("Scene.HapticSlider.UnsupportedDeviceAlert.CloseButton", comment: "")
+                
+            }
             
         }
         

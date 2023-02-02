@@ -18,7 +18,7 @@ final class SimpleTextGapsViewController: InteractiveFormatViewController<
     }
     
     override var navigationBarTitle: String {
-        return InteractiveFormat.simpleTextGaps.title
+        return InteractiveFormat.simpleTextGaps.name
     }
     
     override var correspondingFormatGuide: (string: String, boldRanges: [NSRange]) {

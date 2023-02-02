@@ -9,7 +9,7 @@ import UIKit
 
 extension UIDevice {
     
-    var typeName: String {
+    var className: String {
         let localizedStrings = LocalizedStrings.Other.Device.self
         
         switch userInterfaceIdiom {
@@ -29,6 +29,27 @@ extension UIDevice {
             @unknown default:
                 return localizedStrings.unknown
         }
+    }
+    
+    var environmentType: EnvironmentType {
+        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+            return .preview
+        }
+        
+        #if targetEnvironment(simulator)
+            return .simulator
+        #else
+            return .device
+        #endif
+    }
+    
+    enum EnvironmentType {
+        
+        case device
+        
+        case simulator
+        case preview
+        
     }
     
 }

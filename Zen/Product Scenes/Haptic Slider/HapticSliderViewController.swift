@@ -5,6 +5,7 @@
 //  Created by Sergey Moskvin on 01.02.2023.
 //
 
+import CoreHaptics
 import UIKit
 
 final class HapticSliderViewController: InteractiveFormatViewController<
@@ -12,8 +13,16 @@ final class HapticSliderViewController: InteractiveFormatViewController<
     HapticSliderViewControllerHapticSliderCell
 > {
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !CHHapticEngine.capabilitiesForHardware().supportsHaptics {
+            showUnsupportedDeviceAlert()
+        }
+    }
+    
     override var navigationBarTitle: String {
-        return InteractiveFormat.hapticSlider.title
+        return InteractiveFormat.hapticSlider.name
     }
     
     override var correspondingFormatGuide: (string: String, boldRanges: [NSRange]) {
@@ -29,6 +38,31 @@ final class HapticSliderViewController: InteractiveFormatViewController<
                 target: .init(title: $0.target.title, value: $0.target.value)
             )
         }
+    }
+    
+    private func showUnsupportedDeviceAlert() {
+        let localizedStrings = LocalizedStrings.Scene.HapticSlider.UnsupportedDeviceAlert.self
+        let description: String
+        
+        switch UIDevice.current.environmentType {
+            case .simulator:
+                description = localizedStrings.Description.simulator
+            case .device, .preview:
+                description = localizedStrings.Description.other
+        }
+        
+        let alertController = UIAlertController(
+            title: localizedStrings.title,
+            message: description,
+            preferredStyle: .alert
+        )
+        
+        alertController.addAction(
+            .init(title: localizedStrings.closeButton, style: .default)
+        )
+        
+        alertController.view.tintColor = .Zen.accent
+        presentAlertController(alertController)
     }
     
 }

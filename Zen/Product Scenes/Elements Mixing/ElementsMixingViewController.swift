@@ -13,7 +13,7 @@ final class ElementsMixingViewController: InteractiveFormatViewController<
 > {
     
     override var navigationBarTitle: String {
-        return InteractiveFormat.elementsMixing.title
+        return InteractiveFormat.elementsMixing.name
     }
     
     override var correspondingFormatGuide: (string: String, boldRanges: [NSRange]) {

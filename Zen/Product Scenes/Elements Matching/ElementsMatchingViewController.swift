@@ -13,7 +13,7 @@ final class ElementsMatchingViewController: InteractiveFormatViewController<
 > {
     
     override var navigationBarTitle: String {
-        return InteractiveFormat.elementsMatching.title
+        return InteractiveFormat.elementsMatching.name
     }
     
     override var correspondingFormatGuide: (string: String, boldRanges: [NSRange]) {

@@ -13,7 +13,7 @@ final class StepwisePollViewController: InteractiveFormatViewController<
 > {
     
     override var navigationBarTitle: String {
-        return InteractiveFormat.stepwisePoll.title
+        return InteractiveFormat.stepwisePoll.name
     }
     
     override var correspondingFormatGuide: (string: String, boldRanges: [NSRange]) {

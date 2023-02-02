@@ -83,8 +83,8 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
     private let checkResultHintLabel = UILabel {
         $0.font = .systemFont(ofSize: 15)
         
-        let deviceType = UIDevice.current.typeName
-        $0.text = LocalizedStrings.Scene.ElementsMixing.CheckResult.hint(deviceType: deviceType)
+        let deviceClassName = UIDevice.current.className
+        $0.text = LocalizedStrings.Scene.ElementsMixing.CheckResult.hint(deviceClassName: deviceClassName)
         
         $0.textColor = .Zen.foreground.withAlphaComponent(0.5)
     }
@@ -674,10 +674,7 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         )
         
         alertController.addAction(
-            .init(
-                title: LocalizedStrings.Scene.ElementsMixing.HelpAlert.closeButton,
-                style: .default
-            )
+            .init(title: localizedStrings.closeButton, style: .default)
         )
         
         alertController.view.tintColor = .Zen.accent
