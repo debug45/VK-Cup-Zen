@@ -40,6 +40,9 @@ final class RatingStarsViewControllerRatingStarsCell: UITableViewCell, Interacti
         
         let defaultInset: CGFloat = 20
         
+        let lastVerticalConstraint = ratingStarsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+        lastVerticalConstraint.priority = .defaultLow
+        
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
@@ -47,7 +50,7 @@ final class RatingStarsViewControllerRatingStarsCell: UITableViewCell, Interacti
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             
             ratingStarsView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
-            ratingStarsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            lastVerticalConstraint,
             
             ratingStarsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset - 2),
             

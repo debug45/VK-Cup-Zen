@@ -10,7 +10,14 @@ import UIKit
 final class HapticSliderViewControllerHapticSliderCell: UITableViewCell, InteractiveFormatViewController.ItemCell {
     
     private let feedbackGenerator = UIImpactFeedbackGenerator()
-    private var activeState: (timer: Timer, intensityMultiplier: Float, isAttenuation: Bool)?
+    private let animatingDuration: TimeInterval = 0.25
+    
+    private var activeState: (
+        timer: Timer,
+        intensityMultiplier: Float,
+        isAttenuation: Bool,
+        targetClosenessAccumulatedDuration: TimeInterval?
+    )?
     
     private let titleLabel = UILabel {
         $0.font = .systemFont(ofSize: 17, weight: .bold)
@@ -18,6 +25,8 @@ final class HapticSliderViewControllerHapticSliderCell: UITableViewCell, Interac
         $0.numberOfLines = 0
         $0.textColor = .Zen.foreground
     }
+    
+    private let sliderContainerView = UIView()
     
     private let minBenchmarkLabel = UILabel {
         $0.font = .systemFont(ofSize: 14)
@@ -58,25 +67,41 @@ final class HapticSliderViewControllerHapticSliderCell: UITableViewCell, Interac
         $0.layer.cornerRadius = 2
     }
     
+    private let resultContainerView = UIView()
+    
+    private let resultLabel = UILabel {
+        $0.font = .systemFont(ofSize: 34, weight: .bold)
+        $0.textColor = .Zen.foreground.withAlphaComponent(0.3)
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.addSubviews(
             titleLabel,
             
-            minBenchmarkLabel,
-            maxBenchmarkLabel,
+            sliderContainerView.addSubviews(
+                minBenchmarkLabel,
+                maxBenchmarkLabel,
+                
+                sliderLeadingBackgroundView,
+                sliderTrailingBackgroundView,
+                
+                sliderView,
+                
+                minBenchmarkLineView,
+                maxBenchmarkLineView
+            ),
             
-            sliderLeadingBackgroundView,
-            sliderTrailingBackgroundView,
-            
-            sliderView,
-            
-            minBenchmarkLineView,
-            maxBenchmarkLineView
+            resultContainerView.addSubviews(
+                resultLabel
+            )
         )
         
         let defaultInset: CGFloat = 20
+        
+        let lastVerticalConstraint = sliderContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
+        lastVerticalConstraint.priority = .defaultLow
         
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
@@ -84,22 +109,28 @@ final class HapticSliderViewControllerHapticSliderCell: UITableViewCell, Interac
             
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             
-            minBenchmarkLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
-            minBenchmarkLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 18),
+            sliderContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
+            sliderContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
             
-            maxBenchmarkLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
+            sliderContainerView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 18),
+            lastVerticalConstraint,
+            
+            minBenchmarkLabel.leadingAnchor.constraint(equalTo: sliderContainerView.leadingAnchor),
+            minBenchmarkLabel.topAnchor.constraint(equalTo: sliderContainerView.topAnchor),
+            
+            maxBenchmarkLabel.trailingAnchor.constraint(equalTo: sliderContainerView.trailingAnchor),
             maxBenchmarkLabel.centerYAnchor.constraint(equalTo: minBenchmarkLabel.centerYAnchor),
             
             minBenchmarkLineView.heightAnchor.constraint(equalToConstant: 16),
             minBenchmarkLineView.widthAnchor.constraint(equalToConstant: 4),
             
-            minBenchmarkLineView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: defaultInset),
+            minBenchmarkLineView.leadingAnchor.constraint(equalTo: minBenchmarkLabel.leadingAnchor),
             minBenchmarkLineView.topAnchor.constraint(equalTo: minBenchmarkLabel.bottomAnchor, constant: 12),
             
             maxBenchmarkLineView.heightAnchor.constraint(equalTo: minBenchmarkLineView.heightAnchor),
             maxBenchmarkLineView.widthAnchor.constraint(equalTo: minBenchmarkLineView.widthAnchor),
             
-            maxBenchmarkLineView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -defaultInset),
+            maxBenchmarkLineView.trailingAnchor.constraint(equalTo: maxBenchmarkLabel.trailingAnchor),
             maxBenchmarkLineView.centerYAnchor.constraint(equalTo: minBenchmarkLineView.centerYAnchor),
             
             sliderLeadingBackgroundView.widthAnchor.constraint(equalToConstant: 8),
@@ -118,7 +149,18 @@ final class HapticSliderViewControllerHapticSliderCell: UITableViewCell, Interac
             sliderView.trailingAnchor.constraint(equalTo: maxBenchmarkLineView.leadingAnchor, constant: -1),
             
             sliderView.centerYAnchor.constraint(equalTo: minBenchmarkLineView.centerYAnchor, constant: -0.5),
-            sliderView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
+            sliderView.bottomAnchor.constraint(equalTo: sliderContainerView.bottomAnchor),
+            
+            resultContainerView.leadingAnchor.constraint(equalTo: sliderContainerView.leadingAnchor),
+            resultContainerView.trailingAnchor.constraint(equalTo: sliderContainerView.trailingAnchor),
+            
+            resultContainerView.topAnchor.constraint(equalTo: sliderContainerView.topAnchor),
+            resultContainerView.bottomAnchor.constraint(equalTo: sliderContainerView.bottomAnchor),
+            
+            resultLabel.leadingAnchor.constraint(equalTo: resultContainerView.leadingAnchor),
+            resultLabel.trailingAnchor.constraint(equalTo: resultContainerView.trailingAnchor),
+            
+            resultLabel.centerYAnchor.constraint(equalTo: resultContainerView.centerYAnchor, constant: -6)
         ])
         
         var selector = #selector(sliderViewDidTouchDown)
@@ -160,7 +202,34 @@ final class HapticSliderViewControllerHapticSliderCell: UITableViewCell, Interac
             maxBenchmarkLabel.text = model.maxExample.title
             
             sliderView.value = model.userValue ?? 0.5
+            resultLabel.text = model.target.title
+            
+            sliderContainerView.isHidden = model.isResultShow
+            resultContainerView.isHidden = !sliderContainerView.isHidden
+            
+            [sliderContainerView, resultContainerView].forEach { $0.alpha = 1 }
         }
+    }
+    
+    private func switchToResult() {
+        model?.isResultShow = true
+        
+        UIView.animate(withDuration: animatingDuration, delay: 0, options: .curveEaseIn, animations: {
+            self.sliderContainerView.alpha = 0
+        }, completion: { isFinished in
+            guard isFinished else {
+                return
+            }
+            
+            self.sliderContainerView.isHidden = true
+            
+            self.resultContainerView.alpha = 0
+            self.resultContainerView.isHidden = false
+            
+            UIView.animate(withDuration: self.animatingDuration, delay: 0, options: .curveEaseOut) {
+                self.resultContainerView.alpha = 1
+            }
+        })
     }
     
     private func resetActiveState() {
@@ -178,7 +247,9 @@ final class HapticSliderViewControllerHapticSliderCell: UITableViewCell, Interac
         }
         
         let timeInterval: TimeInterval = 0.025
-        let intensityStep = Float(timeInterval * 2)
+        
+        let intensityMultiplierStep = Float(timeInterval * 2)
+        let targetClosenessAccumulatedDurationStep = timeInterval
         
         let timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [weak self] _ in
             guard let self, let model = self.model, var activeState = self.activeState else {
@@ -186,19 +257,34 @@ final class HapticSliderViewControllerHapticSliderCell: UITableViewCell, Interac
             }
             
             if !activeState.isAttenuation && activeState.intensityMultiplier < 1 {
-                activeState.intensityMultiplier += intensityStep
+                activeState.intensityMultiplier += intensityMultiplierStep
             } else {
                 if activeState.isAttenuation {
                     if activeState.intensityMultiplier > 0 {
-                        activeState.intensityMultiplier -= intensityStep
+                        activeState.intensityMultiplier -= intensityMultiplierStep
                     } else {
-                        self.resetActiveState()
-                        return
+                        if activeState.targetClosenessAccumulatedDuration == nil {
+                            self.resetActiveState()
+                            return
+                        }
                     }
                 }
             }
             
-            let targetValue = (model.target.value - model.minExample.value) / (model.maxExample.value - model.minExample.value)
+            if var targetClosenessAccumulatedDuration = activeState.targetClosenessAccumulatedDuration {
+                targetClosenessAccumulatedDuration += targetClosenessAccumulatedDurationStep
+                
+                if targetClosenessAccumulatedDuration >= 1 {
+                    activeState.targetClosenessAccumulatedDuration = nil
+                    activeState.isAttenuation = true
+                    
+                    self.switchToResult()
+                } else {
+                    activeState.targetClosenessAccumulatedDuration = targetClosenessAccumulatedDuration
+                }
+            }
+            
+            let targetValue = model.relativeTargetValue
             let currentValue = self.sliderView.value
             
             var intensity: Float
@@ -219,15 +305,37 @@ final class HapticSliderViewControllerHapticSliderCell: UITableViewCell, Interac
             self.activeState = activeState
         }
         
-        activeState = (timer: timer, intensityMultiplier: 0, isAttenuation: false)
+        activeState = (timer: timer, intensityMultiplier: 0, isAttenuation: false, targetClosenessAccumulatedDuration: nil)
     }
     
     @objc private func sliderViewDidTouchUp() {
+        guard model?.isResultShow != true else {
+            return
+        }
+        
         activeState?.isAttenuation = true
     }
     
     @objc private func sliderViewDidValueChange() {
-        model?.userValue = sliderView.value
+        guard let model, !model.isResultShow else {
+            return
+        }
+        
+        model.userValue = sliderView.value
+        
+        if var activeState {
+            let isClosely = abs(model.relativeTargetValue - sliderView.value) < 0.1
+            
+            if isClosely && activeState.targetClosenessAccumulatedDuration == nil {
+                activeState.targetClosenessAccumulatedDuration = 0
+            } else {
+                if !isClosely && activeState.targetClosenessAccumulatedDuration != nil {
+                    activeState.targetClosenessAccumulatedDuration = nil
+                }
+            }
+            
+            self.activeState = activeState
+        }
     }
     
 }
@@ -245,7 +353,10 @@ extension HapticSliderViewController.HapticSliderCell {
         let maxExample: Benchmark
         
         let target: Benchmark
+        let relativeTargetValue: Float
+        
         var userValue: Float?
+        var isResultShow = false
         
         init(title: String, minExample: Benchmark, maxExample: Benchmark, target: Benchmark) {
             self.title = title
@@ -254,6 +365,7 @@ extension HapticSliderViewController.HapticSliderCell {
             self.maxExample = maxExample
             
             self.target = target
+            relativeTargetValue = (target.value - minExample.value) / (maxExample.value - minExample.value)
         }
         
         struct Benchmark {
