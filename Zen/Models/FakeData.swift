@@ -180,24 +180,10 @@ final class FakeData {
     
     static let hapticSliderModels: [HapticSliderModel] = [
         .init(
-            title: "Расстояние от\u{00A0}Земли до\u{00A0}Луны",
-            minExample: .init(title: "10\u{2009}000\u{00A0}км", value: 10_000),
-            maxExample: .init(title: "1\u{2009}000\u{2009}000\u{00A0}км", value: 1_000_000),
-            target: .init(title: "384\u{2009}400\u{00A0}км", value: 384_400)
-        ),
-        
-        .init(
-            title: "Температура плавления железа",
-            minExample: .init(title: "–\u{2009}38,89\u{00A0}°C (ртуть)", value: -38.89),
-            maxExample: .init(title: "3\u{2009}422\u{00A0}°C (вольфрам)", value: 3_422),
-            target: .init(title: "1\u{2009}538\u{00A0}°C", value: 1_538)
-        ),
-        
-        .init(
-            title: "Год изобретения транзистора",
-            minExample: .init(title: "1900", value: 1900),
-            maxExample: .init(title: "2020", value: 2020),
-            target: .init(title: "1947", value: 1947)
+            title: "Скорость звука в\u{00A0}воздухе при\u{00A0}20\u{00A0}°C",
+            minExample: .init(title: "100\u{00A0}м/с", value: 100),
+            maxExample: .init(title: "1\u{2009}000\u{00A0}м/с", value: 1_000),
+            target: .init(title: "343\u{00A0}м/с", value: 343)
         ),
         
         .init(
@@ -206,12 +192,26 @@ final class FakeData {
             maxExample: .init(title: "$\u{00A0}1\u{2009}000", value: 1_000),
             target: .init(title: "$\u{00A0}666,66", value: 666.66)
         ),
-    
+        
         .init(
-            title: "Скорость звука в\u{00A0}воздухе при\u{00A0}20\u{00A0}°C",
-            minExample: .init(title: "100\u{00A0}м/с", value: 100),
-            maxExample: .init(title: "1\u{2009}000\u{00A0}м/с", value: 1_000),
-            target: .init(title: "343\u{00A0}м/с", value: 343)
+            title: "Расстояние от\u{00A0}Земли до\u{00A0}Луны",
+            minExample: .init(title: "10\u{2009}000\u{00A0}км", value: 10_000),
+            maxExample: .init(title: "1\u{2009}000\u{2009}000\u{00A0}км", value: 1_000_000),
+            target: .init(title: "384\u{2009}400\u{00A0}км", value: 384_400)
+        ),
+        
+        .init(
+            title: "Температура плавления иридия",
+            minExample: .init(title: "–\u{2009}38,89\u{00A0}°C (ртуть)", value: -38.89),
+            maxExample: .init(title: "3\u{2009}422\u{00A0}°C (вольфрам)", value: 3_422),
+            target: .init(title: "2\u{2009}466\u{00A0}°C", value: 2_466)
+        ),
+        
+        .init(
+            title: "Год изобретения транзистора",
+            minExample: .init(title: "1900", value: 1900),
+            maxExample: .init(title: "2020", value: 2020),
+            target: .init(title: "1947", value: 1947)
         )
     ]
     
