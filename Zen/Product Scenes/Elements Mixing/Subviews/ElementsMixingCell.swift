@@ -12,6 +12,9 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
     private let animatingDuration: TimeInterval = 0.25
     private let holeWidth: CGFloat = 92
     
+    private let notificationFeedbackGenerator = UINotificationFeedbackGenerator()
+    private let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
+    
     private var currentOptionViews: [OptionView] = []
     
     private let titleLabel = UILabel {
@@ -321,6 +324,10 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
                 UIView.animate(withDuration: self.animatingDuration * 2, delay: 0, options: .curveEaseOut) {
                     self.resultTitleLabel.alpha = 1
                 }
+                
+                self.notificationFeedbackGenerator.notificationOccurred(
+                    model.checkResult?.relevantCombination != nil ? .success : .error
+                )
             })
         })
     }
@@ -535,6 +542,8 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         guard let superview = sender.superview else {
             return
         }
+        
+        selectionFeedbackGenerator.selectionChanged()
         
         let optionViewFrame = superview.convert(superview.bounds, to: contentView)
         let holeContainerViewFrame = holeContainerView.convert(holeContainerView.bounds, to: contentView)
