@@ -17,7 +17,7 @@ final class HapticSliderViewController: InteractiveFormatViewController<
     }
     
     override var correspondingFormatGuide: (string: String, boldRanges: [NSRange]) {
-        return (LocalizedStrings.Scene.HapticSlider.guide, [])
+        return LocalizedStrings.Scene.HapticSlider.guide
     }
     
     override func createItemModelsPortion() -> [HapticSliderCell.Model] {

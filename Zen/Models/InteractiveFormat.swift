@@ -21,7 +21,7 @@ enum InteractiveFormat {
             case .elementsMixing:
                 return "🧑‍🔬"
             case .hapticSlider:
-                return "📳"
+                return "🌡️"
                 
             case .stepwisePoll:
                 return "📊"

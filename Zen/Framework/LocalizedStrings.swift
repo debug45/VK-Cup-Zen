@@ -88,7 +88,10 @@ enum LocalizedStrings {
         
         enum HapticSlider {
             
-            static let guide = NSLocalizedString("Scene.HapticSlider.Guide", comment: "")
+            static let guide: (string: String, boldRanges: [NSRange]) = {
+                let template = NSLocalizedString("Scene.HapticSlider.Guide", comment: "")
+                return LocalizedStrings.parseTemplate(template)
+            } ()
             
         }
         
