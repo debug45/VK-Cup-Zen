@@ -8,7 +8,10 @@
 import UIKit
 
 protocol InteractiveFormatViewControllerItemCellDelegate: AnyObject {
+    
+    func updateRightBarLabel(text: String)
     func presentAlertController(_ alertController: UIAlertController)
+    
 }
 
 extension InteractiveFormatViewController.ItemCell {

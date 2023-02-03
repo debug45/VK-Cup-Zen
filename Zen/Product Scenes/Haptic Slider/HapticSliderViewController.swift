@@ -17,6 +17,7 @@ final class HapticSliderViewController: InteractiveFormatViewController<
         super.viewDidAppear(animated)
         
         if !CHHapticEngine.capabilitiesForHardware().supportsHaptics {
+            rightBarLabel.frame.size.width = 74
             showUnsupportedDeviceAlert()
         }
     }

@@ -15,6 +15,11 @@ class InteractiveFormatViewController<
     private var availableWidth: CGFloat?
     private var itemModels: [ItemModel] = []
     
+    let rightBarLabel = UILabel {
+        $0.textAlignment = .right
+        $0.textColor = .Zen.foreground
+    }
+    
     private lazy var guideLabel = UILabel {
         $0.numberOfLines = 0
         $0.textAlignment = .center
@@ -45,8 +50,13 @@ class InteractiveFormatViewController<
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.title = navigationBarTitle
+        
+        navigationItem.setRightBarButton(
+            .init(customView: rightBarLabel),
+            animated: false
+        )
+        
         view.backgroundColor = .Zen.background
         
         view.addSubviews(
@@ -75,6 +85,7 @@ class InteractiveFormatViewController<
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        rightBarLabel.frame.size.width = 0
         
         updateAvailableWidth()
         appendItemModels()
@@ -176,6 +187,10 @@ class InteractiveFormatViewController<
 }
 
 extension InteractiveFormatViewController: InteractiveFormatViewControllerItemCellDelegate {
+    
+    func updateRightBarLabel(text: String) {
+        rightBarLabel.text = text
+    }
     
     func presentAlertController(_ alertController: UIAlertController) {
         present(alertController, animated: true)

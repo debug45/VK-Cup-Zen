@@ -20,9 +20,12 @@ extension WrappingCollectionView {
                 
                 contentView.addSubviews(content)
                 
+                let lastHorizontalConstraint = content.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+                lastHorizontalConstraint.priority = .defaultHigh
+                
                 NSLayoutConstraint.activate([
                     content.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                    content.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+                    lastHorizontalConstraint,
                     
                     content.topAnchor.constraint(equalTo: contentView.topAnchor),
                     content.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)

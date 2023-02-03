@@ -16,6 +16,7 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
     private let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
     
     private var currentOptionViews: [OptionView] = []
+    private var isUserMixtureUpdating = false
     
     private let titleLabel = UILabel {
         let size = UIFont.systemFontSize
@@ -247,6 +248,8 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
     
     var model: Model? {
         didSet {
+            isUserMixtureUpdating = false
+            
             guard let model else {
                 return
             }
@@ -279,7 +282,7 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
     }
     
     func checkResultIfAppropriate() {
-        guard checkResultStackView.isUserInteractionEnabled, let model, model.checkResult == nil else {
+        guard checkResultStackView.isUserInteractionEnabled, let model, model.checkResult == nil, !isUserMixtureUpdating else {
             return
         }
         
@@ -512,6 +515,8 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
             model.userMixture.append(component)
         }
         
+        self.isUserMixtureUpdating = false
+        
         UIView.animate(withDuration: animatingDuration, delay: 0, options: .curveEaseIn, animations: {
             self.addedCountLabel.alpha = 0
         }, completion: { isFinished in
@@ -554,6 +559,8 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
         )
         
         let dropToHole = {
+            self.isUserMixtureUpdating = true
+            
             UIView.animate(withDuration: self.animatingDuration, delay: 0, options: .curveEaseIn) {
                 sender.transform = self.createComplexTransform(for: sender, translation: translation, fitToHole: true)
             }

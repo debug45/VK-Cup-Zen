@@ -5,12 +5,15 @@
 //  Created by Sergey Moskvin on 01.02.2023.
 //
 
+import CoreHaptics
 import UIKit
 
 final class HapticSliderViewControllerHapticSliderCell: UITableViewCell, InteractiveFormatViewController.ItemCell {
     
     private let feedbackGenerator = UIImpactFeedbackGenerator()
     private let animatingDuration: TimeInterval = 0.25
+    
+    private lazy var numberFormatter = NumberFormatter()
     
     private var activeState: (
         timer: Timer,
@@ -196,6 +199,7 @@ final class HapticSliderViewControllerHapticSliderCell: UITableViewCell, Interac
                 return
             }
             
+            updateRightBarLabelIfNeeded(intensity: 0)
             titleLabel.text = model.title
             
             minBenchmarkLabel.text = model.minExample.title
@@ -302,10 +306,29 @@ final class HapticSliderViewControllerHapticSliderCell: UITableViewCell, Interac
                 intensity: .init(intensity)
             )
             
+            self.updateRightBarLabelIfNeeded(intensity: intensity)
             self.activeState = activeState
         }
         
         activeState = (timer: timer, intensityMultiplier: 0, isAttenuation: false, targetClosenessAccumulatedDuration: nil)
+    }
+    
+    func updateRightBarLabelIfNeeded(intensity: Float) {
+        guard !CHHapticEngine.capabilitiesForHardware().supportsHaptics else {
+            delegate?.updateRightBarLabel(text: "")
+            return
+        }
+        
+        if var text = numberFormatter.string(
+            from: .init(value: intensity * 100)
+        ) {
+            if text.contains(numberFormatter.minusSign) {
+                text = "0"
+            }
+            
+            text = "📳\u{00A0}\(text)\u{2009}%"
+            delegate?.updateRightBarLabel(text: text)
+        }
     }
     
     @objc private func sliderViewDidTouchUp() {
