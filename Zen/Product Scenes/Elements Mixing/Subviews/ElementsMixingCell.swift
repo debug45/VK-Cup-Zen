@@ -69,7 +69,8 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
     }
     
     private let resultTitleLabel = UILabel {
-        $0.font = .systemFont(ofSize: 34, weight: .bold)
+        $0.font = .systemFont(ofSize: 24, weight: .bold)
+        $0.lineBreakMode = .byTruncatingMiddle
         
         $0.textAlignment = .center
         $0.textColor = .Zen.foreground.withAlphaComponent(0.5)
@@ -204,7 +205,9 @@ final class ElementsMixingViewControllerElementsMixingCell: UITableViewCell, Int
             resultContainer.topAnchor.constraint(equalTo: holeContainerView.topAnchor, constant: -6),
             resultContainer.bottomAnchor.constraint(equalTo: wrappingCollectionViewContainer.bottomAnchor, constant: -10),
             
-            resultNestedContainer.centerXAnchor.constraint(equalTo: resultContainer.centerXAnchor),
+            resultNestedContainer.leadingAnchor.constraint(equalTo: resultContainer.leadingAnchor),
+            resultNestedContainer.trailingAnchor.constraint(equalTo: resultContainer.trailingAnchor),
+            
             resultNestedContainer.centerYAnchor.constraint(equalTo: resultContainer.centerYAnchor),
             
             resultIconLabel.leadingAnchor.constraint(equalTo: resultNestedContainer.leadingAnchor, constant: 1),

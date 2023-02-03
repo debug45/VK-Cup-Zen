@@ -26,7 +26,7 @@
 "Scene.ElementsMixing.AddingHint.ImportantOrder" = "Важен **порядок** добавления";
 "Scene.ElementsMixing.AddingHint.AnyCounts" = "Можно добавить **любое** количество";
 "Scene.ElementsMixing.CheckResult.Button" = "Проверить";
-"Scene.ElementsMixing.CheckResult.Hint.Template" = "(или просто встряхните %@)";
+"Scene.ElementsMixing.CheckResult.Hint.Template" = "(или\U00A0встряхните %@)";
 "Scene.ElementsMixing.ResetButton" = "Начать заново";
 "Scene.ElementsMixing.Failure" = "Не\U00A0получилось";
 

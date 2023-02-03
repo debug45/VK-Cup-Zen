@@ -114,14 +114,14 @@ final class FakeData {
                     components: [
                         (title: "H", count: 2)
                     ],
-                    result: "Молекула водорода (H₂)"
+                    result: "Водород (H₂)"
                 ),
                 
                 .init(
                     components: [
                         (title: "O", count: 2)
                     ],
-                    result: "Молекула кислорода (O₂)"
+                    result: "Кислород (O₂)"
                 ),
                 
                 .init(
